@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="wrap-result">
+
+        <audio controls id="audio" src="../static/files/audio/article.mp3"></audio>
+        <a href="../static/files/audio/article.mp3" download="audio.mp3" class="download">音声ファイルをダウンロード</a>
+
+        <div class="article">
+            <div id="articleID" style="display: none;">{{ articleID[0] }}</div>
+            <h3 id="title">{{ title }}</h3>
+            <!-- Vueコンテナ -->
+            <div id="vue-container">
+                <!-- コンポーネント -->
+                <mycomp />
+            </div>
+
+            {% raw %}
+            <!-- コンポーネントのテンプレート -->
+            <script type="text/x-template" id="mycomp-template">
+                <div>
+                    <button v-on:click="action" id="archive_button">アーカイブする</button>
+                </div>
+            </script>
+        {% endraw %}            
+            <p id="textarea" class="textarea">{{ result }}</p>
+        </div>
+
+        <p class="reference">引用元：<a href="{{ url }}" id="url">{{ url }}</a></p>
+
+    </div>
+
+    <script>
+        var title = document.querySelector("#title").textContent;
+        var url = document.querySelector("#url").textContent;
+        // コンポーネントのスクリプト
+        Vue.component('mycomp',{
+            template:'#mycomp-template',    
+            data: function(){
+                return{
+                    id : document.querySelector('#articleID').textContent,
+                    title : document.querySelector("#title").textContent,
+                    url : document.querySelector("#url").textContent,
+                };
+            },
+            methods:{
+                action:function(){
+                    console.log("clicked!!!");
+                    $.get("/ajax/" + this.id, function(data){
+                        $("#archive_button").addClass("active");
+                        $("#archive_button").text("アーカイブしました");
+                        $("#archive_button").attr("disabled","true");
+                        console.log(data);
+                    });
+                }
+            }
+        });
+        // Vueオブジェクト作成
+        new Vue({
+            el:'#vue-container',
+        });
+        
+        window.addEventListener('DOMContentLoaded', function () {
+            const audioElement = document.querySelector("audio");
+            audioElement.playbackRate = 1.5;
+        });
+    </script>
+
+{% endblock %}

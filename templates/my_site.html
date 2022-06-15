@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="wrap-site">
+    <form class="site" method="POST" action="{{ url_for('search') }}">
+        <input type="submit" name="sitename" value="CNET">
+        <input type="submit" name="sitename" value="TechCrunch">
+        <input type="submit" name="sitename" value="GIZMODO">
+        <input type="submit" name="sitename" value="CoinPost">
+        <input type="submit" name="sitename" value="Telektlist">
+        <input type="submit" name="sitename" value="VAIENCE">
+    </form>
+</div>
+
+{% endblock %}

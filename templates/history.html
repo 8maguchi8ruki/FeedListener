@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% raw %}
+<!-- Vueコンテナ -->
+<div id="vue-container">
+    <!-- コンポーネント -->
+    <mycomp />
+    <!-- コンポーネントのテンプレート -->
+    <script type="text/x-template" id="mycomp-template">
+            <div class="dialog">
+                <div class="dialog_content">
+                    <p>本当に削除してよろしいですか？</p>
+                    <div>
+                        <button class="delete_cancel">いいえ</button>
+                        <button v-on:click="action" class="delete_ok">はい</button>
+                    </div>
+                </div>
+            </div>
+    </script>
+</div>
+{% endraw %}
+
+<div class="wrap-content">
+
+    <div class="wrap_delete_historys">
+        <h3>履歴</h3>
+        <button class="delete_trigger">履歴削除</button>
+    </div>
+
+
+    <div class="historys">
+        <ul style="padding-left: 0;">
+            {% set ns = namespace(len = datas|length - 1) %}
+            {% for data in datas %}
+            <li style="margin: 10px 0; list-style-type: none;"><a href="{{ datas[ns.len][2] }}">{{ datas[ns.len][1]}}</a></li>
+            {% set ns.len = ns.len - 1 %}
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
+
+    <script>
+        // コンポーネントのスクリプト
+        Vue.component('mycomp',{
+            template:'#mycomp-template',  
+            methods:{
+                action:function(){
+                    console.log("clicked!!!");
+                    $.get("/ajax/delete_historys/", function(){
+                        location.reload();
+                        console.log("done!!");
+                    });
+                }
+            }
+        });
+        // Vueオブジェクト作成
+        new Vue({
+            el:'#vue-container',
+        });
+
+        $(".delete_trigger").click(function(){
+            $(".dialog").toggleClass("active");
+        })
+        $(".delete_cancel").click(function(){
+            $(".dialog").toggleClass("active");
+        })
+    </script>
+
+{% endblock %}

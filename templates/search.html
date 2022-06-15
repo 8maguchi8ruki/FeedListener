@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}  
+
+<div class="wrap-seach">
+    <form class="search" method="POST" action="{{ url_for('result') }}">
+        <p>記事URLを入力してください</p>
+        <div>
+            <input type="text" id="url" class="url" name="url" placeholder="https://example.com">
+            <button type="submit" onclick="loading()"><i class="fas fa-search fa-2x"></i></button>
+        </div>
+    </form>
+</div>
+
+    <div id="loader-bg">
+        <div id="loader">
+            <img src="../static/img/Search.png" width="100" height="100" alt="Loading..." />
+            <p style="color: #2cb44c;">Loading...</p>
+            <p class="comment comment1">記事内容を取得中</p>
+            <p class="comment comment2">音声ファイルを作成しています</p>
+        </div>
+    </div>
+
+    <script>
+        function loading(){
+            $('#loader-bg ,#loader').css('display', 'block');
+            $(".comment1").addClass("active");
+            setTimeout(() => {
+                $(".comment1,.comment2").toggleClass("active");
+            }, 2000);
+        }
+    </script>
+{% endblock %}

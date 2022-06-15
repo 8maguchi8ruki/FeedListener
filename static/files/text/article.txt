@@ -1,0 +1,23 @@
+
+by John Abella
+
+フランスに本部を置く化粧品会社のL'Oréal(ロレアル)が人間の皮膚を3Dプリンティングする研究開発を始めたことが分かりました。
+
+L'Oreal's Plan to Start 3D Printing Human Skin - Bloomberg Business
+http://www.bloomberg.com/news/articles/2015-05-18/l-oreal-s-plan-to-start-3d-printing-human-skin
+
+Organovo - L'Oreal USA Announces Research Partnership with Organovo to Develop 3-D Bioprinted Skin Tissue
+http://ir.organovo.com/news/press-releases/press-releases-details/2015/LOreal-USA-Announces-Research-Partnership-with-Organovo-to-Develop-3-D-Bioprinted-Skin-Tissue/
+
+化粧品会社のロレアルは1年間に収益の3.7％、額にすると10億ドル(約1200億円)以上を研究開発に当てており、世界50カ国に科学者3800人を抱えているテクノロジー会社である一面を持っています。そのロレアルが5月始めにバイオテクノロジー系のスタートアップOrganovoとの提携を発表し、人間の皮膚の3Dプリンティングに着手し始めていたことが判明しました。
+
+by National Eye Institute
+
+化粧品の安全性を確かめるには「生きた皮膚」に対して使ってみて反応を見る必要があります。ロレアルは1980年代から動物実験を避けるために肌の人工生成を開始していましたが、実際に生きた皮膚を作るには技術や時間が必要でした。
+
+ロレアルだけでなく、フランスにあるライオンでも巨大な施設で人工皮膚の研究を行っており、年間10万個以上、大きさにすると5平方メートルの皮膚サンプルを生成しているとのこと。これらの皮膚は1つあたり大体5mm四方で、分厚いものになると厚さ1mmほどになるそうです。
+
+
+では、これまでどうやって皮膚の生成が行われていたのかというと、まず医療施設から手術患者の組織片などを寄付してもらい、細胞レベルにまで細かくスライスし、人間の皮膚で発生するような生物学的なシグナルにさらしつつ、独自の餌を与えてトレイの中で育てるというものでした。できる限り実際の皮膚に近い環境を作り出し、約1週間で小さな組織片を皮膚サンプルにまで育てるわけです。
+
+今回ロレアルとOrganovoが手を組んだことで、5年後には手作業で行っていた皮膚の生成を自動化し、高速で行えるようになる見込み。Organovoは既にドイツの医薬品メーカー・メルクと提携しており、肝臓や腎臓の組織を3Dプリンティングすることに成功しているため、ロレアルに所属する専門家とOrganovoのノウハウを使って生きた皮膚を3Dプリントする技術を確立していくものと見られています。・関連コンテンツ

@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{% raw %}
+<!-- Vueコンテナ -->
+<div id="vue-container">
+    <!-- コンポーネント -->
+    <mycomp />
+    <!-- コンポーネントのテンプレート -->
+    <script type="text/x-template" id="mycomp-template">
+        <div class="dialog">
+            <div class="dialog_content">
+                <p>本当に削除してよろしいですか？</p>
+                <div>
+                    <button class="delete_cancel">いいえ</button>
+                    <button v-on:click="action" class="delete_ok">はい</button>
+                </div>
+            </div>
+        </div>
+    </script>
+</div>
+{% endraw %}
+
+<div class="wrap-content">
+
+    <div class="wrap_delete_archives" >
+        <h3>アーカイブ</h3>
+        <button id="delete_archives" class="delete_all delete_trigger">全てのアーカイブを削除</button>
+    </div>
+
+    <div class="archives">
+        <ul id="archives" style="padding-left: 0;">
+        </ul>
+    </div>
+
+</div>
+
+<script>
+    // コンポーネントのスクリプト
+    Vue.component('mycomp',{
+        template:'#mycomp-template',  
+        data: id = document.querySelector("#archives div button"),
+        methods:{
+            action:function(){
+                console.log("clicked!!!");
+                $.get("/ajax/delete_archives/", function(){
+                    location.reload();
+                    console.log("done!!");
+                });
+            }
+        }
+    });
+    // Vueオブジェクト作成
+    new Vue({
+        el:'#vue-container',
+    });
+</script>
+
+
+
+<script>
+    var cnt = 0;
+    var archives = {{archives|tojson}};
+    for(let i=0;i<archives.length;i++){
+        for(let j=0;j<archives.length;j++){
+            // 重複データを無効化する処理
+            if(archives[i][1] == archives[j][1]){
+                cnt = cnt + 1;
+                if(cnt == 2){
+                    archives[j] = "";
+                    cnt = cnt - 1;
+                }
+            }
+        };
+        // カウント変数初期化
+        cnt = 0;
+    };
+    console.log(archives);
+    var ul = document.querySelector("#archives");
+    for(let i=0;i<archives.length;i++){
+        if(archives[i] != ""){
+            let div = document.createElement("div");
+            let button = document.createElement("button");
+            button.setAttribute("id","delete_this");
+            button.textContent = "削除";
+            let li = document.createElement("li");
+            let a = document.createElement("a");
+            a.innerHTML = archives[i][1];
+            a.href = archives[i][2];
+            button.value = archives[i][0];
+            li.appendChild(a);
+            div.appendChild(li);
+            div.appendChild(button);
+            ul.prepend(div);
+        }
+    }
+</script>
+<script>
+    $("#archives div button").on('click',function(){
+        $.ajax('/ajax/delete/' + this.value,
+        {
+            type: 'get',
+        }).done(function() {    
+            location.reload();
+            console.log("done!!");
+        }).fail(function() {
+            console.log('fail...');
+        });
+    })
+
+
+    $(".delete_trigger").click(function(){
+        $(".dialog").toggleClass("active");
+    })
+    $(".delete_cancel").click(function(){
+        $(".dialog").toggleClass("active");
+    })
+</script>
+
+{% endblock %}
