@@ -516,13 +516,13 @@ footer p{
 .contact_form .name ,.contact_form .email{
     width: 250px;
     height: 30px;
-    background-color: #252525;
+    background-color: #E7E9EB;
     border: none;
 }
 .contact_form .textarea{
     width: 90%;
     height: 250px;
-    background-color: #252525;
+    background-color: #E7E9EB;
     border: none;
 }
 .contact_form .submit{
