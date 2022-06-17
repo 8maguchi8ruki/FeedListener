@@ -109,6 +109,7 @@ h1 i{
     right: 0;
     color: #2cb44c;
     z-index: 99;
+    transform: translateY(-7px);
 }
 .add_site.active{
     display: none;

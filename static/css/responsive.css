@@ -116,6 +116,7 @@
     }
     .wrap{
         padding-top: 60px;
+        padding-bottom: 80px;
     }
     .wrap-result{
         padding: 20px 0;
@@ -172,5 +173,6 @@
     }
     #all_site > div{
         padding-top: 60px;
+        padding-bottom: 80px;
     }
 }
