@@ -138,15 +138,21 @@
         font-size: 1em;
     }
     .wrap-content .sub-menu{
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        background-color: #f9f9f9;
+        z-index: 100;
         display: flex;
         justify-content: space-between;
         width: 100%;
+        padding: 10px;
         box-sizing: border-box;
-        margin-top: 20px;
+        border-top: 1px solid #ddd;
     }
     .sub-menu a{
         width: 50%;
-        height: 80px;
+        height: 50px;
         display: flex;
         justify-content: center;
         align-items: center;
