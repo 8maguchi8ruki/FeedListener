@@ -192,6 +192,8 @@
         padding-bottom: 80px;
     }
     .wrap-seach img{
-        width: 100%;
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 50px;
     }
 }
