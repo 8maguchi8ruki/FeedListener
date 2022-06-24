@@ -131,7 +131,8 @@
         margin: 0;
     }
     .wrap_add_site h3,.wrap_delete_archives h3,.wrap_delete_historys h3,.scroll_content p{
-        margin-bottom: 0;
+        margin-bottom: 5px;
+        margin-top: 10px;
     }
     form.site input{
         width: 100%;
