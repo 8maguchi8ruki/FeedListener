@@ -12,7 +12,7 @@ body{
 .wrap{
     width: 1000px;
     padding: 10px;
-    padding-top: 120px;
+    padding-top: 140px;
     box-sizing: border-box;
     margin: 0 auto;
 }
@@ -36,6 +36,10 @@ header{
     z-index: 100;
     background-color: #f9f9f9;;
 }
+.sub-menu img{
+    width: 40px;
+    margin-right: 10px;
+}
 h1{
     width: 1000px;
     margin: 0 auto;
@@ -53,8 +57,8 @@ h1 p{
     width: 1000px;
     margin: 0 auto;
     color: #aaaaaa;
-    padding-left: 30px;
     margin-top: 10px;
+    font-size: 1rem;
 }
 /* ハンバーガーメニュー */
 #hamburger_menu,#hamburger_trigger,#hamburger_close{
@@ -173,7 +177,7 @@ h1 p{
     background-color: #ddd;
 }
 .site_button.disabled{
-    color: #f9f9f9;;
+    color: #f9f9f9;
 }
 .site_button.disabled:hover{
     opacity: 1;
@@ -189,6 +193,9 @@ h1 p{
     padding: 5px 0;
     color: #252525;
 }
+#mobile-only{
+    display: none;
+}
 
 
 
@@ -196,6 +203,11 @@ h1 p{
 .wrap-seach{
     width: 1000px;
     margin: 0 auto;
+}
+.wrap-seach img{
+    width: 480px;
+    display: block;
+    margin-top: 50px;
 }
 .wrap-seach h2{
     font-size: 2em;
@@ -213,6 +225,7 @@ h1 p{
     border: none;
     box-sizing: border-box;
     outline: none;
+    background-color: #E7E9EB;
 }
 .wrap-seach input:hover{
     cursor: pointer;
@@ -222,7 +235,7 @@ h1 p{
     height: 55px;
     width: 55px;
     margin-left: 20px;
-    background-color: #fff;
+    background-color: #E7E9EB;
     color: #252525;
     border: none;
 }
@@ -454,6 +467,7 @@ footer p{
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
+    border-bottom: 1px dashed #ccc;
 }
 .historys ul li a{
     text-decoration: none;
