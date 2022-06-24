@@ -70,7 +70,7 @@ h1 p{
 }
 .mylist div{
     width: 100%;
-    margin: 10px 0px;
+    margin: 5px 0px;
     border: none;
     background-color: #E7E9EB;
     color: #252525;
@@ -84,7 +84,7 @@ h1 p{
 }
 .mylist #sitename{
     width: calc(100% - 80px);
-    line-height: 50px;
+    line-height: 80px;
     border: none;
     background-color: #E7E9EB;
     color: #252525;
@@ -96,7 +96,7 @@ h1 p{
     top: 0;
     right: 0;
     width: 80px;
-    line-height: 50px;
+    line-height: 80px;
     background-color: #ccc;
     color: #252525;
     border: none;
@@ -157,14 +157,14 @@ h1 p{
 }
 .site_button{
     width: 100%;
-    line-height: 50px;
+    line-height: 80px;
     border: none;
     border: 1px solid #ddd;
     background-color: #E7E9EB;
     color: #252525;
     font-size: 1.2em;
     text-align: start;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 .site_button:hover{
     cursor: pointer;
