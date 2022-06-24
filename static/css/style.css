@@ -27,7 +27,7 @@ p,h1,h2,h3,h4,li{
 /***** ヘッダー *****/
 header{
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     box-sizing: border-box;
     border-bottom: 1px solid #ddd;
     position: fixed;
@@ -48,6 +48,13 @@ h1 a{
 }
 h1 i{
     margin-right: 10px;
+}
+h1 p{
+    width: 1000px;
+    margin: 0 auto;
+    color: #aaaaaa;
+    padding-left: 30px;
+    margin-top: 10px;
 }
 /* ハンバーガーメニュー */
 #hamburger_menu,#hamburger_trigger,#hamburger_close{
@@ -418,6 +425,7 @@ footer p{
     border: none;
     color: #252525;
     text-align: end;
+    margin-top: 20px;
 }   
 #delete_this{
     width: 80px;
@@ -466,6 +474,7 @@ footer p{
     background-color: #f9f9f9;;
     color: #252525;
     text-align: end;
+    margin-top: 20px;
 }
 .delete_trigger:hover{
     cursor: pointer;

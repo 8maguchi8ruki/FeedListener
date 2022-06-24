@@ -10,13 +10,22 @@ from flask import Flask
 import database
 import contact_me
 import re
+import random
+import os
+import shutil
 
 app = Flask(__name__)
-
+rannum = ""
 ##### トップページ #####
 @app.route('/')
 def index():
     database.create_all_site()
+    print(rannum)
+
+    if os.path.exists("static/files/audio"):
+        print("audioフォルダを削除しました")
+        shutil.rmtree("static/files/audio")
+
     return render_template('index.html', my_sites = database.select_site())
 
 ##### トップページ全サイト取得ajax #####
@@ -107,6 +116,11 @@ class TITLE:
 def result():
     # HTMLformから値を取得
     url = request.form.get('url')
+
+    if not os.path.exists("static/files/audio"):
+        print("audioフォルダを作成しました")
+        os.mkdir("static/files/audio")
+
     path = "static/files/text/article.txt"
     def Scraping(class_name , sitename):
         #記事を取得しarticle.txtへ書き込み  
@@ -202,7 +216,8 @@ def result():
     print("----- 音声ファイル作成中 -----")
     data = f.read()
     hoge = gTTS(data,lang="ja")
-    hoge.save("static/files/audio/article.mp3")
+    rannum = random.uniform(0,10000)
+    hoge.save(f"static/files/audio/article{rannum}.mp3")
     f.close()
 
     def get_title(t):
@@ -214,8 +229,7 @@ def result():
     get_title(t)
     # 最新の履歴データのIDを取得
     articleID = database.count()
-    return render_template('result.html', result=data, url = url , title = t.title , articleID=articleID[0])
-
+    return render_template('result.html', result=data, url = url , title = t.title , articleID=articleID[0] , rannum = rannum)
 if __name__ == '__main__':
     app.run()   
     

@@ -2,8 +2,8 @@
 {% block content %}
     <div class="wrap-result">
 
-        <audio controls id="audio" src="../static/files/audio/article.mp3"></audio>
-        <a href="../static/files/audio/article.mp3" download="audio.mp3" class="download">音声ファイルをダウンロード</a>
+        <audio controls id="audio" src="../static/files/audio/article{{ rannum }}.mp3"></audio>
+        <a href="../static/files/audio/article{{ rannum }}.mp3" download="article{{ rannum }}.mp3" class="download">音声ファイルをダウンロード</a>
 
         <div class="article">
             <div id="articleID" style="display: none;">{{ articleID[0] }}</div>

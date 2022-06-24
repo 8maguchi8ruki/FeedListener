@@ -1,5 +1,5 @@
 @media screen and (max-width: 1024px){
-    .wrap,h1,footer ul{
+    .wrap,h1,footer ul,h1 p{
         width: 100%;
     }
     .wrap{
@@ -38,6 +38,10 @@
     h1{
         padding-left: 0;
         font-size: 1.5em;
+    }
+    h1 p{
+        padding-left: 0;
+        font-size: 0.8em;
     }
     #hamburger_trigger{
         display: block;
@@ -115,11 +119,17 @@
         font-size: 1em;
     }
     .wrap{
-        padding-top: 60px;
+        padding-top: 90px;
         padding-bottom: 80px;
     }
     .wrap-result{
         padding: 20px 0;
+    }
+    .archives ul ,.historys ul{
+        margin: 0;
+    }
+    .wrap_add_site h3,.wrap_delete_archives h3,.wrap_delete_historys h3,.scroll_content p{
+        margin-bottom: 0;
     }
     form.site input{
         width: 100%;
@@ -172,7 +182,7 @@
         padding-top: calc(30vh - 50px);  
     }
     #all_site > div{
-        padding-top: 60px;
+        padding-top: 90px;
         padding-bottom: 80px;
     }
 }
