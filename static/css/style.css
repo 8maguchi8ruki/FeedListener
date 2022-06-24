@@ -90,6 +90,7 @@ h1 p{
     color: #252525;
     font-size: 1.2em;
     text-align: start;
+    border-left: 7px double #2cb44c;
 }
 .mylist .delete_site{
     position: absolute;
@@ -523,7 +524,7 @@ footer p{
 .delete_ok , .delete_cancel{
     border: none;
     background-color: #f9f9f9;;
-    color: #fff;
+    color: #252525;
     padding: 20px;
 }
 .delete_ok:hover{
