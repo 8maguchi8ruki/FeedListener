@@ -165,7 +165,10 @@
     }
     #mobile-only{
         display: flex;
-    }    
+    }
+    .sub-menu img{
+        display: block;
+    }
     .sub-menu a{
         width: 50%;
         height: 50px;
