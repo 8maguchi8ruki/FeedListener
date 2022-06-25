@@ -103,6 +103,7 @@ h1 p{
 }
 .recent_post div{
     background-color: #2cb44c;
+    margin: 20px 0;
 }
 .recent_post div:hover{
     opacity: 0.5;
@@ -117,8 +118,7 @@ h1 p{
     font-weight: bold;
     font-size: 1.5em;
     text-align: start;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    box-shadow: 2px 2px 2px #165525;
 }
 .recent .target_site{
     width: 100%;
