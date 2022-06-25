@@ -87,10 +87,45 @@ h1 p{
     line-height: 60px;
     border: none;
     background-color: #E7E9EB;
-    color: #252525;
+    color: #2cb44c;
     font-size: 1.2em;
     text-align: start;
-    border-left: 7px double #2cb44c;
+    border-left: 10px double #f9f9f9;
+}
+.recent_post{
+    position: relative;
+}
+.recent_post img{
+    position: absolute;
+    width: 100px;
+    top: 15px;
+    right: 20px;
+}
+.recent_post button{
+    width: 100%;
+    line-height: 100px;
+    border: none;
+    background-color: #2cb44c;
+    color: #f9f9f9;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: start;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.recent_post button:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+.recent .target_site{
+    width: 100%;
+    line-height: 60px;
+    border: none;
+    background-color: #2cb44c;
+    color: #f9f9f9;
+    font-size: 1.2em;
+    text-align: start;
+    border-left: 10px double #f9f9f9;
 }
 .mylist .delete_site{
     position: absolute;
@@ -99,7 +134,7 @@ h1 p{
     width: 80px;
     line-height: 60px;
     background-color: #ccc;
-    color: #252525;
+    color: #f9f9f9;
     border: none;
     z-index: 97;
 }
@@ -249,6 +284,10 @@ h1 p{
 .wrap-seach div{
     display: flex;
 
+}
+.recent{
+    margin-top: 20px;
+    
 }
 
 /***** ローディング *****/

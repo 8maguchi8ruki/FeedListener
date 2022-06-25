@@ -51,6 +51,12 @@ def search():
     sitename = request.form.get('sitename')
     return render_template("search.html",sitename = sitename)
 
+##### 最新の投稿ページ #####
+@app.route('/recent/', methods=['GET','POST'])
+def recent():
+    return render_template("recent.html")
+
+
 ##### ヘルプページ #####
 @app.route('/help/', methods=['GET','POST'])
 def help():
@@ -114,14 +120,15 @@ class TITLE:
     title = ""
 @app.route('/result/', methods=['GET','POST'])
 def result():
-    # HTMLformから値を取得
-    url = request.form.get('url')
-
     if not os.path.exists("static/files/audio"):
         print("audioフォルダを作成しました")
         os.mkdir("static/files/audio")
 
+    # HTMLformから値を取得
+    url = request.form.get('url')
+    print(url)
     path = "static/files/text/article.txt"
+    
     def Scraping(class_name , sitename):
         #記事を取得しarticle.txtへ書き込み  
         res = requests.get(url)
@@ -168,15 +175,15 @@ def result():
     # CoinPost
     elif "coinpost.jp" in url:
         sitename = "coinpost"
-        Scraping(".entry-content p")
+        Scraping(".entry-content p", sitename)
     # telektlist
     elif "telektlist.com" in url:
         sitename = "telektlist"
-        Scraping(".entry-content p")
+        Scraping(".entry-content p", sitename)
     # VAIENCE
     elif "vaience.com" in url:
         sitename = "vaience"
-        Scraping(".entry-content p")
+        Scraping(".entry-content p", sitename)
     # 朝日新聞
     elif "asahi.com" in url:
         sitename = "asahi"
@@ -205,6 +212,20 @@ def result():
     elif "gigazine.net" in url:
         sitename = "gigazine"
         Scraping(".preface" , sitename)
+    
+    # 最新の投稿
+    elif url == "new_post":
+            target_site = request.form.get('target_site')
+            print(target_site)
+            # Cnet
+            if target_site == "Cnet":
+                res = requests.get("https://japan.cnet.com/release/")
+                soup = bs4(res.content, "lxml")
+                a = soup.find('a', class_="bold")
+                recent_post = a.get('href')
+                url = "https://japan.cnet.com/" + recent_post
+                Scraping(".article_body p" , target_site)
+                
     else:
         return render_template("404.html")
 

@@ -2,6 +2,11 @@
 {% block content %}
 
 <div class="wrap-content">
+    <!-- 最新の投稿 -->
+    <form action="{{ url_for('recent') }}" method="POST" class="recent_post">
+        <button type="submit">最新の投稿を聴く</button>  
+        <img src="../static/img/recent.svg" alt="">
+    </form>
 
     <!-- Vueコンテナ -->
     <div id="vue-container">
@@ -22,13 +27,13 @@
 
     <!-- 全サイト -->
     <div id="all_site">
-
+        
     </div>
 
     <!-- マイリスト -->
-    <div class="mylist">
+    <form action="{{ url_for('search') }}" method="POST" class="mylist">
 
-    </div>
+    </form>
 
     <!-- サブメニュー -->
     <div class="sub-menu">
@@ -39,6 +44,7 @@
     <script>
         // マイリスト生成
         var mylists = {{my_sites|tojson}};
+        console.log(mylists)
         let sites = document.querySelector(".mylist");
         for(let j=0;j<mylists.length;j++){
             let div = document.createElement("div");
@@ -50,6 +56,7 @@
             button2.type = "submit";
             button2.textContent = mylists[j][1];
             button2.id = "sitename";
+            button2.name = "sitename";
             button2.value = mylists[j][1];
             div.appendChild(button2);
             div.appendChild(button);
@@ -159,11 +166,6 @@
             });
         });
 
-        // 検索ページへ遷移
-        $(".mylist").on('click',"#sitename",function(){
-            console.log("clicked!!");
-            window.location.href = "/search";
-        });
 
         // 要素切り替え処理
         $(".close_site").click(function(){
