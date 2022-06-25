@@ -4,8 +4,10 @@
 <div class="wrap-content">
     <!-- 最新の投稿 -->
     <form action="{{ url_for('recent') }}" method="POST" class="recent_post">
-        <button type="submit">最新の投稿を聴く</button>  
-        <img src="../static/img/recent.svg" alt="">
+        <div>
+            <button type="submit">最新の投稿を聴く</button>  
+            <img src="../static/img/recent.svg" alt="">
+        </div>
     </form>
 
     <!-- Vueコンテナ -->

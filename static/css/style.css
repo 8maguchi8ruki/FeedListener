@@ -97,25 +97,28 @@ h1 p{
 }
 .recent_post img{
     position: absolute;
-    width: 100px;
-    top: 15px;
+    width: 120px;
+    top: 30px;
     right: 20px;
+}
+.recent_post div{
+    background-color: #2cb44c;
+}
+.recent_post div:hover{
+    opacity: 0.5;
+    cursor: pointer;
 }
 .recent_post button{
     width: 100%;
-    line-height: 100px;
+    line-height: 150px;
     border: none;
     background-color: #2cb44c;
     color: #f9f9f9;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.5em;
     text-align: start;
     margin-top: 10px;
     margin-bottom: 10px;
-}
-.recent_post button:hover{
-    opacity: 0.5;
-    cursor: pointer;
 }
 .recent .target_site{
     width: 100%;
@@ -126,6 +129,8 @@ h1 p{
     font-size: 1.2em;
     text-align: start;
     border-left: 10px double #f9f9f9;
+    position: relative;
+    z-index: 10;
 }
 .mylist .delete_site{
     position: absolute;
