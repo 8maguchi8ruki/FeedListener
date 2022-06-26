@@ -85,8 +85,8 @@ h1 p{
     width: calc(100% - 80px);
     line-height: 60px;
     border: none;
-    background-color: #2cb44c;
-    color: #f9f9f9;
+    background-color: #E7E9EB;
+    color: #252525;
     font-size: 1.2em;
     text-align: start;
     border-left: 10px double #f9f9f9;
@@ -105,12 +105,12 @@ h1 p{
     align-self: center;
 }
 .menu h3{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin: 0;
     color: #f9f9f9;
 }
 .menu p{
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: normal;
     color: #f9f9f9;
 }
@@ -148,14 +148,21 @@ h1 p{
     position: relative;
     z-index: 10;
 }
+.to_mylist button{
+    background-color: #E7E9EB;
+}
+.to_mylist h3,.to_mylist p{
+    color: #252525;
+}
+
 .mylist .delete_site{
     position: absolute;
     top: 0;
     right: 0;
     width: 80px;
     line-height: 60px;
-    background-color: #2cb44c;
-    color: #f9f9f9;
+    background-color: #ddd;
+    color: #252525;
     border: none;
     z-index: 97;
 }
