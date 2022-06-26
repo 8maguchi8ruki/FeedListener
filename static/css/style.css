@@ -95,27 +95,29 @@ h1 p{
     position: relative;
 }
 .menu button{
+    width: 100%;
     display: flex;
 }
 .menu button div{
+    width: 70%;
     display: flex;
     flex-direction: column;
     align-self: center;
 }
 .menu h3{
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin: 0;
     color: #f9f9f9;
 }
 .menu p{
-    font-size: 1px;
+    font-size: 16px;
+    font-weight: normal;
     color: #f9f9f9;
 }
 .menu img{
-    position: absolute;
-    width: 120px;
-    top: 20px;
-    right: 20px;
+    width: 30%;
+    margin-top: 20px;
+    margin-right: 20px;
 }
 .menu .menu_content{
     margin: 10px 0 20px 0;
@@ -129,7 +131,6 @@ h1 p{
     height: 150px;
     border: none;
     background-color: #2cb44c;
-    border-radius: 10px;
     color: #f9f9f9;
     font-weight: bold;
     font-size: 1.5em;
