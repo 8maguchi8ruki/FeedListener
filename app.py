@@ -1,3 +1,4 @@
+from crypt import methods
 import json
 from xml.etree.ElementTree import tostring
 from gtts import gTTS
@@ -19,14 +20,13 @@ rannum = ""
 ##### トップページ #####
 @app.route('/')
 def index():
-    database.create_all_site()
     print(rannum)
 
     if os.path.exists("static/files/audio"):
         print("audioフォルダを削除しました")
         shutil.rmtree("static/files/audio")
 
-    return render_template('index.html', my_sites = database.select_site())
+    return render_template('index.html')
 
 ##### トップページ全サイト取得ajax #####
 @app.route('/ajax/all_site/')
@@ -44,6 +44,12 @@ def add_site(sitename):
 def delete_site(sitename):
     database.delete_site(sitename)
     return jsonify(database.select_site())
+
+##### マイリストページ #####
+@app.route('/mylist/', methods=['GET','POST'])
+def mylist():
+    database.create_all_site()
+    return render_template("mylist.html", my_sites = database.select_site())
 
 ##### 検索ページ #####
 @app.route('/search/', methods=['GET','POST'])

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="wrap-search">
+    <h3 style="font-weight:bold;" >最新の投稿</h3>
     <form class="recent" method="POST" action="{{ url_for('result') }}">
         <input type="hidden" value="Cnet" name="target_site">
         <input type="hidden" value="new_post" name="url" onclick="loading()">

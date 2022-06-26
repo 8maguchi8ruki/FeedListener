@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="wrap-content">
+    <!-- Vueコンテナ -->
+    <div id="vue-container">
+        <!-- コンポーネント -->
+        <mycomp />
+    </div>
+
+    {% raw %}
+    <!-- コンポーネントのテンプレート -->
+    <script type="text/x-template" id="mycomp-template">
+        <div class="wrap_add_site">
+            <h3 style="font-weight:bold;" >マイリスト</h3>
+            <i class="fas fa-plus fa-2x add_site" v-on:click="action" style="margin-top:5px;"></i>
+            <i class="fas fa-times fa-2x close_site"style="display:none; margin-top:5px;"></i>
+        </div>
+    </script>
+    {% endraw %}
+
+    <!-- 全サイト -->
+    <div id="all_site">
+        
+    </div>
+
+    <!-- マイリスト -->
+    <form action="{{ url_for('search') }}" method="POST" class="mylist">
+
+    </form>
+
+    <!-- サブメニュー -->
+    <div class="sub-menu">
+        <a href="/archive" class="arc"><img src="../static/img/search4.svg" alt="">アーカイブ</a> <br>
+        <a href="/history" class="his"><img src="../static/img/search5.svg" alt="">履歴</a>
+    </div>
+
+    <script>
+        // マイリスト生成
+        var mylists = {{my_sites|tojson}};
+        console.log(mylists)
+        let sites = document.querySelector(".mylist");
+        for(let j=0;j<mylists.length;j++){
+            let div = document.createElement("div");
+            let button = document.createElement("button");
+            button.textContent = "削除";
+            button.classList.add("delete_site");
+            button.value = mylists[j][1];
+            let button2 = document.createElement("button");
+            button2.type = "submit";
+            button2.textContent = mylists[j][1];
+            button2.id = "sitename";
+            button2.name = "sitename";
+            button2.value = mylists[j][1];
+            div.appendChild(button2);
+            div.appendChild(button);
+            sites.appendChild(div);
+        }
+
+        // 全サイト生成
+        function insert_sites(data){
+            let judge = document.querySelector(".site_button");
+            // 生成済みかどうか　(生成済みの場合はここで終了)
+            if(judge != null){
+                return
+            }else{
+                // 生成処理
+                let parent = document.querySelector("#all_site");
+                let div = document.createElement("div");
+                let div2 = document.createElement("div");
+                div2.classList.add("scroll_content");
+                let p = document.createElement("p");
+                p.textContent = "追加するサイトを選択してください"
+                div2.appendChild(p);
+                for(let i=0;i<data.length;i++){
+                    let button = document.createElement("button");
+                    button.classList.add("site_button");
+                    button.textContent = data[i][1];
+                    button.value = data[i][1];
+                    div2.appendChild(button)
+                }
+                div.appendChild(div2);
+                parent.appendChild(div);
+            }
+
+        }
+
+        // コンポーネントのスクリプト
+        Vue.component('mycomp',{
+            template:'#mycomp-template',    
+            data: function(){
+                return{
+                };
+            },
+            methods:{
+                action:function(){
+                    console.log("clicked!!!");
+                    // 全サイトajax
+                    $.get("/ajax/all_site", function(data){
+                        // 全サイト生成関数呼び出し
+                        insert_sites(data);
+                        // すでにマイリストに登録されているサイト要素に対して、disabled属性を付与
+                        let mysites = document.querySelectorAll(".mylist button");
+                        let allsites = document.querySelectorAll(".scroll_content button");
+                        for(let i=0;i<mysites.length;i++){
+                            let mysite = mysites[i].value;
+                            for(let j=0;j<allsites.length;j++){
+                                let allsite = allsites[j].value;
+                                if(mysite == allsite){
+                                    allsites[j].setAttribute("disabled","true");
+                                    allsites[j].classList.add("disabled");
+                                }
+                            }
+                        }
+                        // 要素切り替えのためのclass割り当て
+                        $(".add_site").addClass("active");
+                        $(".close_site").addClass("active");
+                        $(".close_site").css("display","block");
+                        $("#all_site div").css("display","block");
+                    });
+                },
+            }
+        });
+        
+        // Vueオブジェクト作成
+        new Vue({
+            el:'#vue-container',
+        });
+
+        // マイリスト追加処理
+        $("#all_site").on("click",".site_button",function(){
+            $(this).css("display","none");
+            let sitename = $(this).text();
+            console.log(sitename);
+            $.ajax('/ajax/add_site/' + this.value,
+            {
+                type: 'get',
+            }).done(function(data) {    
+                console.log(data);
+                console.log("done!!");
+                location.reload();
+            }).fail(function() {
+                console.log('fail...');
+            });
+            });
+        
+        // マイリスト削除処理
+        $(".mylist").on('click',".delete_site",function(){
+            console.log("cliked!!")
+            let delete_target = this.previousElementSibling;
+            console.log(delete_target.value);
+            $.ajax('/ajax/delete_site/' + delete_target.value,
+            {
+                type: 'get',
+            }).done(function() {    
+                location.reload();
+                console.log("done!!");
+            }).fail(function() {
+                console.log('fail...');
+            });
+        });
+
+
+        // 要素切り替え処理
+        $(".close_site").click(function(){
+            $(this).removeClass("active");
+            $(".add_site").removeClass("active");
+            $(this).css("display","none");
+            $("#all_site div").css("display","none");
+        })
+    </script>
+
+</div>
+
+{% endblock %}

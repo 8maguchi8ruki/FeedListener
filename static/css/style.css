@@ -72,8 +72,7 @@ h1 p{
     width: 100%;
     margin: 5px 0px;
     border: none;
-    background-color: #E7E9EB;
-    color: #252525;
+    color: #f9f9f9;
     box-sizing: border-box;
     position: relative;
 }
@@ -86,34 +85,51 @@ h1 p{
     width: calc(100% - 80px);
     line-height: 60px;
     border: none;
-    background-color: #E7E9EB;
-    color: #252525;
+    background-color: #2cb44c;
+    color: #f9f9f9;
     font-size: 1.2em;
     text-align: start;
     border-left: 10px double #f9f9f9;
 }
-.recent_post{
+.menu{
     position: relative;
 }
-.recent_post img{
+.menu button{
+    display: flex;
+}
+.menu button div{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+.menu h3{
+    font-size: 1.2rem;
+    margin: 0;
+    color: #f9f9f9;
+}
+.menu p{
+    font-size: 1px;
+    color: #f9f9f9;
+}
+.menu img{
     position: absolute;
     width: 120px;
-    top: 30px;
+    top: 20px;
     right: 20px;
 }
-.recent_post div{
-    background-color: #2cb44c;
+.menu .menu_content{
     margin: 10px 0 20px 0;
 }
-.recent_post div:hover{
+.menu .menu_content:hover{
     opacity: 0.5;
     cursor: pointer;
 }
-.recent_post button{
+.menu button{
     width: 100%;
-    line-height: 150px;
+    height: 150px;
     border: none;
     background-color: #2cb44c;
+    border-radius: 10px;
     color: #f9f9f9;
     font-weight: bold;
     font-size: 1.5em;
@@ -137,10 +153,12 @@ h1 p{
     right: 0;
     width: 80px;
     line-height: 60px;
-    background-color: #ccc;
+    background-color: #2cb44c;
     color: #f9f9f9;
     border: none;
     z-index: 97;
+}
+.to_mylist .menu_content button{
 }
 .mylist button:hover{
     cursor: pointer;
