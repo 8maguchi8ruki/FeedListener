@@ -20,8 +20,6 @@ rannum = ""
 ##### トップページ #####
 @app.route('/')
 def index():
-    print(rannum)
-
     if os.path.exists("static/files/audio"):
         print("audioフォルダを削除しました")
         shutil.rmtree("static/files/audio")
@@ -60,7 +58,8 @@ def search():
 ##### 最新の投稿ページ #####
 @app.route('/recent/', methods=['GET','POST'])
 def recent():
-    return render_template("recent.html")
+    database.create_all_site()
+    return render_template("recent.html", my_sites = database.select_site())
 
 
 ##### ヘルプページ #####
@@ -231,6 +230,24 @@ def result():
                 recent_post = a.get('href')
                 url = "https://japan.cnet.com/" + recent_post
                 Scraping(".article_body p" , target_site)
+
+            elif target_site == "GIZMODO":
+                res = requests.get("https://www.gizmodo.jp/articles/")
+                soup = bs4(res.content, "lxml")
+                p = soup.find('p', class_="p-archive-cardImage")
+                a = p.find('a')
+                recent_post = a.get('href')
+                url = "https://www.gizmodo.jp/" + recent_post
+                Scraping(".p-post-content p" , target_site)
+                
+            elif target_site == "sankei":
+                res = requests.get("https://www.sankei.com/flash/")
+                soup = bs4(res.content, "lxml")
+                h2 = soup.find('h2', class_="headline")
+                a = h2.find('a')
+                recent_post = a.get('href')
+                url = "https://www.sankei.com/" + recent_post
+                Scraping(".article-body p" , target_site)
                 
     else:
         return render_template("404.html")

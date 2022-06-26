@@ -12,7 +12,7 @@
     <!-- コンポーネントのテンプレート -->
     <script type="text/x-template" id="mycomp-template">
         <div class="wrap_add_site">
-            <h3 style="font-weight:bold;" >MY SITE</h3>
+            <h3 style="font-weight:bold;" >MY LIST</h3>
             <i class="fas fa-plus fa-2x add_site" v-on:click="action" style="margin-top:5px;"></i>
             <i class="fas fa-times fa-2x close_site"style="display:none; margin-top:5px;"></i>
         </div>
@@ -28,12 +28,11 @@
     <form action="{{ url_for('search') }}" method="POST" class="mylist">
 
     </form>
-
-    <!-- サブメニュー -->
-    <div class="sub-menu">
-        <a href="/archive" class="arc"><img src="../static/img/search4.svg" alt="">アーカイブ</a> <br>
-        <a href="/history" class="his"><img src="../static/img/search5.svg" alt="">履歴</a>
-    </div>
+        <!-- サブメニュー -->
+        <div class="sub-menu">
+            <a href="/archive" class="arc">ARCHIVES</a> <br>
+            <a href="/history" class="his">HISTORYS</a>
+        </div>
 
     <script>
         // マイリスト生成
@@ -168,6 +167,18 @@
             $(this).css("display","none");
             $("#all_site div").css("display","none");
         })
+
+
+        if(sites.childElementCount == 0){
+            let p = document.createElement("p");
+            p.classList.add("add_message");
+            p.textContent = "【＋】ボタンからお気に入りのサイトを登録してください。登録が完了したらサイト名をタップして記事を聴くことができます。";
+            let img = document.createElement("img");
+            img.src = "../static/img/add.svg";
+            img.style.width = "100%";   
+            sites.appendChild(p);
+            sites.appendChild(img);
+        }
     </script>
 
 </div>

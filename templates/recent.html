@@ -2,20 +2,34 @@
 {% block content %}
 <div class="wrap-search">
     <h3 style="font-weight:bold;" >RECENT POST</h3>
-    <form class="recent" method="POST" action="{{ url_for('result') }}">
+    <!-- <form class="recent" method="POST" action="{{ url_for('result') }}">
         <input type="hidden" value="Cnet" name="target_site">
         <input type="hidden" value="new_post" name="url" onclick="loading()">
         <input type="submit" value="Cnetの最新記事" onclick="loading()" class="target_site">
     </form>
-    
+    <form class="recent" method="POST" action="{{ url_for('result') }}">
+        <input type="hidden" value="GIZMODO" name="target_site">
+        <input type="hidden" value="new_post" name="url" onclick="loading()">
+        <input type="submit" value="GIZMODOの最新記事" onclick="loading()" class="target_site">
+    </form>
+    <form class="recent" method="POST" action="{{ url_for('result') }}">
+        <input type="hidden" value="sankei" name="target_site">
+        <input type="hidden" value="new_post" name="url" onclick="loading()">
+        <input type="submit" value="産経新聞の最新記事" onclick="loading()" class="target_site">
+    </form> -->
+
+    <!-- マイリストから参照したサイト -->
+    <div id="form_parent">
+
+    </div>
 </div>
 
 <div class="wrap-content">
-    <!-- サブメニュー -->
-    <div class="sub-menu">
-        <a href="/archive" class="arc"><img src="../static/img/search4.svg" alt="">アーカイブ</a> <br>
-        <a href="/history" class="his"><img src="../static/img/search5.svg" alt="">履歴</a>
-    </div>
+        <!-- サブメニュー -->
+        <div class="sub-menu">
+            <a href="/archive" class="arc">ARCHIVES</a> <br>
+            <a href="/history" class="his">HISTORYS</a>
+        </div>
 </div>
 
 <div id="loader-bg">
@@ -35,5 +49,53 @@
             $(".comment1,.comment2").toggleClass("active");
         }, 2000);
     }
+
+    // マイリスト生成
+    var mylists = {{my_sites|tojson}};
+    console.log(mylists)
+
+
+    // マイリストから参照して要素作成
+    let form_parent = document.querySelector("#form_parent");
+    for(let j=0;j<mylists.length;j++){
+            let form = document.createElement("form");
+            let input = document.createElement("input");
+            let input2 = document.createElement("input");
+            let input3 = document.createElement("input");
+
+            form.classList.add("recent");
+            form.method = "POST";
+            form.action = "{{ url_for('result')}}";
+
+            input.type = "hidden";
+            input.value = mylists[j][1];
+            input.name = "target_site";
+
+            input2.type = "hidden";
+            input2.value = "new_post";
+            input2.name = "url";
+            input2.setAttribute("onclick","loading()");
+
+            input3.type = "submit";
+            input3.value = mylists[j][1] + "の最新記事";
+            input3.setAttribute("onclick","loading()");
+            input3.classList.add("target_site");
+
+            form.appendChild(input);
+            form.appendChild(input2);
+            form.appendChild(input3);
+            form_parent.appendChild(form);
+        }
+
+        if(form_parent.childElementCount == 0){
+            let p = document.createElement("p");
+            p.classList.add("add_message");
+            p.textContent = "ホーム画面の【 MY LIST 】にお気に入りのサイトを登録してください。";
+            let img = document.createElement("img");
+            img.src = "../static/img/add.svg";
+            img.style.width = "100%";
+            form_parent.appendChild(p);
+            form_parent.appendChild(img);
+        }
 </script>
 {% endblock %}

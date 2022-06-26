@@ -6,12 +6,13 @@
     <form action="{{ url_for('recent') }}" method="POST" class="recent_post menu">
         <div class="menu_content">
             <button type="submit">
-                <div>
-                    <h3>RECENT POST</h3>
+                <div class="menu_left">
+                    <h3>RECENT POSTS</h3>
                     <p>最新の投稿をCHECK!!</p>
                 </div>
-
-                <img src="../static/img/recent.svg" alt="">
+                <div class="menu_right">
+                    <img src="../static/img/recent.svg" alt="">
+                </div>
             </button>  
         </div>
     </form>
@@ -19,27 +20,31 @@
     <form action="{{ url_for('mylist')}}" method="POST" class="to_mylist menu">
         <div class="menu_content">
             <button type="submit">
-                <div>
-                    <h3>MY SITE</h3>
+                <div class="menu_left">
+                    <h3>MY LIST</h3>
                     <p>サイトを選んで音声を再生。</p>
                 </div>
-                <img src="../static/img/menu4.svg" alt="">
+                <div class="menu_right">
+                    <img src="../static/img/menu4.svg" alt="">
+                </div>
             </button>
         </div>    
     </form>
 
     <!-- アーカイブ -->
-    <div class="menu to_archives">
+    <form class="menu to_archives" action="{{ url_for('archive') }}">
         <div class="menu_content">
-            <a href="/archive" class="arc">
-                <div>
+            <button type="submit" class="arc">
+                <div class="menu_left">
                     <h3>DOWNLOADS</h3>
-                    <p>保存済み音声ファイルを再生。</p>
+                    <p>保存済ファイルを再生。</p>
                 </div>
-                <img src="../static/img/menu3.svg" alt="">
-            </a>
+                <div class="menu_right">
+                    <img src="../static/img/menu3.svg" alt="">
+                </div>
+            </button>
         </div>  
-    </div>
+    </form>
 
             
 

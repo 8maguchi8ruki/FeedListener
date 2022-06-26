@@ -3,7 +3,7 @@
 
 <div class="wrap-seach">
     <form class="search" method="POST" action="{{ url_for('result') }}">
-        <p>記事URLを入力してください</p>
+        <p>対象の記事URLを入力してください</p>
         <div>
             <input type="text" id="url" class="url" name="url" placeholder="https://example.com">
             <button type="submit" onclick="loading()"><i class="fas fa-search fa-2x" style="color: #2cb44c;"></i></button>
@@ -15,11 +15,11 @@
 </div>
 
 <div class="wrap-content">
-    <!-- サブメニュー -->
-    <div class="sub-menu">
-        <a href="/archive" class="arc"><img src="../static/img/search4.svg" alt="">アーカイブ</a> <br>
-        <a href="/history" class="his"><img src="../static/img/search5.svg" alt="">履歴</a>
-    </div>
+        <!-- サブメニュー -->
+        <div class="sub-menu">
+            <a href="/archive" class="arc">ARCHIVES</a> <br>
+            <a href="/history" class="his">HISTORYS</a>
+        </div>
 </div>
 
     <div id="loader-bg">
