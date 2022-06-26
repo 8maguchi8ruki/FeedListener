@@ -113,6 +113,7 @@ h1 p{
     font-size: 1rem;
     font-weight: normal;
     color: #f9f9f9;
+    margin-bottom: 0;
 }
 .menu img{
     width: 30%;
