@@ -158,8 +158,6 @@ h1 p{
     border: none;
     z-index: 97;
 }
-.to_mylist .menu_content button{
-}
 .mylist button:hover{
     cursor: pointer;
     color: red;
