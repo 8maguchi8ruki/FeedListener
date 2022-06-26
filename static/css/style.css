@@ -78,7 +78,7 @@ h1 p{
 }
 .mylist #sitename{
     width: calc(100% - 80px);
-    line-height: 60px;
+    line-height: 80px;
     border: none;
     background-color: #777;
     color: #f9f9f9;
@@ -140,7 +140,7 @@ h1 p{
 }
 .recent .target_site , .select_site .target_site{
     width: 100%;
-    line-height: 60px;
+    line-height: 80px;
     border: none;
     background-color: #538f62;
     color: #f9f9f9;
@@ -170,7 +170,7 @@ h1 p{
     top: 0;
     right: 0;
     width: 80px;
-    line-height: 60px;
+    line-height: 80px;
     background-color: #666;
     color: #f9f9f9;
     border: none;
