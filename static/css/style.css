@@ -76,8 +76,8 @@ h1 p{
     box-sizing: border-box;
     position: relative;
 }
-.mylist #sitename{
-    width: calc(100% - 80px);
+.sitename{
+    width: 100%;
     line-height: 80px;
     border: none;
     background-color: #777;
@@ -86,6 +86,18 @@ h1 p{
     text-align: start;
     /* border-left: 10px double #f9f9f9; */
     /* border-top: 10px double #f9f9f9; */
+}
+.yahoo{
+    background-color: #cd4f4f;
+}
+.sankei{
+    background-color: #4e4f98;
+}
+.gizmodo{
+    background-color: #e2a563;
+}
+.sitename.change_backgroud{
+    opacity: 0.2;
 }
 .menu{
     position: relative;
@@ -143,7 +155,6 @@ h1 p{
     width: 100%;
     line-height: 80px;
     border: none;
-    background-color: #538f62;
     color: #f9f9f9;
     font-size: 1.2em;
     text-align: start;
@@ -151,9 +162,6 @@ h1 p{
     /* border-top: 10px double #f9f9f9; */
     position: relative;
     z-index: 10;
-}
-.select_site .target_site{
-    background-color: #538e7a;
 }
 .to_mylist button{
     background-color: #777;
@@ -171,13 +179,12 @@ h1 p{
     position: absolute;
     top: 0;
     right: 0;
-    width: 80px;
+    width: 80px;    
     line-height: 80px;
-    background-color: #666;
+    background-color: rgba(0, 0, 0, 0);
     color: #f9f9f9;
     border: none;
     z-index: 97;
-    /* border-top: 10px double #f9f9f9; */
 }
 .mylist button:hover{
     cursor: pointer;
@@ -238,25 +245,21 @@ h1 p{
     width: 100%;
     line-height: 80px;
     border: none;
-    border: 1px solid #ddd;
-    background-color: #E7E9EB;
-    color: #252525;
+    color: #f9f9f9;
     font-size: 1.2em;
     text-align: start;
     margin: 5px 0;
 }
-.site_button:hover{
+.site_button:hover,.mylist .sitename:hover{
     cursor: pointer;
     opacity: 0.5;
     color: #2cb44c;
-    background-color: #ddd;
 }
 .site_button.disabled{
-    color: #f9f9f9;
+    opacity: 0.2;
 }
 .site_button.disabled:hover{
-    opacity: 1;
-    color: 252525;
+    color: #f9f9f9;
 }
 
 /***** アーカイブ、履歴 *****/
@@ -336,7 +339,7 @@ h1 p{
 /***** ローディング *****/
 #loader-bg{
     display: none;
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     z-index: 1000;

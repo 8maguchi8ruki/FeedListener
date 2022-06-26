@@ -14,6 +14,7 @@ import re
 import random
 import os
 import shutil
+from lxml import html
 
 app = Flask(__name__)
 rannum = ""
@@ -180,29 +181,13 @@ def result():
         sitename = "cnet"
         Scraping(".article_body p" , sitename)
     # Techcrunch
-    elif "jp.techcrunch.com" in url:
-        sitename = "techcrunch"
-        Scraping(".article-entry.text p" , sitename)
+    # elif "jp.techcrunch.com" in url:
+    #     sitename = "techcrunch"
+    #     Scraping(".article-entry.text p" , sitename)
     #GIZMODO
     elif "gizmodo.jp" in url:
         sitename = "gizmodo"
         Scraping(".p-post-content p" , sitename)
-    # CoinPost
-    elif "coinpost.jp" in url:
-        sitename = "coinpost"
-        Scraping(".entry-content p", sitename)
-    # telektlist
-    elif "telektlist.com" in url:
-        sitename = "telektlist"
-        Scraping(".entry-content p", sitename)
-    # VAIENCE
-    elif "vaience.com" in url:
-        sitename = "vaience"
-        Scraping(".entry-content p", sitename)
-    # 朝日新聞
-    elif "asahi.com" in url:
-        sitename = "asahi"
-        Scraping(".nfyQp p" , sitename)
     # 産経新聞
     elif "sankei.com" in url:
         sitename = "sankei"
@@ -216,17 +201,17 @@ def result():
         sitename = "yahoo"
         Scraping(".article_body p" , sitename)
     # CNN
-    elif "cnn.co.jp" in url:
-        sitename = "cnn"
-        Scraping("#leaf-body p" , sitename)
+    # elif "cnn.co.jp" in url:
+    #     sitename = "cnn"
+    #     Scraping("#leaf-body p" , sitename)
     # ITmedia
-    elif "itmedia.co.jp" in url:
-        sitename = "itmedia"
-        Scraping(".inner p" , sitename)
+    # elif "itmedia.co.jp" in url:
+    #     sitename = "itmedia"
+    #     Scraping(".inner p" , sitename)
     # GIGAZINE
-    elif "gigazine.net" in url:
-        sitename = "gigazine"
-        Scraping(".preface" , sitename)
+    # elif "gigazine.net" in url:
+    #     sitename = "gigazine"
+    #     Scraping(".preface" , sitename)
     
     # 最新の投稿
     elif url == "new_post":
@@ -237,27 +222,292 @@ def result():
                 res = requests.get("https://japan.cnet.com/release/")
                 soup = bs4(res.content, "lxml")
                 a = soup.find('a', class_="bold")
-                recent_post = a.get('href')
-                url = "https://japan.cnet.com/" + recent_post
+                url = a.get('href')
+                url = "https://japan.cnet.com/" + url
                 Scraping(".article_body p" , target_site)
-
-            elif target_site == "GIZMODO":
-                res = requests.get("https://www.gizmodo.jp/articles/")
+            # GIZMODO【 テクノロジ 】
+            elif target_site == "GIZMODO【 テクノロジ 】":
+                res = requests.get("https://www.gizmodo.jp/category/technology/")
                 soup = bs4(res.content, "lxml")
-                p = soup.find('p', class_="p-archive-cardImage")
-                a = p.find('a')
-                recent_post = a.get('href')
-                url = "https://www.gizmodo.jp/" + recent_post
+                h3 = soup.find('h3', class_="p-archive-cardTitle")
+                a = h3.find('a')
+                url = a.get('href')
+                url = "https://www.gizmodo.jp/" + url
                 Scraping(".p-post-content p" , target_site)
-                
-            elif target_site == "sankei":
+            # GIZMODO【 サイエンス 】
+            elif target_site == "GIZMODO【 サイエンス 】":
+                res = requests.get("https://www.gizmodo.jp/category/science/")
+                soup = bs4(res.content, "lxml")
+                h3 = soup.find('h3', class_="p-archive-cardTitle")
+                a = h3.find('a')
+                url = a.get('href')
+                url = "https://www.gizmodo.jp/" + url
+                Scraping(".p-post-content p" , target_site)
+            # GIZMODO【 プロダクト 】
+            elif target_site == "GIZMODO【 プロダクト 】":
+                res = requests.get("https://www.gizmodo.jp/category/product/")
+                soup = bs4(res.content, "lxml")
+                h3 = soup.find('h3', class_="p-archive-cardTitle")
+                a = h3.find('a')
+                url = a.get('href')
+                url = "https://www.gizmodo.jp/" + url
+                Scraping(".p-post-content p" , target_site)
+            # GIZMODO【 エンタメ 】
+            elif target_site == "GIZMODO【 エンタメ 】":
+                res = requests.get("https://www.gizmodo.jp/category/entertainment/")
+                soup = bs4(res.content, "lxml")
+                h3 = soup.find('h3', class_="p-archive-cardTitle")
+                a = h3.find('a')
+                url = a.get('href')
+                url = "https://www.gizmodo.jp/" + url
+                Scraping(".p-post-content p" , target_site)
+            # GIZMODO【 ライフスタイル 】
+            elif target_site == "GIZMODO【 ライフスタイル 】":
+                res = requests.get("https://www.gizmodo.jp/category/lifestyle/")
+                soup = bs4(res.content, "lxml")
+                h3 = soup.find('h3', class_="p-archive-cardTitle")
+                a = h3.find('a')
+                url = a.get('href')
+                url = "https://www.gizmodo.jp/" + url
+                Scraping(".p-post-content p" , target_site)
+            # GIZMODO【 デザイン 】
+            elif target_site == "GIZMODO【 デザイン 】":
+                res = requests.get("https://www.gizmodo.jp/category/design/")
+                soup = bs4(res.content, "lxml")
+                h3 = soup.find('h3', class_="p-archive-cardTitle")
+                a = h3.find('a')
+                url = a.get('href')
+                url = "https://www.gizmodo.jp/" + url
+                Scraping(".p-post-content p" , target_site)
+            # GIZMODO【 ビジネス 】
+            elif target_site == "GIZMODO【 ビジネス 】":
+                res = requests.get("https://www.gizmodo.jp/category/business/")
+                soup = bs4(res.content, "lxml")
+                h3 = soup.find('h3', class_="p-archive-cardTitle")
+                a = h3.find('a')
+                url = a.get('href')
+                url = "https://www.gizmodo.jp/" + url
+                Scraping(".p-post-content p" , target_site)
+            # GIZMODO【 ニュース 】
+            elif target_site == "GIZMODO【 ニュース 】":
+                res = requests.get("https://www.gizmodo.jp/category/news/")
+                soup = bs4(res.content, "lxml")
+                h3 = soup.find('h3', class_="p-archive-cardTitle")
+                a = h3.find('a')
+                url = a.get('href')
+                url = "https://www.gizmodo.jp/" + url
+                Scraping(".p-post-content p" , target_site)
+            # 産経新聞【 速報 】
+            elif target_site == "産経新聞【 速報 】":
                 res = requests.get("https://www.sankei.com/flash/")
                 soup = bs4(res.content, "lxml")
                 h2 = soup.find('h2', class_="headline")
                 a = h2.find('a')
-                recent_post = a.get('href')
-                url = "https://www.sankei.com/" + recent_post
+                url = a.get('href')
+                url = "https://www.sankei.com/" + url
                 Scraping(".article-body p" , target_site)
+            # 産経新聞【 社会 】
+            elif target_site == "産経新聞【 社会 】":
+                res = requests.get("https://www.sankei.com/affairs/")
+                soup = bs4(res.content, "lxml")
+                h2 = soup.find('h2', class_="headline")
+                a = h2.find('a')
+                url = a.get('href')
+                url = "https://www.sankei.com/" + url
+                Scraping(".article-body p" , target_site)
+            # 産経新聞【 政治 】
+            elif target_site == "産経新聞【 政治 】":
+                res = requests.get("https://www.sankei.com/politics/")
+                soup = bs4(res.content, "lxml")
+                h2 = soup.find('h2', class_="headline")
+                a = h2.find('a')
+                url = a.get('href')
+                url = "https://www.sankei.com/" + url
+                Scraping(".article-body p" , target_site)
+            # 産経新聞【 国際 】
+            elif target_site == "産経新聞【 国際 】":
+                res = requests.get("https://www.sankei.com/world/")
+                soup = bs4(res.content, "lxml")
+                h2 = soup.find('h2', class_="headline")
+                a = h2.find('a')
+                url = a.get('href')
+                url = "https://www.sankei.com/" + url
+                Scraping(".article-body p" , target_site)
+            # 産経新聞【 経済 】
+            elif target_site == "産経新聞【 経済 】":
+                res = requests.get("https://www.sankei.com/economy/")
+                soup = bs4(res.content, "lxml")
+                h2 = soup.find('h2', class_="headline")
+                a = h2.find('a')
+                url = a.get('href')
+                url = "https://www.sankei.com/" + url
+                Scraping(".article-body p" , target_site)
+            # 産経新聞【 スポーツ 】
+            elif target_site == "産経新聞【 スポーツ 】":
+                res = requests.get("https://www.sankei.com/sports/")
+                soup = bs4(res.content, "lxml")
+                h2 = soup.find('h2', class_="headline")
+                a = h2.find('a')
+                url = a.get('href')
+                url = "https://www.sankei.com/" + url
+                Scraping(".article-body p" , target_site)
+            # 産経新聞【 エンタメ 】
+            elif target_site == "産経新聞【 エンタメ 】":
+                res = requests.get("https://www.sankei.com/entertainments/")
+                soup = bs4(res.content, "lxml")
+                h2 = soup.find('h2', class_="headline")
+                a = h2.find('a')
+                url = a.get('href')
+                url = "https://www.sankei.com/" + url
+                Scraping(".article-body p" , target_site)
+            # 産経新聞【 ライフ 】
+            elif target_site == "産経新聞【 ライフ 】":
+                res = requests.get("https://www.sankei.com/life/")
+                soup = bs4(res.content, "lxml")
+                h2 = soup.find('h2', class_="headline")
+                a = h2.find('a')
+                url = a.get('href')
+                url = "https://www.sankei.com/" + url
+                Scraping(".article-body p" , target_site)
+            # 産経新聞【 イベント 】
+            elif target_site == "産経新聞【 イベント 】":
+                res = requests.get("https://www.sankei.com/event/")
+                soup = bs4(res.content, "lxml")
+                h2 = soup.find('h2', class_="headline")
+                a = h2.find('a')
+                url = a.get('href')
+                url = "https://www.sankei.com/" + url
+                Scraping(".article-body p" , target_site)
+            # Yahoo!【 主要 】
+            elif target_site == "Yahoo!【 主要 】":
+                res = requests.get("https://news.yahoo.co.jp/topics/top-picks")
+                soup = bs4(res.content, "lxml")
+                a = soup.find('a', class_="newsFeed_item_link")
+                url = a.get('href')
+                res = requests.get(url)
+                soup = bs4(res.content, "lxml")
+                p = soup.find('p', class_="sc-kvjbNB")
+                a = p.find('a')
+                url = a.get('href')
+                print(url)
+                Scraping(".article_body p" , target_site)
+            # Yahoo!【 国内 】
+            elif target_site == "Yahoo!【 国内 】":
+                res = requests.get("https://news.yahoo.co.jp/topics/domestic")
+                soup = bs4(res.content, "lxml")
+                a = soup.find('a', class_="newsFeed_item_link")
+                url = a.get('href')
+                res = requests.get(url)
+                soup = bs4(res.content, "lxml")
+                p = soup.find('p', class_="sc-kvjbNB")
+                a = p.find('a')
+                url = a.get('href')
+                print(url)
+                Scraping(".article_body p" , target_site)
+            # Yahoo!【 国際 】
+            elif target_site == "Yahoo!【 国際 】":
+                res = requests.get("https://news.yahoo.co.jp/topics/world")
+                soup = bs4(res.content, "lxml")
+                a = soup.find('a', class_="newsFeed_item_link")
+                url = a.get('href')
+                res = requests.get(url)
+                soup = bs4(res.content, "lxml")
+                p = soup.find('p', class_="sc-kvjbNB")
+                a = p.find('a')
+                url = a.get('href')
+                print(url)
+                Scraping(".article_body p" , target_site)
+            # Yahoo!【 経済 】
+            elif target_site == "Yahoo!【 経済 】":
+                res = requests.get("https://news.yahoo.co.jp/topics/business")
+                soup = bs4(res.content, "lxml")
+                a = soup.find('a', class_="newsFeed_item_link")
+                url = a.get('href')
+                res = requests.get(url)
+                soup = bs4(res.content, "lxml")
+                p = soup.find('p', class_="sc-kvjbNB")
+                a = p.find('a')
+                url = a.get('href')
+                print(url)
+                Scraping(".article_body p" , target_site)
+            # Yahoo!【 エンタメ 】
+            elif target_site == "Yahoo!【 エンタメ 】":
+                res = requests.get("https://news.yahoo.co.jp/topics/entertainment")
+                soup = bs4(res.content, "lxml")
+                a = soup.find('a', class_="newsFeed_item_link")
+                url = a.get('href')
+                res = requests.get(url)
+                soup = bs4(res.content, "lxml")
+                p = soup.find('p', class_="sc-kvjbNB")
+                a = p.find('a')
+                url = a.get('href')
+                print(url)
+                Scraping(".article_body p" , target_site)
+            # Yahoo!【 スポーツ 】
+            elif target_site == "Yahoo!【 スポーツ 】":
+                res = requests.get("https://news.yahoo.co.jp/topics/sports")
+                soup = bs4(res.content, "lxml")
+                a = soup.find('a', class_="newsFeed_item_link")
+                url = a.get('href')
+                res = requests.get(url)
+                soup = bs4(res.content, "lxml")
+                p = soup.find('p', class_="sc-kvjbNB")
+                a = p.find('a')
+                url = a.get('href')
+                print(url)
+                Scraping(".article_body p" , target_site)
+            # Yahoo!【 IT 】
+            elif target_site == "Yahoo!【 IT 】":
+                res = requests.get("https://news.yahoo.co.jp/topics/it")
+                soup = bs4(res.content, "lxml")
+                a = soup.find('a', class_="newsFeed_item_link")
+                url = a.get('href')
+                res = requests.get(url)
+                soup = bs4(res.content, "lxml")
+                p = soup.find('p', class_="sc-kvjbNB")
+                a = p.find('a')
+                url = a.get('href')
+                print(url)
+                Scraping(".article_body p" , target_site)
+            # Yahoo!【 科学 】
+            elif target_site == "Yahoo!【 科学 】":
+                res = requests.get("https://news.yahoo.co.jp/topics/science")
+                soup = bs4(res.content, "lxml")
+                a = soup.find('a', class_="newsFeed_item_link")
+                url = a.get('href')
+                res = requests.get(url)
+                soup = bs4(res.content, "lxml")
+                p = soup.find('p', class_="sc-kvjbNB")
+                a = p.find('a')
+                url = a.get('href')
+                print(url)
+                Scraping(".article_body p" , target_site)
+            # Yahoo!【 ライフ 】
+            elif target_site == "Yahoo!【 ライフ 】":
+                res = requests.get("https://news.yahoo.co.jp/topics/life")
+                soup = bs4(res.content, "lxml")
+                a = soup.find('a', class_="newsFeed_item_link")
+                url = a.get('href')
+                res = requests.get(url)
+                soup = bs4(res.content, "lxml")
+                p = soup.find('p', class_="sc-kvjbNB")
+                a = p.find('a')
+                url = a.get('href')
+                print(url)
+                Scraping(".article_body p" , target_site)
+            # Yahoo!【 地域 】
+            elif target_site == "Yahoo!【 地域 】":
+                res = requests.get("https://news.yahoo.co.jp/topics/local")
+                soup = bs4(res.content, "lxml")
+                a = soup.find('a', class_="newsFeed_item_link")
+                url = a.get('href')
+                res = requests.get(url)
+                soup = bs4(res.content, "lxml")
+                p = soup.find('p', class_="sc-kvjbNB")
+                a = p.find('a')
+                url = a.get('href')
+                print(url)
+                Scraping(".article_body p" , target_site)
                 
     else:
         return render_template("404.html")

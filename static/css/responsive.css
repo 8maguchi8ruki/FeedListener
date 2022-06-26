@@ -103,11 +103,11 @@
     }
     #all_site .scroll_content{
         width: 100%;
+        margin-top: 0;
     }
     .wrap-result{
         padding-bottom: 20px;
     }
-
 }
 
 @media screen and (max-width:480px){
@@ -130,7 +130,7 @@
     .archives ul ,.historys ul{
         margin: 0;
     }
-    .wrap_add_site h3,.wrap_delete_archives h3,.wrap_delete_historys h3,.scroll_content p{
+    .wrap_add_site h3,.wrap_delete_archives h3,.wrap_delete_historys h3,.scroll_content h3{
         margin-bottom: 5px;
         margin-top: 10px;
     }

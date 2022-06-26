@@ -2,21 +2,6 @@
 {% block content %}
 <div class="wrap-search">
     <h3 style="font-weight:bold;" >RECENT POST</h3>
-    <!-- <form class="recent" method="POST" action="{{ url_for('result') }}">
-        <input type="hidden" value="Cnet" name="target_site">
-        <input type="hidden" value="new_post" name="url" onclick="loading()">
-        <input type="submit" value="Cnetの最新記事" onclick="loading()" class="target_site">
-    </form>
-    <form class="recent" method="POST" action="{{ url_for('result') }}">
-        <input type="hidden" value="GIZMODO" name="target_site">
-        <input type="hidden" value="new_post" name="url" onclick="loading()">
-        <input type="submit" value="GIZMODOの最新記事" onclick="loading()" class="target_site">
-    </form>
-    <form class="recent" method="POST" action="{{ url_for('result') }}">
-        <input type="hidden" value="sankei" name="target_site">
-        <input type="hidden" value="new_post" name="url" onclick="loading()">
-        <input type="submit" value="産経新聞の最新記事" onclick="loading()" class="target_site">
-    </form> -->
 
     <!-- マイリストから参照したサイト -->
     <div id="form_parent">
@@ -80,6 +65,7 @@
             input3.value = mylists[j][1] + "の最新記事";
             input3.setAttribute("onclick","loading()");
             input3.classList.add("target_site");
+            input3.classList.add("sitename");
 
             form.appendChild(input);
             form.appendChild(input2);
@@ -96,6 +82,6 @@
             img.style.width = "100%";
             form_parent.appendChild(p);
             form_parent.appendChild(img);
-        }
+        } 
 </script>
 {% endblock %}

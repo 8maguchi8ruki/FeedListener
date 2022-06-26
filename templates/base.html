@@ -46,24 +46,39 @@
         <p>copyright haruki-yamaguchi 2021</p>
     </footer>
     <script>
+
+        // ハンバーガメニュークラス切り替え
         (function ($) {
+        $(".background").on("click", function () {
+            $(this).toggleClass("active");
+            $(".inner-content").toggleClass("active");
+        });
+        $("#hamburger_trigger").on("click", function(){
+            $(this).toggleClass("active");
+            $("#hamburger_close").toggleClass("active");
+            $("#hamburger_menu").toggleClass("active");
+        })
+        $("#hamburger_close").on("click", function(){
+            $(this).toggleClass("active");
+            $("#hamburger_trigger").toggleClass("active");
+            $("#hamburger_menu").toggleClass("active");
+        })})(jQuery);
 
-                $(".background").on("click", function () {
-                    $(this).toggleClass("active");
-                    $(".inner-content").toggleClass("active");
-                });
-                $("#hamburger_trigger").on("click", function(){
-                    $(this).toggleClass("active");
-                    $("#hamburger_close").toggleClass("active");
-                    $("#hamburger_menu").toggleClass("active");
-                })
-                $("#hamburger_close").on("click", function(){
-                    $(this).toggleClass("active");
-                    $("#hamburger_trigger").toggleClass("active");
-                    $("#hamburger_menu").toggleClass("active");
-                })
 
-            })(jQuery);
+        // サイト別に背景色を設定する
+        let site = document.querySelectorAll(".sitename");
+        console.log(site);
+        for(let i=0;i<site.length;i++){
+            let site_value = site[i].getAttribute("value");
+            if(site_value.match(/Yahoo/)){
+                site[i].classList.add("yahoo");
+            }else if(site_value.match(/産経新聞/)){
+                site[i].classList.add("sankei");
+            }else if(site_value.match(/GIZMODO/)){
+                site[i].classList.add("gizmodo");
+            }
+            console.log(site_value);
+        }
     </script>
 </body>
 </html>

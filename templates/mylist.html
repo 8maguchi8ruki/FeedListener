@@ -47,7 +47,7 @@
             button.value = mylists[j][1];
             let button2 = document.createElement("button");
             button2.textContent = mylists[j][1];
-            button2.id = "sitename";
+            button2.classList.add("sitename");
             button2.name = "sitename";
             button2.value = mylists[j][1];
             div.appendChild(button2);
@@ -73,12 +73,27 @@
                 for(let i=0;i<data.length;i++){
                     let button = document.createElement("button");
                     button.classList.add("site_button");
+                    button.classList.add("sitename");
                     button.textContent = data[i][1];
                     button.value = data[i][1];
                     div2.appendChild(button)
                 }
                 div.appendChild(div2);
                 parent.appendChild(div);
+                 // サイト別に背景色を設定する
+                let site = document.querySelectorAll(".sitename");
+                console.log(site);
+                for(let i=0;i<site.length;i++){
+                    let site_value = site[i].getAttribute("value");
+                    if(site_value.match(/Yahoo/)){
+                        site[i].classList.add("yahoo");
+                    }else if(site_value.match(/産経新聞/)){
+                        site[i].classList.add("sankei");
+                    }else if(site_value.match(/GIZMODO/)){
+                        site[i].classList.add("gizmodo");
+                    }
+                    console.log(site_value);
+        }
             }
 
         }
@@ -107,7 +122,7 @@
                                 if(mysite == allsite){
                                     allsites[j].setAttribute("disabled","true");
                                     allsites[j].classList.add("disabled");
-                                }
+                                    allsites[j].classList.add("change_backgroud");                                }
                             }
                         }
                         // 要素切り替えのためのclass割り当て
@@ -178,6 +193,7 @@
             sites.appendChild(p);
             sites.appendChild(img);
         }
+
     </script>
 
 </div>
