@@ -184,6 +184,7 @@
         background-color: #E7E9EB;
         box-sizing: border-box;
         font-size: 0.8rem;
+        font-weight: bold;
     }
     .sub-menu .arc{ 
         margin-right: 10px;
