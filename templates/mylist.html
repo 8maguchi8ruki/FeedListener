@@ -25,9 +25,9 @@
     </div>
 
     <!-- マイリスト -->
-    <form action="{{ url_for('search') }}" method="POST" class="mylist">
+    <div class="mylist">
 
-    </form>
+    </div>
         <!-- サブメニュー -->
         <div class="sub-menu">
             <a href="/archive" class="arc">ARCHIVES</a> <br>
@@ -46,7 +46,6 @@
             button.classList.add("delete_site");
             button.value = mylists[j][1];
             let button2 = document.createElement("button");
-            button2.type = "submit";
             button2.textContent = mylists[j][1];
             button2.id = "sitename";
             button2.name = "sitename";

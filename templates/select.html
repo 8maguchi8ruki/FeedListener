@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="wrap-search">
+    <h3 style="font-weight:bold;" >URL SEARCH</h3>
+
+    <!-- マイリストから参照したサイト -->
+    <div id="form_parent">
+
+    </div>
+</div>
+
+<div class="wrap-content">
+        <!-- サブメニュー -->
+        <div class="sub-menu">
+            <a href="/archive" class="arc">ARCHIVES</a> <br>
+            <a href="/history" class="his">HISTORYS</a>
+        </div>
+</div>
+
+<div id="loader-bg">
+    <div id="loader">
+        <img src="../static/img/Search.png" width="100" height="100" alt="Loading..." />
+        <p style="color: #2cb44c;">Loading...</p>
+        <p class="comment comment1">記事内容を取得中</p>
+        <p class="comment comment2">音声ファイルを作成しています</p>
+    </div>
+</div>
+
+<script>
+    function loading(){
+        $('#loader-bg ,#loader').css('display', 'block');
+        $(".comment1").addClass("active");
+        setTimeout(() => {
+            $(".comment1,.comment2").toggleClass("active");
+        }, 2000);
+    }
+
+    // マイリスト生成
+    var mylists = {{my_sites|tojson}};
+    console.log(mylists)
+
+    // マイリストから参照して要素作成
+    let form_parent = document.querySelector("#form_parent");
+    for(let j=0;j<mylists.length;j++){
+            let form = document.createElement("form");
+            let input = document.createElement("input");
+
+            form.classList.add("select_site");
+            form.method = "POST";
+            form.action = "{{ url_for('search')}}";
+
+            input.type = "submit";
+            input.value = mylists[j][1];
+            input.classList.add("target_site");
+
+            form.appendChild(input);
+            form_parent.appendChild(form);
+        }
+
+        if(form_parent.childElementCount == 0){
+            let p = document.createElement("p");
+            p.classList.add("add_message");
+            p.textContent = "ホーム画面の【 MY LIST 】にお気に入りのサイトを登録してください。";
+            let img = document.createElement("img");
+            img.src = "../static/img/add.svg";
+            img.style.width = "100%";
+            form_parent.appendChild(p);
+            form_parent.appendChild(img);
+        }
+</script>
+{% endblock %}

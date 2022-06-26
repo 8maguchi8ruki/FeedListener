@@ -76,11 +76,6 @@ h1 p{
     box-sizing: border-box;
     position: relative;
 }
-.mylist #sitename:hover{
-    background-color: #ddd;
-    color: #fff;
-    cursor: pointer;
-}
 .mylist #sitename{
     width: calc(100% - 80px);
     line-height: 60px;
@@ -136,18 +131,18 @@ h1 p{
     width: 100%;
     height: 150px;
     border: none;
-    background-color: #2cb44c;
-    color: #f9f9f9;
+    background-color: #538f62;
+    color: #252525;
     font-weight: bold;
     font-size: 1.5em;
     text-align: start;
     text-decoration: none;
 }
-.recent .target_site{
+.recent .target_site , .select_site .target_site{
     width: 100%;
     line-height: 60px;
     border: none;
-    background-color: #2cb44c;
+    background-color: #538f62;
     color: #f9f9f9;
     font-size: 1.2em;
     text-align: start;
@@ -155,16 +150,21 @@ h1 p{
     position: relative;
     z-index: 10;
 }
+.select_site .target_site{
+    background-color: #538e7a;
+}
 .to_mylist button{
     background-color: #777;
 }
 .to_mylist h3,.to_mylist p{
     color: #f9f9f9;
 }
-.to_archives .arc{
+.downloads button{
     background-color: #829084;
 }
-
+.to_archives .arc{
+    background-color: #538e7a;
+}
 .mylist .delete_site{
     position: absolute;
     top: 0;
@@ -323,7 +323,7 @@ h1 p{
     display: flex;
 
 }
-.recent{
+.recent,.select_site{
     margin-top: 20px;
     
 }

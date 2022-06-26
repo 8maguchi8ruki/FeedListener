@@ -61,6 +61,16 @@ def recent():
     database.create_all_site()
     return render_template("recent.html", my_sites = database.select_site())
 
+##### セレクトページ #####
+@app.route('/select/', methods=['GET','POST'])
+def select():
+    database.create_all_site() 
+    return render_template("select.html", my_sites = database.select_site())
+
+##### ダウンロードページ #####
+@app.route('/download/', methods=['GET','POST'])
+def download():
+    return render_template("download.html")
 
 ##### ヘルプページ #####
 @app.route('/help/', methods=['GET','POST'])
