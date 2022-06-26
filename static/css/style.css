@@ -84,7 +84,8 @@ h1 p{
     color: #f9f9f9;
     font-size: 1.2em;
     text-align: start;
-    border-left: 10px double #f9f9f9;
+    /* border-left: 10px double #f9f9f9; */
+    /* border-top: 10px double #f9f9f9; */
 }
 .menu{
     position: relative;
@@ -146,7 +147,8 @@ h1 p{
     color: #f9f9f9;
     font-size: 1.2em;
     text-align: start;
-    border-left: 10px double #f9f9f9;
+    /* border-left: 10px double #f9f9f9; */
+    /* border-top: 10px double #f9f9f9; */
     position: relative;
     z-index: 10;
 }
@@ -175,6 +177,7 @@ h1 p{
     color: #f9f9f9;
     border: none;
     z-index: 97;
+    /* border-top: 10px double #f9f9f9; */
 }
 .mylist button:hover{
     cursor: pointer;
@@ -193,6 +196,7 @@ h1 p{
     transform: translateY(-17px);
     padding: 10px 0 10px 50px;
 }
+
 .add_site.active{
     display: none;
 }
@@ -228,10 +232,11 @@ h1 p{
 #all_site .scroll_content{
     width: 1000px;
     margin: 0 auto;
+    margin-top: 40px;
 }
 .site_button{
     width: 100%;
-    line-height: 60px;
+    line-height: 80px;
     border: none;
     border: 1px solid #ddd;
     background-color: #E7E9EB;
@@ -324,7 +329,7 @@ h1 p{
 
 }
 .recent,.select_site{
-    margin-top: 20px;
+    margin-top: 10px;
     
 }
 

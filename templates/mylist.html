@@ -67,9 +67,9 @@
                 let div = document.createElement("div");
                 let div2 = document.createElement("div");
                 div2.classList.add("scroll_content");
-                let p = document.createElement("p");
-                p.textContent = "追加するサイトを選択してください"
-                div2.appendChild(p);
+                let h3 = document.createElement("h3");
+                h3.textContent = "追加するサイトを選択してください"
+                div2.appendChild(h3);
                 for(let i=0;i<data.length;i++){
                     let button = document.createElement("button");
                     button.classList.add("site_button");
