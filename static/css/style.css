@@ -57,7 +57,7 @@ h1 p{
     font-size: 1rem;
 }
 /* ハンバーガーメニュー */
-#hamburger_menu,#hamburger_trigger,#hamburger_close{
+#hamburger-menu,#hamburger-trigger,#hamburger-close{
     display: none;
 }
 
@@ -94,9 +94,15 @@ h1 p{
     background-color: #4e4f98;
 }
 .gizmodo{
-    background-color: #e2a563;
+    background-color: #313131;
 }
-.sitename.change_backgroud{
+.cnn{
+    background-color: #ed7c4f;
+}
+.cnn-en{
+    background-color: #cd4fcd;
+}
+.sitename.change-backgroud{
     opacity: 0.2;
 }
 .menu{
@@ -107,7 +113,7 @@ h1 p{
     width: 100%;
     display: flex;
 }
-.menu button .menu_left{
+.menu button .menu-left{
     width: 70%;
     display: flex;
     flex-direction: column;
@@ -124,19 +130,19 @@ h1 p{
     color: #f9f9f9;
     margin-bottom: 0;
 }
-.menu .menu_right{
+.menu .menu-right{
     width: 30%;
     display: flex;
     align-self: center;
 }
-.menu_right img{
+.menu-right img{
     width: 100%;
     max-height: 130px;
 }
-.menu .menu_content{
+.menu .menu-content{
     margin: 10px 0 20px 0;
 }
-.menu .menu_content:hover{
+.menu .menu-content:hover{
     opacity: 0.5;
     cursor: pointer;
 }
@@ -151,7 +157,7 @@ h1 p{
     text-align: start;
     text-decoration: none;
 }
-.recent .target_site , .select_site .target_site{
+.recent .target-site , .select-site .target-site{
     width: 100%;
     line-height: 80px;
     border: none;
@@ -163,19 +169,19 @@ h1 p{
     position: relative;
     z-index: 10;
 }
-.to_mylist button{
+.to-mylist button{
     background-color: #777;
 }
-.to_mylist h3,.to_mylist p{
+.to-mylist h3,.to-mylist p{
     color: #f9f9f9;
 }
 .downloads button{
     background-color: #829084;
 }
-.to_archives .arc{
+.to-archives .arc{
     background-color: #538e7a;
 }
-.mylist .delete_site{
+.mylist .delete-site{
     position: absolute;
     top: 0;
     right: 0;
@@ -190,11 +196,11 @@ h1 p{
     cursor: pointer;
     color: red;
 }
-.wrap_add_site{
+.wrap-add-site{
     position: relative;
     width: 100%;
 }
-.add_site , .close_site{
+.add-site , .close-site{
     position: absolute;
     top: 0;
     right: 0;
@@ -204,24 +210,24 @@ h1 p{
     padding: 10px 0 10px 50px;
 }
 
-.add_site.active{
+.add-site.active{
     display: none;
 }
 
-.all_sites ul li{
+.all-sites ul li{
     margin: 20px 0;
 }
-.all_sites ul li:hover{
+.all-sites ul li:hover{
     cursor: pointer;
     opacity: 0.5;
 }
-.all_sites ul li.active{
+.all-sites ul li.active{
     display: none;
 }
-#all_site{
+#all-site{
     overflow: auto;
 }
-#all_site > div{
+#all-site > div{
     position: absolute;
     overflow-y: scroll;
     width: 100%;
@@ -236,12 +242,12 @@ h1 p{
     box-sizing: border-box;
 }
 
-#all_site .scroll_content{
+#all-site .scroll-content{
     width: 1000px;
     margin: 0 auto;
     margin-top: 40px;
 }
-.site_button{
+.site-button{
     width: 100%;
     line-height: 80px;
     border: none;
@@ -250,15 +256,15 @@ h1 p{
     text-align: start;
     margin: 5px 0;
 }
-.site_button:hover,.mylist .sitename:hover{
+.site-button:hover,.mylist .sitename:hover{
     cursor: pointer;
     opacity: 0.5;
     color: #2cb44c;
 }
-.site_button.disabled{
+.site-button.disabled{
     opacity: 0.2;
 }
-.site_button.disabled:hover{
+.site-button.disabled:hover{
     color: #f9f9f9;
 }
 
@@ -331,7 +337,7 @@ h1 p{
     display: flex;
 
 }
-.recent,.select_site{
+.recent,.select-site{
     margin-top: 10px;
     
 }
@@ -485,7 +491,7 @@ footer p{
 
 
 /***** アーカイブページ *****/
-#archive_button{
+#archive-button{
     width: 180px;
     height: 30px;
     border: none;
@@ -500,10 +506,10 @@ footer p{
 #archives li a{
     color: #252525;
 }
-#archive_button.active{
+#archive-button.active{
     background-color: #2cb44c;
 }
-.wrap_delete_archives , #archives div{
+.wrap-delete-archives , #archives div{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -520,7 +526,7 @@ footer p{
 #archives div:hover{
     background-color: #ddd;
 }
-#delete_archives{
+#delete-archives{
     width: 240px;
     height: 30px;
     border: none;
@@ -528,7 +534,7 @@ footer p{
     text-align: end;
     margin-top: 20px;
 }   
-#delete_this{
+#delete-this{
     width: 80px;
     height: 30px;
     border: none;
@@ -539,7 +545,7 @@ footer p{
     top: 0;
     right: 0;
 }   
-#delete_archives:hover ,.delete_trigger:hover ,#delete_this:hover {
+#delete-archives:hover ,.delete-trigger:hover ,#delete-this:hover {
     color: red;
     cursor: pointer;
 }
@@ -561,7 +567,7 @@ footer p{
     text-decoration: none;
     color: #252525;
 }
-.wrap_delete_historys{
+.wrap-delete-historys{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -569,7 +575,7 @@ footer p{
 
 
 /***** 削除ダイアログ *****/
-.delete_trigger{
+.delete-trigger{
     width: 100px;
     height: 30px;
     border: none;
@@ -578,7 +584,7 @@ footer p{
     text-align: end;
     margin-top: 20px;
 }
-.delete_trigger:hover{
+.delete-trigger:hover{
     cursor: pointer;
     color: red;
 }
@@ -596,49 +602,49 @@ footer p{
 .dialog.active{
     display: block;
 }
-.dialog_content{
+.dialog-content{
     display: flex;
     justify-content: center;
     align-self: center;
     flex-wrap: wrap;
 }
-.dialog_content div{
+.dialog-content div{
     width: 100%;
     text-align: center;
 }
-.delete_ok , .delete_cancel{
+.delete-ok , .delete-cancel{
     border: none;
     background-color: #f9f9f9;;
     color: #252525;
     padding: 20px;
 }
-.delete_ok:hover{
+.delete-ok:hover{
     cursor: pointer;
     color: red;
 }
-.delete_cancel:hover{
+.delete-cancel:hover{
     cursor: pointer;
     color: blue;
 }
 
 
 /***** お問い合わせページ *****/
-.contact_form label{
+.contact-form label{
     color: #252525;
 }
-.contact_form .name ,.contact_form .email{
+.contact-form .name ,.contact-form .email{
     width: 250px;
     height: 30px;
     background-color: #E7E9EB;
     border: none;
 }
-.contact_form .textarea{
+.contact-form .textarea{
     width: 90%;
     height: 250px;
     background-color: #E7E9EB;
     border: none;
 }
-.contact_form .submit{
+.contact-form .submit{
     display: block;
     width: 80px;
     height: 40px;
@@ -648,7 +654,7 @@ footer p{
     font-weight: bold;
     border: none;
 }
-.contact_form .submit:hover{
+.contact-form .submit:hover{
     opacity: 0.5;
     cursor: pointer;
 }

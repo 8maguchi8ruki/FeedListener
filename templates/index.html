@@ -3,14 +3,14 @@
 
 <div class="wrap-content">
     <!-- 最新の投稿 -->
-    <form action="{{ url_for('recent') }}" method="POST" class="recent_post menu">
-        <div class="menu_content">
+    <form action="{{ url_for('recent') }}" method="POST" class="recent-post menu">
+        <div class="menu-content">
             <button type="submit">
-                <div class="menu_left">
+                <div class="menu-left">
                     <h3>RECENT POSTS</h3>
                     <p>最新の投稿をCHECK!!</p>
                 </div>
-                <div class="menu_right">
+                <div class="menu-right">
                     <img src="../static/img/recent.svg" alt="">
                 </div>
             </button>  
@@ -18,28 +18,28 @@
     </form>
 
     <!-- アーカイブ -->
-    <form class="menu to_archives" action="{{ url_for('select') }}">
-        <div class="menu_content">
+    <form class="menu to-archives" action="{{ url_for('select') }}">
+        <div class="menu-content">
             <button type="submit" class="arc">
-                <div class="menu_left">
+                <div class="menu-left">
                     <h3>URL SEARCH</h3>
                     <p>特定の記事を読み上げます。</p>
                 </div>
-                <div class="menu_right">
+                <div class="menu-right">
                     <img src="../static/img/menu8.svg" alt="">
                 </div>
             </button>
         </div>  
     </form>
 
-    <form action="{{ url_for('mylist')}}" method="POST" class="to_mylist menu">
-        <div class="menu_content">
+    <form action="{{ url_for('mylist')}}" method="POST" class="to-mylist menu">
+        <div class="menu-content">
             <button type="submit">
-                <div class="menu_left">
+                <div class="menu-left">
                     <h3>MY LIST</h3>
                     <p>お気に入りのサイトを登録。</p>
                 </div>
-                <div class="menu_right">
+                <div class="menu-right">
                     <img src="../static/img/menu4.svg" alt="">
                 </div>
             </button>
@@ -47,13 +47,13 @@
     </form>
 
     <form action="{{ url_for('download')}}" method="POST" class="downloads menu">
-        <div class="menu_content">
+        <div class="menu-content">
             <button type="submit">
-                <div class="menu_left">
+                <div class="menu-left">
                     <h3>DOWNLOADS</h3>
                     <p>Comming Soon...</p>
                 </div>
-                <div class="menu_right">
+                <div class="menu-right">
                     <img src="../static/img/menu3.svg" alt="">
                 </div>
             </button>

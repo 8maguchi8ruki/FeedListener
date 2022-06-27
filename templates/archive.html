@@ -10,11 +10,11 @@
     <!-- コンポーネントのテンプレート -->
     <script type="text/x-template" id="mycomp-template">
         <div class="dialog">
-            <div class="dialog_content">
+            <div class="dialog-content">
                 <p>本当に削除してよろしいですか？</p>
                 <div>
-                    <button class="delete_cancel">いいえ</button>
-                    <button v-on:click="action" class="delete_ok">はい</button>
+                    <button class="delete-cancel">いいえ</button>
+                    <button v-on:click="action" class="delete-ok">はい</button>
                 </div>
             </div>
         </div>
@@ -24,9 +24,9 @@
 
 <div class="wrap-content">
 
-    <div class="wrap_delete_archives" >
+    <div class="wrap-delete-archives" >
         <h3>アーカイブ</h3>
-        <button id="delete_archives" class="delete_all delete_trigger">全てのアーカイブを削除</button>
+        <button id="delete-archives" class="delete-all delete-trigger">全てのアーカイブを削除</button>
     </div>
 
     <div class="archives">
@@ -49,7 +49,7 @@
         methods:{
             action:function(){
                 console.log("clicked!!!");
-                $.get("/ajax/delete_archives/", function(){
+                $.get("/ajax/delete-archives/", function(){
                     location.reload();
                     console.log("done!!");
                 });
@@ -87,7 +87,7 @@
         if(archives[i] != ""){
             let div = document.createElement("div");
             let button = document.createElement("button");
-            button.setAttribute("id","delete_this");
+            button.setAttribute("id","delete-this");
             button.textContent = "削除";
             let li = document.createElement("li");
             let a = document.createElement("a");
@@ -115,10 +115,10 @@
     })
 
 
-    $(".delete_trigger").click(function(){
+    $(".delete-trigger").click(function(){
         $(".dialog").toggleClass("active");
     })
-    $(".delete_cancel").click(function(){
+    $(".delete-cancel").click(function(){
         $(".dialog").toggleClass("active");
     })
 </script>

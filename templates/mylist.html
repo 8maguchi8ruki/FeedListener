@@ -11,16 +11,16 @@
     {% raw %}
     <!-- コンポーネントのテンプレート -->
     <script type="text/x-template" id="mycomp-template">
-        <div class="wrap_add_site">
+        <div class="wrap-add-site">
             <h3 style="font-weight:bold;" >MY LIST</h3>
-            <i class="fas fa-plus fa-2x add_site" v-on:click="action" style="margin-top:5px;"></i>
-            <i class="fas fa-times fa-2x close_site"style="display:none; margin-top:5px;"></i>
+            <i class="fas fa-plus fa-2x add-site" v-on:click="action" style="margin-top:5px;"></i>
+            <i class="fas fa-times fa-2x close-site"style="display:none; margin-top:5px;"></i>
         </div>
     </script>
     {% endraw %}
 
     <!-- 全サイト -->
-    <div id="all_site">
+    <div id="all-site">
         
     </div>
 
@@ -43,7 +43,7 @@
             let div = document.createElement("div");
             let button = document.createElement("button");
             button.textContent = "削除";
-            button.classList.add("delete_site");
+            button.classList.add("delete-site");
             button.value = mylists[j][1];
             let button2 = document.createElement("button");
             button2.textContent = mylists[j][1];
@@ -57,22 +57,22 @@
 
         // 全サイト生成
         function insert_sites(data){
-            let judge = document.querySelector(".site_button");
+            let judge = document.querySelector(".site-button");
             // 生成済みかどうか　(生成済みの場合はここで終了)
             if(judge != null){
                 return
             }else{
                 // 生成処理
-                let parent = document.querySelector("#all_site");
+                let parent = document.querySelector("#all-site");
                 let div = document.createElement("div");
                 let div2 = document.createElement("div");
-                div2.classList.add("scroll_content");
+                div2.classList.add("scroll-content");
                 let h3 = document.createElement("h3");
                 h3.textContent = "追加するサイトを選択してください"
                 div2.appendChild(h3);
                 for(let i=0;i<data.length;i++){
                     let button = document.createElement("button");
-                    button.classList.add("site_button");
+                    button.classList.add("site-button");
                     button.classList.add("sitename");
                     button.textContent = data[i][1];
                     button.value = data[i][1];
@@ -85,12 +85,17 @@
                 console.log(site);
                 for(let i=0;i<site.length;i++){
                     let site_value = site[i].getAttribute("value");
+                    let pattern = /(CNN（| - EN)/;
                     if(site_value.match(/Yahoo/)){
                         site[i].classList.add("yahoo");
                     }else if(site_value.match(/産経新聞/)){
                         site[i].classList.add("sankei");
                     }else if(site_value.match(/GIZMODO/)){
                         site[i].classList.add("gizmodo");
+                    }else if(site_value.match(pattern)){
+                        site[i].classList.add("cnn-en");
+                    }else if(site_value.match(/CNN/)){
+                        site[i].classList.add("cnn");
                     }
                     console.log(site_value);
         }
@@ -109,12 +114,12 @@
                 action:function(){
                     console.log("clicked!!!");
                     // 全サイトajax
-                    $.get("/ajax/all_site", function(data){
+                    $.get("/ajax/all-site", function(data){
                         // 全サイト生成関数呼び出し
                         insert_sites(data);
                         // すでにマイリストに登録されているサイト要素に対して、disabled属性を付与
                         let mysites = document.querySelectorAll(".mylist button");
-                        let allsites = document.querySelectorAll(".scroll_content button");
+                        let allsites = document.querySelectorAll(".scroll-content button");
                         for(let i=0;i<mysites.length;i++){
                             let mysite = mysites[i].value;
                             for(let j=0;j<allsites.length;j++){
@@ -122,14 +127,14 @@
                                 if(mysite == allsite){
                                     allsites[j].setAttribute("disabled","true");
                                     allsites[j].classList.add("disabled");
-                                    allsites[j].classList.add("change_backgroud");                                }
+                                    allsites[j].classList.add("change-backgroud");                                }
                             }
                         }
                         // 要素切り替えのためのclass割り当て
-                        $(".add_site").addClass("active");
-                        $(".close_site").addClass("active");
-                        $(".close_site").css("display","block");
-                        $("#all_site div").css("display","block");
+                        $(".add-site").addClass("active");
+                        $(".close-site").addClass("active");
+                        $(".close-site").css("display","block");
+                        $("#all-site div").css("display","block");
                     });
                 },
             }
@@ -141,11 +146,11 @@
         });
 
         // マイリスト追加処理
-        $("#all_site").on("click",".site_button",function(){
+        $("#all-site").on("click",".site-button",function(){
             $(this).css("display","none");
             let sitename = $(this).text();
             console.log(sitename);
-            $.ajax('/ajax/add_site/' + this.value,
+            $.ajax('/ajax/add-site/' + this.value,
             {
                 type: 'get',
             }).done(function(data) {    
@@ -158,11 +163,11 @@
             });
         
         // マイリスト削除処理
-        $(".mylist").on('click',".delete_site",function(){
+        $(".mylist").on('click',".delete-site",function(){
             console.log("cliked!!")
             let delete_target = this.previousElementSibling;
             console.log(delete_target.value);
-            $.ajax('/ajax/delete_site/' + delete_target.value,
+            $.ajax('/ajax/delete-site/' + delete_target.value,
             {
                 type: 'get',
             }).done(function() {    
@@ -175,17 +180,17 @@
 
 
         // 要素切り替え処理
-        $(".close_site").click(function(){
+        $(".close-site").click(function(){
             $(this).removeClass("active");
-            $(".add_site").removeClass("active");
+            $(".add-site").removeClass("active");
             $(this).css("display","none");
-            $("#all_site div").css("display","none");
+            $("#all-site div").css("display","none");
         })
 
 
         if(sites.childElementCount == 0){
             let p = document.createElement("p");
-            p.classList.add("add_message");
+            p.classList.add("add-message");
             p.textContent = "【＋】ボタンからお気に入りのサイトを登録してください。登録が完了したらサイト名をタップして記事を聴くことができます。";
             let img = document.createElement("img");
             img.src = "../static/img/add.svg";

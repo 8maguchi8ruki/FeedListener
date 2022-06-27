@@ -18,7 +18,7 @@
             <!-- コンポーネントのテンプレート -->
             <script type="text/x-template" id="mycomp-template">
                 <div>
-                    <button v-on:click="action" id="archive_button">アーカイブする</button>
+                    <button v-on:click="action" id="archive-button">アーカイブする</button>
                 </div>
             </script>
         {% endraw %}            
@@ -46,9 +46,9 @@
                 action:function(){
                     console.log("clicked!!!");
                     $.get("/ajax/" + this.id, function(data){
-                        $("#archive_button").addClass("active");
-                        $("#archive_button").text("アーカイブしました");
-                        $("#archive_button").attr("disabled","true");
+                        $("#archive-button").addClass("active");
+                        $("#archive-button").text("アーカイブしました");
+                        $("#archive-button").attr("disabled","true");
                         console.log(data);
                     });
                 }

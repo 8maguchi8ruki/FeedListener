@@ -4,7 +4,7 @@
     <h3 style="font-weight:bold;" >RECENT POST</h3>
 
     <!-- マイリストから参照したサイト -->
-    <div id="form_parent">
+    <div id="form-parent">
 
     </div>
 </div>
@@ -41,7 +41,7 @@
 
 
     // マイリストから参照して要素作成
-    let form_parent = document.querySelector("#form_parent");
+    let form_parent = document.querySelector("#form-parent");
     for(let j=0;j<mylists.length;j++){
             let form = document.createElement("form");
             let input = document.createElement("input");
@@ -54,17 +54,17 @@
 
             input.type = "hidden";
             input.value = mylists[j][1];
-            input.name = "target_site";
+            input.name = "target-site";
 
             input2.type = "hidden";
-            input2.value = "new_post";
+            input2.value = "new-post";
             input2.name = "url";
             input2.setAttribute("onclick","loading()");
 
             input3.type = "submit";
-            input3.value = mylists[j][1] + "の最新記事";
+            input3.value = mylists[j][1] + " New!" ;
             input3.setAttribute("onclick","loading()");
-            input3.classList.add("target_site");
+            input3.classList.add("target-site");
             input3.classList.add("sitename");
 
             form.appendChild(input);
@@ -75,13 +75,13 @@
 
         if(form_parent.childElementCount == 0){
             let p = document.createElement("p");
-            p.classList.add("add_message");
+            p.classList.add("add-message");
             p.textContent = "ホーム画面の【 MY LIST 】にお気に入りのサイトを登録してください。";
             let img = document.createElement("img");
             img.src = "../static/img/add.svg";
             img.style.width = "100%";
             form_parent.appendChild(p);
             form_parent.appendChild(img);
-        } 
+        }
 </script>
 {% endblock %}

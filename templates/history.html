@@ -9,11 +9,11 @@
     <!-- コンポーネントのテンプレート -->
     <script type="text/x-template" id="mycomp-template">
             <div class="dialog">
-                <div class="dialog_content">
+                <div class="dialog-content">
                     <p>本当に削除してよろしいですか？</p>
                     <div>
-                        <button class="delete_cancel">いいえ</button>
-                        <button v-on:click="action" class="delete_ok">はい</button>
+                        <button class="delete-cancel">いいえ</button>
+                        <button v-on:click="action" class="delete-ok">はい</button>
                     </div>
                 </div>
             </div>
@@ -22,10 +22,9 @@
 {% endraw %}
 
 <div class="wrap-content">
-
-    <div class="wrap_delete_historys">
+    <div class="wrap-delete-historys">
         <h3>HISTORY</h3>
-        <button class="delete_trigger">履歴削除</button>
+        <button class="delete-trigger">履歴削除</button>
     </div>
 
 
@@ -53,7 +52,7 @@
             methods:{
                 action:function(){
                     console.log("clicked!!!");
-                    $.get("/ajax/delete_historys/", function(){
+                    $.get("/ajax/delete-historys/", function(){
                         location.reload();
                         console.log("done!!");
                     });
@@ -65,10 +64,10 @@
             el:'#vue-container',
         });
 
-        $(".delete_trigger").click(function(){
+        $(".delete-trigger").click(function(){
             $(".dialog").toggleClass("active");
         })
-        $(".delete_cancel").click(function(){
+        $(".delete-cancel").click(function(){
             $(".dialog").toggleClass("active");
         })
     </script>
