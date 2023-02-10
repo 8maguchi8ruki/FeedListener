@@ -6,7 +6,7 @@ body{
     width: 100%;
     margin: 0;
     box-sizing: border-box;
-    background-color: #f9f9f9;;
+    background-color: #f9f9f9;
     overflow-x: hidden;
 }
 .wrap{
@@ -76,17 +76,22 @@ h1 p{
     box-sizing: border-box;
     position: relative;
 }
+@keyframes fadein{
+    0%{transform: translateY(3px); opacity: 0.5;}
+    100%{transform: translateY(0); opacity: 1;}
+}
 .sitename{
     width: 100%;
-    line-height: 80px;
+    line-height: 60px;
     border: none;
     background-color: #777;
     color: #f9f9f9;
     font-size: 1.2em;
     text-align: start;
-    /* border-left: 10px double #f9f9f9; */
-    /* border-top: 10px double #f9f9f9; */
+    box-shadow: #767676 3px 3px 1px 0px;
+    animation: 0.5s ease-in-out fadein;
 }
+
 .yahoo{
     background-color: #cd4f4f;
 }
@@ -141,6 +146,8 @@ h1 p{
 }
 .menu .menu-content{
     margin: 10px 0 20px 0;
+    box-shadow: #767676 5px 5px 2px 0px;
+    animation: 0.5s ease-in-out fadein;
 }
 .menu .menu-content:hover{
     opacity: 0.5;
@@ -159,7 +166,7 @@ h1 p{
 }
 .recent .target-site , .select-site .target-site{
     width: 100%;
-    line-height: 80px;
+    line-height: 60px;
     border: none;
     color: #f9f9f9;
     font-size: 1.2em;
@@ -170,7 +177,7 @@ h1 p{
     z-index: 10;
 }
 .to-mylist button{
-    background-color: #777;
+    background-color: rgb(86, 177, 177);
 }
 .to-mylist h3,.to-mylist p{
     color: #f9f9f9;
@@ -249,7 +256,7 @@ h1 p{
 }
 .site-button{
     width: 100%;
-    line-height: 80px;
+    line-height: 60px;
     border: none;
     color: #f9f9f9;
     font-size: 1.2em;
