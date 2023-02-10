@@ -196,12 +196,11 @@
         color: #f9f9f9;
         background-color: #55a367;
         box-sizing: border-box;
-        font-size: 0.5rem;
+        font-size: 0.8rem;
 
     }
     .sub-menu .arc{ 
         margin-right: 10px;
-        font-size: 16px;
     }
     #all-site > div{
         padding-top: 90px;
