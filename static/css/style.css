@@ -82,7 +82,7 @@ h1 p{
 }
 .sitename{
     width: 100%;
-    line-height: 60px;
+    line-height: 75px;
     border: none;
     background-color: #777;
     color: #f9f9f9;
@@ -166,7 +166,7 @@ h1 p{
 }
 .recent .target-site , .select-site .target-site{
     width: 100%;
-    line-height: 60px;
+    line-height: 75px;
     border: none;
     color: #f9f9f9;
     font-size: 1.2em;
@@ -256,7 +256,7 @@ h1 p{
 }
 .site-button{
     width: 100%;
-    line-height: 60px;
+    line-height: 75px;
     border: none;
     color: #f9f9f9;
     font-size: 1.2em;
@@ -316,7 +316,7 @@ h1 p{
 }
 .wrap-seach input{
     width: 700px;
-    line-height: 60px;
+    line-height: 75px;
     padding-left: 10px;
     font-size: 1.2em;
     border: none;
