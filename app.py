@@ -15,7 +15,7 @@ import random
 import os
 import shutil
 from lxml import html
-
+ 
 app = Flask(__name__)
 rannum = ""
 ##### トップページ #####
