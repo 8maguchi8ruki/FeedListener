@@ -159,7 +159,7 @@ h1 p{
     max-height: 130px;
 }
 .menu .menu-content{
-    margin: 10px 0 20px 0;
+    margin: 10px 0;
     /* box-shadow: #767676 5px 5px 2px 0px; */
     border: 1px solid #aaa;
     animation: 0.5s ease-in-out fadein;
