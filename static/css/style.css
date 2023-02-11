@@ -84,6 +84,14 @@ h1 p{
     0%{transform: translateY(3px); opacity: 0.5;}
     100%{transform: translateY(0); opacity: 1;}
 }
+@keyframes fadein2{
+    0%{opacity: 0.5;}
+    100%{opacity: 1;}
+}
+@keyframes fadeout{
+    0%{opacity: 1;}
+    100%{opacity: 0.5;}
+}
 .sitename{
     width: 100%;
     line-height: 75px;
@@ -365,7 +373,9 @@ h1 p{
     z-index: 1000;
     top: 0;
     left: 0;
-    background-color: #252525;;
+    background-color: #252525;
+    box-sizing: border-box;
+    animation: 0.5s ease-in-out fadein2;
 }
 #loader{
     position: absolute;
@@ -393,6 +403,7 @@ h1 p{
 }
 .comment.active{
     display: block;
+    color: #f9f9f9;
 }
 
 
