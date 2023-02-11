@@ -6,7 +6,7 @@ body{
     width: 100%;
     margin: 0;
     box-sizing: border-box;
-    background-color: #ffffff;
+    background-color: #252525;
     overflow-x: hidden;
 }
 .wrap{
@@ -27,6 +27,7 @@ p,h2,h3,h4,li{
 h3{
     border-left: 5px solid #2cb44c;
     padding-left: 5px;
+    color: #2cb44c;
 }
 /***** ヘッダー *****/
 header{
@@ -270,6 +271,10 @@ h1 p{
     margin: 0 auto;
     margin-top: 40px;
 }
+.scroll-content h3{
+    color: #2cb44c;
+    font-size: 1rem;
+}
 .site-button{
     width: 100%;
     line-height: 75px;
@@ -298,7 +303,6 @@ h1 p{
 .sub-menu img{
     display: none;
     width: 40px;
-    margin-right: 10px;
 }
 .sub-menu a{
     display: block;
