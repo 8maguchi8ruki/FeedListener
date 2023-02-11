@@ -373,7 +373,7 @@ h1 p{
     z-index: 1000;
     top: 0;
     left: 0;
-    background-color: #252525;
+    background-color: #f9f9f9;
     box-sizing: border-box;
     animation: 0.5s ease-in-out fadein2;
 }
@@ -403,7 +403,7 @@ h1 p{
 }
 .comment.active{
     display: block;
-    color: #f9f9f9;
+    color: #252525;
 }
 
 
@@ -604,7 +604,7 @@ footer p{
     width: 100px;
     height: 30px;
     border: none;
-    background-color: #252525;;
+    background-color: #ffffff;
     color: #252525;
     text-align: end;
     margin-top: 20px;
