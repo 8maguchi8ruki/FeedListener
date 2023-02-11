@@ -402,12 +402,15 @@ h1 p{
     transform: rotateZ(-45deg);
     animation: 3s ease-in-out search infinite;
 }
+#loader p{
+    font-weight: bold;
+    color: #2cb44c;
+}
 .comment{
     display: none;
 }
 .comment.active{
     display: block;
-    color: #f9f9f9;
 }
 
 
