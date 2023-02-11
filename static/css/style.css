@@ -166,7 +166,6 @@ h1 p{
     animation: 0.5s ease-in-out fadein;
 }
 .menu .menu-content:hover{
-    opacity: 0.5;
     cursor: pointer;
 }
 .menu button{
@@ -377,7 +376,7 @@ h1 p{
     z-index: 1000;
     top: 0;
     left: 0;
-    background-color: #252525;
+    background-color: #f9f9f9;
     box-sizing: border-box;
     animation: 0.5s ease-in-out fadein2;
 }
@@ -407,7 +406,7 @@ h1 p{
     color: #2cb44c;
 }
 #loader > p.comment{
-    color: #f9f9f9;
+    color: #252525;
 }
 .comment{
     display: none;
