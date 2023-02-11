@@ -377,7 +377,7 @@ h1 p{
     z-index: 1000;
     top: 0;
     left: 0;
-    background-color: #f9f9f9;
+    background-color: #252525;
     box-sizing: border-box;
     animation: 0.5s ease-in-out fadein2;
 }
@@ -407,7 +407,7 @@ h1 p{
 }
 .comment.active{
     display: block;
-    color: #252525;
+    color: #f9f9f9;
 }
 
 
