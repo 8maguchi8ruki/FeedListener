@@ -526,7 +526,7 @@ footer p{
 #archive-button{
     width: 180px;
     height: 30px;
-    border: none;
+    border: 2px solid #2cb44c;
 }
 #archives{
     list-style-type: none;
