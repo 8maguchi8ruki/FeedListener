@@ -6,7 +6,7 @@ body{
     width: 100%;
     margin: 0;
     box-sizing: border-box;
-    background-color: #3a3a3a;
+    background-color: #f9f9f9;
     overflow-x: hidden;
 }
 .wrap{
@@ -88,7 +88,7 @@ h1 p{
     color: #f9f9f9;
     font-size: 1.2em;
     text-align: start;
-    /* box-shadow: #767676 3px 3px 1px 0px; */
+    box-shadow: #767676 3px 3px 1px 0px;
     animation: 0.5s ease-in-out fadein;
 }
 
@@ -148,7 +148,7 @@ h1 p{
 }
 .menu .menu-content{
     margin: 10px 0 20px 0;
-    /* box-shadow: #767676 5px 5px 2px 0px; */
+    box-shadow: #767676 5px 5px 2px 0px;
     animation: 0.5s ease-in-out fadein;
 }
 .menu .menu-content:hover{
