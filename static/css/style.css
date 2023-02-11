@@ -406,13 +406,15 @@ h1 p{
     font-weight: bold;
     color: #2cb44c;
 }
+#loader > p.comment{
+    color: #f9f9f9;
+}
 .comment{
     display: none;
 }
 .comment.active{
     display: block;
 }
-
 
 /***** フッター *****/
 footer{
