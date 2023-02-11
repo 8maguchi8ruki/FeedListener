@@ -148,6 +148,7 @@ h1 p{
     margin-bottom: 0;
     display: inline-block;
     border-bottom: 1px solid #252525;
+    margin-right: 10px;
 }
 .menu .menu-right{
     width: 30%;
