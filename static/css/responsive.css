@@ -32,7 +32,7 @@
         top: 0;
         left: 0;
         z-index: 101;
-        background-color: #55a367;
+        background-color: #525252;
         display: flex;
     }
     h1{
@@ -163,7 +163,7 @@
         position: fixed;
         left: 0;
         bottom: 0;
-        background-color: #55a367;
+        background-color: #525252;
         z-index: 100;
         display: flex;
         justify-content: space-between;
@@ -194,7 +194,7 @@
         transform: translateY(0);
         text-decoration: none;
         color: #f9f9f9;
-        background-color: #55a367;
+        background-color: #525252;
         box-sizing: border-box;
         font-size: 0.7rem;
 
