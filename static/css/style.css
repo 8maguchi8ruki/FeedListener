@@ -517,7 +517,10 @@ footer p{
     color: #2cb44c;
     margin-top: 10px;
 }
-
+#audio{
+    width: 100%;
+    -ms-wrap-margin: 0 auto;
+}
 
 /***** アーカイブページ *****/
 #archive-button{
