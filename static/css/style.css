@@ -20,7 +20,7 @@ body{
     width: 100%;
     padding-bottom: 300px;
 }
-p,h1,h2,h3,h4,li{
+p,h2,h3,h4,li{
     color: #252525;
 }
 
@@ -43,7 +43,7 @@ h1{
     padding-left: 30px;
 }
 h1 a{
-    color: #252525;
+    color: #f9f9f9;
     text-decoration: none;
 }
 h1 i{
@@ -52,7 +52,7 @@ h1 i{
 h1 p{
     width: 1000px;
     margin: 0 auto;
-    color: #aaaaaa;
+    color: #f9f9f9;
     margin-top: 10px;
     font-size: 1rem;
 }
