@@ -73,6 +73,11 @@ def select():
 def download():
     return render_template("download.html")
 
+##### その他ページ #####
+@app.route('/others/', methods=['GET','POST'])
+def others():
+    return render_template("others.html")
+
 ##### ヘルプページ #####
 @app.route('/help/', methods=['GET','POST'])
 def help():

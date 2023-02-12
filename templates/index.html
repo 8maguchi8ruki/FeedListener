@@ -60,4 +60,35 @@
         </div>    
     </form>
 
+    <div class="others">
+        <div>
+            <img src="../static/img/menu13.svg" alt="">
+
+        </div>
+
+        <div>
+            <form action="{{ url_for('help')}}" method="POST" class="help">
+                <div class="other-menu">
+                    <button type="submit" class="button1">
+                        <div>
+                            <p>ヘルプ</p>
+                        </div>
+                    </button>
+                </div>    
+            </form>
+        
+            <form action="{{ url_for('contact')}}" method="POST" class="contacts">
+                <div class="other-menu">
+                    <button type="submit" class="button2">
+                        <div>
+                            <p>問い合わせ</p>
+                        </div>
+                    </button>
+                </div>    
+            </form>
+        </div>
+        
+    </div>
+    
+
 {% endblock %}

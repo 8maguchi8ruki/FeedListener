@@ -174,6 +174,8 @@ h1 p{
     height: 150px;
     border: none;
     background-color: #538f62;
+    /* background: linear-gradient(90deg, #2cb44c ,#538e7a); */
+
     color: #252525;
     font-weight: bold;
     font-size: 1.5em;
@@ -293,6 +295,31 @@ h1 p{
 }
 .site-button.disabled:hover{
     color: #252525;
+}
+
+.others{
+    display: flex;
+    width: 100%;
+}
+.others div{
+    width:100%;
+}
+.other-menu button{
+    background-color: #2cb44c;
+    border: none;
+    font-weight: bold;
+    width: 100%;
+    height: 50px;
+    border: 1px solid #aaa;
+}
+.other-menu .button1{
+    margin-top: 15px;
+}
+.other-menu .button2{
+    margin-top: 10px;
+}
+.others img{
+    width: 100%;
 }
 
 /***** アーカイブ、履歴 *****/
@@ -688,10 +715,10 @@ footer p{
     width: 80px;
     height: 40px;
     margin-top: 20px;
-    background-color: #2cb44c;
     color: #252525;
     font-weight: bold;
-    border: none;
+    border: 1px solid #aaa;
+    background: linear-gradient(90deg, #538e7a, #2cb44c);
 }
 .contact-form .submit:hover{
     opacity: 0.5;
