@@ -27,6 +27,7 @@ p,h2,h3,h4,li{
 h3{
     border-left: 5px solid #2cb44c;
     padding-left: 5px;
+    border-bottom: 1px solid #ddd;
 }
 /***** ヘッダー *****/
 header{
