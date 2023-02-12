@@ -66,26 +66,20 @@
 
         </div>
 
-        <div>
-            <form action="{{ url_for('help')}}" method="POST" class="help">
-                <div class="other-menu">
-                    <button type="submit" class="button1">
-                        <div>
-                            <p>ヘルプ</p>
-                        </div>
-                    </button>
-                </div>    
-            </form>
+        <div class="others-menu">
+            <a href="/help">
+                <li>ヘルプ</li>
+            </a>
+   
+            <a href="/contact">
+                <li>問い合わせ</li>
+            </a>
         
-            <form action="{{ url_for('contact')}}" method="POST" class="contacts">
-                <div class="other-menu">
-                    <button type="submit" class="button2">
-                        <div>
-                            <p>問い合わせ</p>
-                        </div>
-                    </button>
-                </div>    
-            </form>
+
+            <a href="policy">
+                <li>ポリシー</li>
+            </a>
+   
         </div>
         
     </div>

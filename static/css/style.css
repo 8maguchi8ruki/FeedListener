@@ -1,4 +1,38 @@
-/* 共通 */
+/***** アニメーション *****/
+
+@keyframes fadein{
+    0%{transform: translateY(3px); opacity: 0.5;}
+    100%{transform: translateY(0); opacity: 1;}
+}
+@keyframes fadein2{
+    0%{opacity: 0.5;}
+    100%{opacity: 1;}
+}
+@keyframes fadeout{
+    0%{opacity: 1;}
+    100%{opacity: 0.5;}
+}
+
+@keyframes search{
+    10%{transform: translateX(-10px)rotateZ(-45deg);}
+    20%{transform: translateX(-10px) translateY(-10px)rotateZ(-45deg);}
+    30%{transform: translateX(0px) translateY(-10px)rotateZ(-45deg);}
+    40%{transform: translateX(0px) translateY(0px)rotateZ(-45deg);}
+    40%{transform: translateY(-10px)rotateZ(-45deg);}
+    45%{transform: translateY(0)rotateZ(-45deg);}
+    50%{transform: translateY(-10px)rotateZ(-45deg);}
+    55%{transform: translateY(0)rotateZ(-45deg);}
+}
+
+/* ハンバーガーメニュー */
+#hamburger-menu,#hamburger-trigger,#hamburger-close{
+    display: none;
+}
+
+
+
+
+/***** 共通 *****/
 html{
     margin: 0;
 }
@@ -10,25 +44,30 @@ body{
     overflow-x: hidden;
 }
 .wrap{
-    width: 1000px;
+    width: 100%;
     padding: 10px;
     padding-left: 5px;
-    padding-top: 140px;
+    padding-top: 82px;
+    padding-bottom: 80px;
     box-sizing: border-box;
     margin: 0 auto;
 }
 .wrap-content{
     width: 100%;
-    padding-bottom: 300px;
+    padding-bottom: 0;
 }
-p,h2,h3,h4,li{
+h2,h3,h4,p,li{
     color: #252525;
 }
 h3{
     border-left: 5px solid #2cb44c;
     padding-left: 5px;
     border-bottom: 1px solid #ddd;
+    margin: 10px 0;
 }
+
+
+
 /***** ヘッダー *****/
 header{
     width: 100%;
@@ -38,14 +77,16 @@ header{
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 100;
-    background-color: #252525;;
+    z-index: 101;
+    background-color: #f9f9f9;
+    display: flex;
 }
 h1{
-    width: 1000px;
+    width: 100%;
     margin: 0 auto;
     position: relative;
-    padding-left: 30px;
+    padding-left: 0;
+    font-size: 1em;
 }
 h1 a{
     color: #252525;
@@ -55,16 +96,14 @@ h1 i{
     margin-right: 10px;
 }
 h1 p{
-    width: 1000px;
+    width: 100%;
     margin: 0 auto;
     color: #252525;
     margin-top: 10px;
-    font-size: 1rem;
+    font-size: 0.7rem;
 }
-/* ハンバーガーメニュー */
-#hamburger-menu,#hamburger-trigger,#hamburger-close{
-    display: none;
-}
+
+
 
 /***** メインメニュー *****/
 .wrap-content .mylist{
@@ -81,18 +120,7 @@ h1 p{
     box-sizing: border-box;
     position: relative;
 }
-@keyframes fadein{
-    0%{transform: translateY(3px); opacity: 0.5;}
-    100%{transform: translateY(0); opacity: 1;}
-}
-@keyframes fadein2{
-    0%{opacity: 0.5;}
-    100%{opacity: 1;}
-}
-@keyframes fadeout{
-    0%{opacity: 1;}
-    100%{opacity: 0.5;}
-}
+
 .sitename{
     width: 100%;
     line-height: 75px;
@@ -104,7 +132,6 @@ h1 p{
     font-weight: bold;
     border: 1px solid #aaa;
 }
-
 .yahoo{
     background-color:  #d16c6c;
 }
@@ -123,6 +150,7 @@ h1 p{
 .sitename.change-backgroud{
     opacity: 0.2;
 }
+
 .menu{
     position: relative;
     width: 100%;
@@ -136,20 +164,6 @@ h1 p{
     display: flex;
     flex-direction: column;
     align-self: center;
-}
-.menu h2{
-    font-size: 1.5rem;
-    margin: 0;
-    color: #252525;
-}
-.menu p{
-    font-size: 1rem;
-    font-weight: normal;
-    color: #252525;
-    margin-bottom: 0;
-    display: inline-block;
-    border-bottom: 1px solid #252525;
-    margin-right: 10px;
 }
 .menu .menu-right{
     width: 30%;
@@ -169,13 +183,26 @@ h1 p{
 .menu .menu-content:hover{
     cursor: pointer;
 }
+.menu h2{
+    font-size: 1.5rem;
+    margin: 0;
+    color: #252525;
+}
+.menu p{
+    font-size: 1rem;
+    font-weight: normal;
+    color: #252525;
+    margin-bottom: 0;
+    display: inline-block;
+    border-bottom: 1px solid #252525;
+    margin-right: 10px;
+}
 .menu button{
     width: 100%;
     height: 150px;
     border: none;
     background-color: #538f62;
     /* background: linear-gradient(90deg, #2cb44c ,#538e7a); */
-
     color: #252525;
     font-weight: bold;
     font-size: 1.5em;
@@ -239,6 +266,13 @@ h1 p{
     display: none;
 }
 
+.wrap-add-site h3,.wrap-delete-archives h3,.wrap-delete-historys h3,.scroll-content h3{
+    margin-bottom: 5px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+
 .all-sites ul li{
     margin: 20px 0;
 }
@@ -262,13 +296,13 @@ h1 p{
     z-index: 98;
     background-color: #252525;;
     padding: 10px;
-    padding-top: 120px;
-    padding-bottom: 300px;
+    padding-top: 90px;
+    padding-bottom: 20px;
     box-sizing: border-box;
 }
 
 #all-site .scroll-content{
-    width: 1000px;
+    width: 100%;
     margin: 0 auto;
     margin-top: 40px;
 }
@@ -300,60 +334,110 @@ h1 p{
 .others{
     display: flex;
     width: 100%;
+    height: 100%;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+
 }
 .others div{
     width:100%;
 }
-.other-menu button{
-    background-color: #9ca89e;
-    border: none;
-    font-weight: bold;
+.others-menu{
     width: 100%;
-    height: 50px;
-    border: 1px solid #aaa;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 5px;
+    box-sizing: border-box;
 }
-.other-menu .button1{
-    margin-top: 15px;
-}
-.other-menu .button2{
-    margin-top: 10px;
+.others-menu a{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    background-color: #ddd;
+    font-weight: bold;
+    box-sizing: border-box;
+    border-bottom: 1px solid #aaa;
+    text-decoration: none;
 }
 .others img{
     width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+}
+.others-menu li{
+    width: 100%;
+    margin: 0;
+    text-decoration: none;
+    color: #252525;
+    padding-left: 10px;
+    box-sizing: border-box;
 }
 
 /***** アーカイブ、履歴 *****/
 .wrap-content .sub-menu{
     margin-top: 40px;
+    padding-left: 0;
 }
 .sub-menu img{
-    display: none;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 5px;
     width: 40px;
 }
+
 .sub-menu a{
+    width: 100%;
+    height: 100%;
+    align-self: flex-end;
+    text-decoration: none;
+    color: #252525;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    font-size: 0.7rem;
     display: block;
     padding: 5px 0;
-    color: #252525;
 }
+.sub-menu p{
+    text-align: center;
+    margin: 0;
+}
+.sub-menu div{
+    width: 100%;
+}
+.sub-menu .arc{ 
+    margin-right: 10px;
+}
+
 #mobile-only{
-    display: none;
+    display: flex;
 }
 
 
 
 
 /***** 検索フォーム *****/
+
+
+form.site input{
+    width: 100%;
+    margin: 10px 0;
+}
+
 .wrap-seach{
-    width: 1000px;
+    width: 100%;
     margin: 0 auto;
 }
 .wrap-seach img{
-    width: 480px;
+    width: 80%;
     display: block;
+    margin: 0 auto;
     margin-top: 50px;
 }
 .wrap-seach h2{
-    font-size: 2em;
+    font-size: 1em;
     margin-bottom: 0;
 }
 .wrap-seach p{
@@ -361,10 +445,10 @@ h1 p{
     font-size: 1em;
 }
 .wrap-seach input{
-    width: 700px;
-    line-height: 75px;
+    width: 80%;
+    line-height: 50px;
     padding-left: 10px;
-    font-size: 1.2em;
+    font-size: 1em;
     border: none;
     box-sizing: border-box;
     outline: none;
@@ -375,9 +459,9 @@ h1 p{
     background-color: #ddd;
 }
 .wrap-seach button{
-    height: 55px;
-    width: 55px;
-    margin-left: 20px;
+    height: 50px;
+    width: 50px;
+    margin-left: 10px;
     background-color: #E7E9EB;
     color: #252525;
     border: none;
@@ -413,18 +497,9 @@ h1 p{
     width: 100%;
     top: 30%;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1em;
 }
-@keyframes search{
-    10%{transform: translateX(-10px)rotateZ(-45deg);}
-    20%{transform: translateX(-10px) translateY(-10px)rotateZ(-45deg);}
-    30%{transform: translateX(0px) translateY(-10px)rotateZ(-45deg);}
-    40%{transform: translateX(0px) translateY(0px)rotateZ(-45deg);}
-    40%{transform: translateY(-10px)rotateZ(-45deg);}
-    45%{transform: translateY(0)rotateZ(-45deg);}
-    50%{transform: translateY(-10px)rotateZ(-45deg);}
-    55%{transform: translateY(0)rotateZ(-45deg);}
-}
+
 #loader img{
     transform: rotateZ(-45deg);
     animation: 3s ease-in-out search infinite;
@@ -445,6 +520,7 @@ h1 p{
 
 /***** フッター *****/
 footer{
+    display: none;
     width: 100%;
     height: 150px;
     background-color: #252525;;
@@ -510,21 +586,45 @@ footer ul li a:hover{
 
 
 footer p{
-    width: 1000px;
-    margin: 0 auto;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    padding: 0;
     text-align: center;
     color: #252525;
     font-weight: bold;
-    margin-top: 40px;
-    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: normal;
+}
+    
+
+#sub-menu{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: #f9f9f9;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid #ddd;
+}
+.sub-menu-pc{
+    display: none;
 }
 
 
+
+
 /* リザルトページ */
+
 .wrap-result{
-    width: 1000px;
+    width: 100%;
     margin: 0 auto;
-    padding-bottom: 300px;
+    padding: 0 0 20px 0;
 }
 .wrap-result .reference{
     width: 100%;
@@ -563,10 +663,17 @@ footer p{
 }
 
 #archives li{
+    width: 100%;
     margin: 30px 0 25px 0;
+    font-weight: bold;
 }
 #archives li a{
     color: #252525;
+}
+
+#archives button{
+    text-align: center;
+    width: 80px;
 }
 #archive-button.active{
     color: #f9f9f9;
@@ -621,6 +728,9 @@ footer p{
 .historys{
     width: 100%;
     box-sizing: border-box;
+}
+.historys ul , .archives ul{
+    margin: 0;
 }
 .historys ul li{
     width: 100%;
@@ -743,42 +853,3 @@ footer p{
     border-left: 2px solid #ddd;
     padding-left: 10px;
 }
-
-/***** ホームメニュー *****/
-/* .home{
-    width: 1000px;
-    margin: 0 auto;
-    display: flex;
-}
-.home .home-menu{
-    width: 250px;
-    height: 250px;
-    border-radius: 5%;
-    background-color: #fff;
-    color: #252525;
-    font-size: 2em;
-    font-weight: bold;
-    outline: none;
-    border: none;
-    transition: 0.2s;
-    transform: translateY(0);
-    margin: 20px;    
-}
-.home .home-menu:hover{
-    cursor: pointer;
-    transform: translateY(-5px);
-    background-color: #252525;
-    color: #fff;
-}
-h1 .library{
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: 0.2s;
-    transform: translateY(0);
-    margin: 10px;
-}
-h1 .library:hover{
-    transform: translateY(-5px);
-    cursor: pointer;
-} */
