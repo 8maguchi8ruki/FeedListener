@@ -9,12 +9,14 @@
             <audio controls id="audio" src="../static/files/audio/article{{ rannum }}.mp3"></audio>
 
             <h3 id="title">{{ title }}</h3>
+            <p class="reference"><a href="{{ url }}" id="url">{{ url }}</a></p>
 
             <!-- Vueコンテナ -->
             <div id="vue-container">
                 <!-- コンポーネント -->
                 <mycomp />
             </div>
+
 
             <p id="textarea" class="textarea">{{ result }}</p>
 
@@ -28,7 +30,6 @@
             {% endraw %}            
         </div>
 
-        <p class="reference">引用元：<a href="{{ url }}" id="url">{{ url }}</a></p>
 
     </div>
 
