@@ -75,7 +75,7 @@
     }
     #hamburger-menu li{
         margin: 25px 0;
-        border-bottom: 1px solid #E7E9EB;
+        border-bottom: 2px solid #E7E9EB;
     }
     #hamburger-menu li a{
         color: #f9f9f9;
@@ -142,6 +142,7 @@
     .wrap-add-site h3,.wrap-delete-archives h3,.wrap-delete-historys h3,.scroll-content h3{
         margin-bottom: 5px;
         margin-top: 10px;
+        width: 100%;
     }
     form.site input{
         width: 100%;
@@ -149,9 +150,11 @@
     }
     #archives div{
         width: 100%;
+        background-color: #2cb44c;
     }
     #archives li{
         width: 100%;
+        font-weight: bold;
     }
     #archives button{
         text-align: center;
@@ -169,7 +172,6 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-        padding: 5px;
         box-sizing: border-box;
         border-top: 1px solid #ddd;
     }
@@ -180,26 +182,25 @@
     .sub-menu img{
         display: block;
         margin: 0 auto;
+        margin-bottom: 5px;
     }
-    .sub-menu div{
+    .sub-menu a{
+        display: block;
         width: 100%;
         height: 100%;
         align-self: flex-end;
-    }
-    .sub-menu a{
-        width: 100%;
-        height: 25px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: 0.2s;
-        transform: translateY(0);
         text-decoration: none;
         color: #252525;
         background-color: #f9f9f9;
         box-sizing: border-box;
         font-size: 0.7rem;
-
+    }
+    .sub-menu p{
+        text-align: center;
+        margin: 0;
+    }
+    .sub-menu div{
+        width: 100%;
     }
     .sub-menu .arc{ 
         margin-right: 10px;
