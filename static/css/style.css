@@ -347,7 +347,7 @@ h1 p{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding-left: 5px;
+    padding-left: 10px;
     box-sizing: border-box;
 }
 .others-menu a{
@@ -356,10 +356,10 @@ h1 p{
     display: flex;
     align-items: center;
     margin: 5px 0;
-    background-color: #ddd;
+    background-color: #8da493;
     font-weight: bold;
     box-sizing: border-box;
-    border-bottom: 1px solid #aaa;
+    border: 1px solid #aaa;
     text-decoration: none;
 }
 .others img{
