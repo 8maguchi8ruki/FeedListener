@@ -139,13 +139,19 @@ h1 p{
     background-color:  #7d7eba;
 }
 .gizmodo{
-    background-color:  #926cbc;
+    background-color:  #999ca5;
 }
 .cnn{
     background-color:  #ed7c4f;
 }
 .cnn-en{
     background-color:  #c77bc7;
+}
+.techcrunch{
+    background-color: #70d788;
+}
+.premierleague{
+    background-color: #a86bdd;
 }
 .sitename.change-backgroud{
     opacity: 0.2;
@@ -733,7 +739,7 @@ footer p{
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    border-bottom: 1px dashed #ccc;
+    border-bottom: 1px dashed #2cb44c;
 }
 .historys ul li a{
     text-decoration: none;

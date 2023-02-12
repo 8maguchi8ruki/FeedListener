@@ -156,6 +156,8 @@ def create_all_site():
     c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ Business ） - EN")')
     c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ Sports ） - EN")')
     c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ Entertainment ） - EN")')
+    c.execute('INSERT INTO all_site(sitename) VALUES("Techcrunch【 Startup 】 - EN")')
+    c.execute('INSERT INTO all_site(sitename) VALUES("Premierleague - EN")')
     conn.commit()
     c.close()
     conn.close()

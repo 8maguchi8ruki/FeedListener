@@ -135,7 +135,7 @@
         // サイト別に背景色を設定する
         let site = document.querySelectorAll(".sitename");
         console.log(site);
-        let pattern = /(CNN（| - EN)/;
+        let pattern = /- EN/;
         for(let i=0;i<site.length;i++){
             let site_value = site[i].getAttribute("value");
             if(site_value.match(/Yahoo/)){
@@ -144,10 +144,14 @@
                 site[i].classList.add("sankei");
             }else if(site_value.match(/GIZMODO/)){
                 site[i].classList.add("gizmodo");
-            }else if(site_value.match(pattern)){
+            }else if(site_value.match(/CNN/) && site_value.match(pattern)){
                 site[i].classList.add("cnn-en");
             }else if(site_value.match(/CNN/)){
                 site[i].classList.add("cnn");
+            }else if(site_value.match(/Techcrunch/) && site_value.match(pattern)){
+                site[i].classList.add("techcrunch");
+            }else if(site_value.match(/Premierleague/) && site_value.match(pattern)){
+                site[i].classList.add("premierleague");
             }
             console.log(site_value);
         }

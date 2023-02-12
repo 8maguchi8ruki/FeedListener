@@ -42,6 +42,8 @@
     let cnt3 = 0;
     let cnt4 = 0;
     let cnt5 = 0;
+    let cnt6 = 0;
+    let cnt7 = 0;
     let value = "";
     for(let j=0;j<mylists.length;j++){
             let form = document.createElement("form");
@@ -57,7 +59,7 @@
             input.classList.add("sitename");
 
             value = mylists[j][1];
-            let pattern = /(CNN（| - EN)/;
+            let pattern = /- EN/;
             if(value.match(/Yahoo!/) && cnt1 == 0){
                 input.value = "Yahoo!";
                 cnt1 = cnt1 + 1;
@@ -67,12 +69,18 @@
             }else if(value.match(/GIZMODO/) && cnt3 == 0){
                 input.value = "GIZMODO";
                 cnt3 = cnt3 + 1;
-            }else if(value.match(pattern) && cnt4 == 0){
+            }else if(value.match(/CNN/) && value.match(pattern) && cnt4 == 0){
                 input.value = "CNN - EN";
                 cnt4 = cnt4 + 1;
             }else if(value.match(/CNN/) && cnt5 == 0){
                 input.value = "CNN";
                 cnt5 = cnt5 + 1;
+            }else if(value.match(/Techcrunch/) && value.match(pattern) && cnt6 == 0){
+                input.value = "Techcrunch - EN";
+                cnt6 = cnt6 + 1;
+            }else if(value.match(/Premierleague/) && value.match(pattern) && cnt7 == 0){
+                input.value = "Premierleague - EN";
+                cnt7 = cnt7 + 1;
             }else{
                 continue;
             }

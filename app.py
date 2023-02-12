@@ -187,9 +187,9 @@ def result():
         sitename = "cnet"
         Scraping(".article_body p" , sitename)
     # Techcrunch
-    # elif "jp.techcrunch.com" in url:
-    #     sitename = "techcrunch"
-    #     Scraping(".article-entry.text p" , sitename)
+    elif "techcrunch.com" in url:
+        sitename = "techcrunch"
+        Scraping(".article-content p" , sitename)
     #GIZMODO
     elif "gizmodo.jp" in url:
         sitename = "gizmodo"
@@ -214,6 +214,9 @@ def result():
     elif "edition.cnn.com" in url:
         sitename = "cnn -EN"
         Scraping(".zn-body__paragraph" , sitename)
+    elif "premierleague.com" in url:
+        sitename = "premierleague"
+        Scraping(".standardArticle p" , sitename)
     # ITmedia
     # elif "itmedia.co.jp" in url:
     #     sitename = "itmedia"
@@ -610,6 +613,24 @@ def result():
                 url = "https://edition.cnn.com" + url
                 print(url)
                 Scraping(".zn-body__paragraph" , target_site)
+                # Techcrunch スタートアップ
+            elif target_site == "Techcrunch【 Startup 】 - EN":
+                res = requests.get("https://techcrunch.com/category/startups")
+                soup = bs4(res.content, "lxml")
+                h2 = soup.find('h2', class_="post-block__title")
+                a = h2.find('a')
+                url = a.get('href')
+                print(url)
+                Scraping(".article-content p" , target_site)
+            elif target_site == "Premierleague - EN":
+                res = requests.get("https://www.premierleague.com/news")
+                soup = bs4(res.content, "lxml")
+                section = soup.find('section', class_="featuredArticle")
+                a = section.find('a', class_="thumbnail thumbLong")
+                url = a.get('href')
+                url = "https://www.premierleague.com" + url
+                print(url)
+                Scraping(".standardArticle p" , target_site);    
     else:
         return render_template("404.html")
 
