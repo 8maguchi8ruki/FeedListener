@@ -556,6 +556,7 @@ footer p{
     height: 30px;
     border: 1px solid #ccc;
     font-weight: bold;
+    margin-top: 15px;
 }
 #archives{
     list-style-type: none;
