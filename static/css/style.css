@@ -496,6 +496,7 @@ form.site input{
     top: 0;
     left: 0;
     background-color: #f9f9f9;
+    background: linear-gradient(90deg, #54af69 ,#54aca9);
     box-sizing: border-box;
     animation: 0.5s ease-in-out fadein2;
 }
@@ -513,9 +514,6 @@ form.site input{
 }
 #loader p{
     font-weight: bold;
-    color: #2cb44c;
-}
-#loader > p.comment{
     color: #252525;
 }
 .comment{
@@ -743,10 +741,10 @@ footer p{
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    border-bottom: 1px dashed #2cb44c;
+    border-bottom: 1px dashed #ddd;
+    font-weight: bold;
 }
 .historys ul li a{
-    text-decoration: none;
     color: #252525;
 }
 .wrap-delete-historys{
