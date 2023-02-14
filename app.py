@@ -1,5 +1,4 @@
 from crypt import methods
-import json
 from xml.etree.ElementTree import tostring
 from gtts import gTTS
 from bs4 import BeautifulSoup as bs4
@@ -15,17 +14,66 @@ import random
 import os
 import shutil
 from lxml import html
- 
+from flask import Flask, render_template, url_for, redirect
+import os
+import requests
+from authlib.integrations.flask_client import OAuth
+
+
 app = Flask(__name__)
-rannum = ""
+app.secret_key = os.urandom(12)
+
+oauth = OAuth(app)
+
 ##### トップページ #####
 @app.route('/')
 def index():
+    return render_template('index.html')
+
+@app.route('/home')
+def home():
     if os.path.exists("static/files/audio"):
         print("audioフォルダを削除しました")
         shutil.rmtree("static/files/audio")
 
-    return render_template('index.html')
+    return render_template('home.html')
+
+
+# ログイン処理
+@app.route('/google/')
+def google():
+
+    GOOGLE_CLIENT_ID = '706938186994-g2dj2ptk02p4ula21koqnqsu1gq0q3nk.apps.googleusercontent.com'
+    GOOGLE_CLIENT_SECRET = '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'
+
+    CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
+    oauth.register(
+        name='google',
+        client_id=GOOGLE_CLIENT_ID,
+        client_secret=GOOGLE_CLIENT_SECRET,
+        server_metadata_url=CONF_URL,
+        client_kwargs={
+            'scope': 'openid email profile'
+        }
+    )
+
+    # Redirect to google_auth function
+    redirect_uri = url_for('google_auth', _external=True)
+    print(redirect_uri)
+    return oauth.google.authorize_redirect(redirect_uri)
+
+@app.route('/google/auth/')
+def google_auth():
+    token = oauth.google.authorize_access_token()
+    userinfo = token['userinfo']
+    # user = oauth.google.parse_id_token(token)
+    print(" Google User ", userinfo)
+    return redirect('/home')
+
+
+ 
+
+
 
 ##### トップページ全サイト取得ajax #####
 @app.route('/ajax/all-site/')
@@ -662,7 +710,10 @@ def result():
     return render_template('result.html', result=data, url = url , title = t.title , articleID=articleID[0] , rannum = rannum)
 if __name__ == '__main__':
     app.run()   
-    
+
+
+# app = Flask(__name__)
+# rannum = ""
 
 
 

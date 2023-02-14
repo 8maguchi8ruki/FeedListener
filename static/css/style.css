@@ -29,6 +29,27 @@
     display: none;
 }
 
+/* ログイン */
+div .login-btn {
+    justify-content: center;
+    flex-direction: row;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 10px;
+    box-shadow: 3px 3px 3px rgb(170, 170, 170);
+    border-radius: 15px;
+}
+div .btn-text {
+    justify-content: center;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(85, 85, 85);
+}
 
 
 
@@ -642,6 +663,7 @@ footer p{
 #textarea{
     width: 100%;
     padding: 10px;
+    line-height: 30px;
     box-sizing: border-box;
     background: linear-gradient(90deg, #54af69 ,#54aca9);
     font-weight: bold;

@@ -1,4 +1,4 @@
-#!/Users/haruki/myapps/feedlyreadly/.venv/bin/python
+#!/Users/haruki/myapps/Feedread/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

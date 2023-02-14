@@ -1,88 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-
-<div class="wrap-content">
-    <!-- 最新の投稿 -->
-    <form action="{{ url_for('recent') }}" method="POST" class="recent-post menu">
-        <div class="menu-content">
-            <button type="submit">
-                <div class="menu-left">
-                    <h2>最新記事</h2>
-                    <p>最新の投稿をCHECK!!</p>
-                </div>
-                <div class="menu-right">
-                    <img src="../static/img/recent.svg" alt="">
-                </div>
-            </button>  
+        <div class="login-wrap">
+            <a href="google/" class="login-btn" style="text-decoration:none;">
+                <img id="google" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png"
+            alt="Google"
+            style="width:50px;height:50px;">
+            <div class="btn-text">
+                Login with Google
+            </div>
+            </a> 
         </div>
-    </form>
-
-    <!-- アーカイブ -->
-    <form class="menu to-archives" action="{{ url_for('select') }}">
-        <div class="menu-content">
-            <button type="submit" class="arc">
-                <div class="menu-left">
-                    <h2>URLで調べる</h2>
-                    <p>特定の記事を読み上げます</p>
-                </div>
-                <div class="menu-right">
-                    <img src="../static/img/menu8.svg" alt="">
-                </div>
-            </button>
-        </div>  
-    </form>
-
-    <form action="{{ url_for('mylist')}}" method="POST" class="to-mylist menu">
-        <div class="menu-content">
-            <button type="submit">
-                <div class="menu-left">
-                    <h2>マイリスト</h2>
-                    <p>お気に入りのサイトを登録</p>
-                </div>
-                <div class="menu-right">
-                    <img src="../static/img/menu4.svg" alt="">
-                </div>
-            </button>
-        </div>    
-    </form>
-
-    <!-- <form action="{{ url_for('download')}}" method="POST" class="downloads menu">
-        <div class="menu-content">
-            <button type="submit">
-                <div class="menu-left">
-                    <h2>ダウンロード</h2>
-                    <p>Comming Soon...</p>
-                </div>
-                <div class="menu-right">
-                    <img src="../static/img/menu3.svg" alt="">
-                </div>
-            </button>
-        </div>    
-    </form> -->
-
-    <div class="others">
-        <div>
-            <img src="../static/img/menu13.svg" alt="">
-
-        </div>
-
-        <div class="others-menu">
-            <a href="/help">
-                <li>ヘルプ</li>
-            </a>
-   
-            <a href="/contact">
-                <li>問い合わせ</li>
-            </a>
-        
-
-            <a href="policy">
-                <li>ポリシー</li>
-            </a>
-   
-        </div>
-        
-    </div>
-    
-
 {% endblock %}
