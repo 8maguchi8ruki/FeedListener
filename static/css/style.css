@@ -77,6 +77,14 @@
     font-weight: bold;
 }
 
+.logout{
+    width: 120px;
+    height: 30px;
+    font-size: 0.8rem;
+    position: absolute;
+    top: 12px;
+    right: 10px;
+}
 
 
 /***** 共通 *****/
@@ -124,7 +132,7 @@ header{
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 103;
+    z-index: 101;
     background-color: #f9f9f9;
     display: flex;
 }
@@ -428,6 +436,12 @@ h1 p{
     box-sizing: border-box;
 }
 
+#secret{
+    display: none;
+}
+
+
+
 /***** アーカイブ、履歴 *****/
 .wrap-content .sub-menu{
     margin-top: 40px;
@@ -438,6 +452,12 @@ h1 p{
     margin: 0 auto;
     margin-bottom: 5px;
     width: 40px;
+}
+.acount img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
 }
 
 .sub-menu a{

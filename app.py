@@ -18,26 +18,21 @@ from flask import Flask, render_template, url_for, redirect
 import os
 import requests
 from authlib.integrations.flask_client import OAuth
+import urllib.parse
 
 
 app = Flask(__name__)
 app.secret_key = os.urandom(12)
 
 oauth = OAuth(app)
+user_info = ""
+user_photo = ""
 
 ##### トップページ #####
+user_photo = ""
 @app.route('/')
 def index():
     return render_template('index.html')
-
-@app.route('/home')
-def home():
-    if os.path.exists("static/files/audio"):
-        print("audioフォルダを削除しました")
-        shutil.rmtree("static/files/audio")
-
-    return render_template('home.html')
-
 
 # ログイン処理
 @app.route('/google/')
@@ -62,13 +57,42 @@ def google():
     print(redirect_uri)
     return oauth.google.authorize_redirect(redirect_uri)
 
+
 @app.route('/google/auth/')
 def google_auth():
     token = oauth.google.authorize_access_token()
-    userinfo = token['userinfo']
-    # user = oauth.google.parse_id_token(token)
-    print(" Google User ", userinfo)
-    return redirect('/home')
+    user_info = token['userinfo']
+    print("ユーザーデータ:")
+    print(user_info)
+    user_id = user_info.sub
+    user_photo = user_info.picture
+    user_name = user_info.name
+    print(user_photo)
+    print(user_id)
+    database.update_user(user_id , user_name , user_photo)
+    return redirect(url_for("home", current_user = user_id))
+
+
+
+@app.route('/home/<current_user>' , methods=["GET"])
+def home(current_user):
+    if os.path.exists("static/files/audio"):
+        print("audioフォルダを削除しました")
+        shutil.rmtree("static/files/audio")
+    print(current_user)
+    data = database.select_user()
+    user_name = ""
+    user_photo = ""
+    print("ここからテスト")
+    print(data)
+    for d in data:
+        print(d[0], current_user)
+        if(d[0] == current_user):
+            user_name = d[1]
+            user_photo = d[2]
+            print(user_photo)
+
+    return render_template('home.html', current_user = current_user , user_photo = user_photo , user_name = user_name)
 
 
  
@@ -93,26 +117,26 @@ def delete_site(sitename):
     return jsonify(database.select_site())
 
 ##### マイリストページ #####
-@app.route('/mylist/', methods=['GET','POST'])
-def mylist():
+@app.route('/mylist/<current_user>', methods=['GET','POST'])
+def mylist(current_user):
     database.create_all_site()
     return render_template("mylist.html", my_sites = database.select_site())
 
 ##### 検索ページ #####
-@app.route('/search/', methods=['GET','POST'])
-def search():
+@app.route('/search/<current_user>', methods=['GET','POST'])
+def search(current_user):
     sitename = request.form.get('sitename')
     return render_template("search.html",sitename = sitename)
 
 ##### 最新の投稿ページ #####
-@app.route('/recent/', methods=['GET','POST'])
-def recent():
+@app.route('/recent/<current_user>', methods=['GET','POST'])
+def recent(current_user):
     database.create_all_site()
     return render_template("recent.html", my_sites = database.select_site())
 
 ##### セレクトページ #####
-@app.route('/select/', methods=['GET','POST'])
-def select():
+@app.route('/select/<current_user>', methods=['GET','POST'])
+def select(current_user):
     database.create_all_site() 
     return render_template("select.html", my_sites = database.select_site())
 
@@ -121,10 +145,12 @@ def select():
 def download():
     return render_template("download.html")
 
-##### その他ページ #####
-@app.route('/others/', methods=['GET','POST'])
-def others():
-    return render_template("others.html")
+##### 履歴ページ #####
+@app.route('/acount/<current_user>')
+def acount(current_user):
+    datas = database.select()
+    return render_template('acount.html',datas = datas)
+
 
 ##### ヘルプページ #####
 @app.route('/help/', methods=['GET','POST'])
@@ -152,8 +178,8 @@ def contact_success():
     return render_template("contact-success.html")
 
 ##### 履歴ページ #####
-@app.route('/history/')
-def history():
+@app.route('/history/<current_user>')
+def history(current_user):
     datas = database.select()
     return render_template('history.html',datas = datas)
 
@@ -163,8 +189,8 @@ def ajax_delete_historys():
     return jsonify(database.delete_historys())
 
 ##### アーカイブページ #####
-@app.route('/archive/',methods=['GET'])
-def archive():
+@app.route('/archive/<current_user>',methods=['GET'])
+def archive(current_user):
     archives = database.archive_sl()
     return render_template('archive.html',archives = archives)
 

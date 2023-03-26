@@ -122,7 +122,7 @@ def contact_user(name,email,text):
 def create_all_site():
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
-    c.execute("DELETE FROM all_site")
+    # c.execute("DELETE FROM all_site")
     c.execute('CREATE TABLE IF NOT EXISTS all_site(id INTEGER PRIMARY KEY , sitename STRING)')
     c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 主要 】")')
     c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 国内 】")')
@@ -217,3 +217,48 @@ def select_site():
     c.close()
     conn.close()
     return datas
+
+
+
+
+# ユーザー登録
+def update_user(user_id , user_name , user_photo):
+    datas = []
+    print(user_id , user_name , user_photo)
+    conn = sqlite3.connect('fr_db')
+    c = conn.cursor()
+    c.execute('CREATE TABLE IF NOT EXISTS all_user(user_id INTEGER PRIMARY KEY ,user_name STRING , user_photo STRING)')
+    c.execute(f'INSERT INTO all_user(user_id ,user_name , user_photo) VALUES(?,?,?) ON CONFLICT (user_id) DO NOTHING',[user_id , user_name , user_photo])
+    for row in c:
+        datas.append(row)
+    print(datas)
+    conn.commit()
+    c.close()
+    conn.close()
+
+
+# ユーザー参照
+def select_user():
+    datas = []
+    conn = sqlite3.connect('fr_db')
+    c = conn.cursor()
+    c.execute('CREATE TABLE IF NOT EXISTS all_user(user_id INTEGER PRIMARY KEY ,user_name STRING , user_photo STRING)')
+    c.execute(f'SELECT * FROM all_user') 
+    #  WHERE user_id = {user_id}
+    for row in c:
+        datas.append(row)
+    print(datas)
+    conn.commit()
+    c.close()
+    conn.close()
+    return datas
+
+def delete_user(sitename):
+    print(sitename)
+    conn = sqlite3.connect('fr_db')
+    c = conn.cursor()
+    # c.execute("DELETE FROM my_site")
+    c.execute('DELETE FROM my_site WHERE sitename = "{}"'.format(sitename))
+    conn.commit()
+    c.close()
+    conn.close()
