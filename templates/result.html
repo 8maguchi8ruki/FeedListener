@@ -51,7 +51,8 @@
             methods:{
                 action:function(){
                     console.log("clicked!!!");
-                    $.get("/ajax/" + this.id, function(data){
+                    current_user = sessionStorage.getItem("user_id");
+                    $.get("/ajax/" + this.id + "/" + current_user, function(data){
                         $("#archive-button").addClass("active");
                         $("#archive-button").text("アーカイブしました");
                         $("#archive-button").attr("disabled","true");

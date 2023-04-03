@@ -4,22 +4,22 @@ from tokenize import String
 from markupsafe import string
 
 ##### 履歴表更新 #####
-def update(title,url):
+def update(current_user,title,url):
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS historys(id INTEGER PRIMARY KEY AUTOINCREMENT, title STRING , url STRING)')
-    c.execute('INSERT INTO historys(title,url) VALUES(?,?)',[title,url])
+    c.execute('CREATE TABLE IF NOT EXISTS historys(id INTEGER PRIMARY KEY AUTOINCREMENT, user_id STRING , title STRING , url STRING)')
+    c.execute('INSERT INTO historys(user_id,title,url) VALUES(?,?,?)',[current_user,title,url])
     conn.commit()
     c.close()   
     conn.close()
     return
 
 ##### 履歴表参照 #####
-def select():
+def select(current_user):
     datas = []
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
-    c.execute('SELECT * FROM historys')
+    c.execute(f'SELECT * FROM historys WHERE user_id = {current_user}')
     for row in c:
         datas.append(row)
     conn.commit()
@@ -28,10 +28,10 @@ def select():
     return datas
 
 ##### 履歴表削除 #####
-def delete_historys():
+def delete_historys(current_user):
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
-    c.execute('DELETE FROM historys') 
+    c.execute(f'DELETE FROM historys WHERE user_id = {current_user}') 
     conn.commit()
     c.close()
     conn.close()
@@ -50,30 +50,31 @@ def count():
     return result
 
 ##### アーカイブ保存 #####
-def archive_up(articleID):
+def archive_up(articleID,current_user):
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
     # アーカイブ表を作成
-    c.execute('CREATE TABLE IF NOT EXISTS archives(id INTEGER PRIMARY KEY AUTOINCREMENT ,title STRING , url STRING)')
+    c.execute('CREATE TABLE IF NOT EXISTS archives(id INTEGER PRIMARY KEY AUTOINCREMENT , user_id STRING ,title STRING , url STRING)')
     # アーカイブ対象レコードをアーカイブ表に追加
     c.execute('SELECT * FROM historys WHERE id = {}'.format(articleID))
     result = c.fetchall()
+    print("テスト")
     print(result)
-    title = result[0][1]
-    url = result[0][2]
+    title = result[0][2]
+    url = result[0][3]
     print(title,url)
-    c.execute('INSERT INTO archives(id,title,url) VALUES(?,?,?)',[articleID,title,url])  
+    c.execute('INSERT INTO archives(id,user_id,title,url) VALUES(?,?,?,?)',[articleID,current_user,title,url])  
     conn.commit()
     c.close()
     conn.close()
     return "done!!"
 
 ##### アーカイブ参照 #####
-def archive_sl():
+def archive_sl(current_user):
     datas = []
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
-    c.execute('SELECT * FROM archives') 
+    c.execute(f'SELECT * FROM archives WHERE user_id = {current_user}') 
     for row in c:
         datas.append(row)
     print(datas)
@@ -163,7 +164,7 @@ def create_all_site():
     conn.close()
 
 # 全サイト表参照
-def select_all_site():
+def select_all_site(current_user):
     datas = []
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
@@ -178,23 +179,24 @@ def select_all_site():
     return datas
 
 # マイサイト表登録
-def update_site(name):
+def update_site(current_user , name):
     datas = []
     print(name)
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
     # c.execute("DELETE FROM my_site")
-    c.execute('CREATE TABLE IF NOT EXISTS my_site(id INTEGER PRIMARY KEY AUTOINCREMENT ,sitename STRING)')
-    c.execute(f'INSERT INTO my_site(sitename) VALUES("{name}")')
+    c.execute('CREATE TABLE IF NOT EXISTS my_site(user_id STRING , sitename STRING)')
+    c.execute('INSERT INTO my_site(user_id,sitename) VALUES(?,?)',[current_user ,name])
     for row in c:
         datas.append(row)
+    print("登録されているか")
     print(datas)
     conn.commit()
     c.close()
     conn.close()
 
-def delete_site(sitename):
-    print(sitename)
+def delete_site(current_user , sitename):
+    print(current_user , sitename)
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
     # c.execute("DELETE FROM my_site")
@@ -204,14 +206,15 @@ def delete_site(sitename):
     conn.close()
 
 # マイサイト表参照
-def select_site():
+def select_site(current_user):
     datas = []
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS my_site(id INTEGER PRIMARY KEY AUTOINCREMENT ,sitename STRING)')
-    c.execute('SELECT DISTINCT * FROM my_site') 
+    c.execute('CREATE TABLE IF NOT EXISTS my_site(id INTEGER PRIMARY KEY AUTOINCREMENT, user_id STRING ,sitename STRING)')
+    c.execute(f'SELECT DISTINCT * FROM my_site WHERE user_id = {current_user}') 
     for row in c:
         datas.append(row)
+    print("テスト")
     print(datas)
     conn.commit()
     c.close()
@@ -227,8 +230,8 @@ def update_user(user_id , user_name , user_photo):
     print(user_id , user_name , user_photo)
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS all_user(user_id INTEGER PRIMARY KEY ,user_name STRING , user_photo STRING)')
-    c.execute(f'INSERT INTO all_user(user_id ,user_name , user_photo) VALUES(?,?,?) ON CONFLICT (user_id) DO NOTHING',[user_id , user_name , user_photo])
+    c.execute('CREATE TABLE IF NOT EXISTS all_user(user_id STRING PRIMARY KEY ,user_name STRING , user_photo STRING)')
+    c.execute(f'REPLACE INTO all_user(user_id ,user_name , user_photo) VALUES(?,?,?) ON CONFLICT (user_id) DO NOTHING',[user_id , user_name , user_photo])
     for row in c:
         datas.append(row)
     print(datas)
@@ -242,7 +245,7 @@ def select_user():
     datas = []
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS all_user(user_id INTEGER PRIMARY KEY ,user_name STRING , user_photo STRING)')
+    c.execute('CREATE TABLE IF NOT EXISTS all_user(user_id STRING ,user_name STRING , user_photo STRING)')
     c.execute(f'SELECT * FROM all_user') 
     #  WHERE user_id = {user_id}
     for row in c:

@@ -100,27 +100,27 @@ def home(current_user):
 
 
 ##### トップページ全サイト取得ajax #####
-@app.route('/ajax/all-site/')
-def all_site():
-    return jsonify(database.select_all_site())
+@app.route('/ajax/all-site/<current_user>')
+def all_site(current_user):
+    return jsonify(database.select_all_site(current_user))
 
 # トップページサイト追加ajax
-@app.route('/ajax/add-site/<sitename>')
-def add_site(sitename):
-    database.update_site(sitename)
-    return jsonify(database.select_site())
+@app.route('/ajax/add-site/<current_user>/<sitename>')
+def add_site(current_user , sitename):
+    database.update_site(current_user , sitename)
+    return jsonify(database.select_site(current_user))
 
 # トップページサイト削除ajax
-@app.route('/ajax/delete-site/<sitename>')
-def delete_site(sitename):
-    database.delete_site(sitename)
-    return jsonify(database.select_site())
+@app.route('/ajax/delete-site/<current_user>/<sitename>')
+def delete_site(current_user , sitename):
+    database.delete_site(current_user , sitename)
+    return jsonify(database.select_site(current_user))
 
 ##### マイリストページ #####
 @app.route('/mylist/<current_user>', methods=['GET','POST'])
 def mylist(current_user):
     database.create_all_site()
-    return render_template("mylist.html", my_sites = database.select_site())
+    return render_template("mylist.html", my_sites = database.select_site(current_user))
 
 ##### 検索ページ #####
 @app.route('/search/<current_user>', methods=['GET','POST'])
@@ -132,13 +132,13 @@ def search(current_user):
 @app.route('/recent/<current_user>', methods=['GET','POST'])
 def recent(current_user):
     database.create_all_site()
-    return render_template("recent.html", my_sites = database.select_site())
+    return render_template("recent.html", my_sites = database.select_site(current_user))
 
 ##### セレクトページ #####
 @app.route('/select/<current_user>', methods=['GET','POST'])
 def select(current_user):
     database.create_all_site() 
-    return render_template("select.html", my_sites = database.select_site())
+    return render_template("select.html", my_sites = database.select_site(current_user))
 
 ##### ダウンロードページ #####
 @app.route('/download/', methods=['GET','POST'])
@@ -148,7 +148,7 @@ def download():
 ##### 履歴ページ #####
 @app.route('/acount/<current_user>')
 def acount(current_user):
-    datas = database.select()
+    datas = database.select(current_user)
     return render_template('acount.html',datas = datas)
 
 
@@ -180,25 +180,25 @@ def contact_success():
 ##### 履歴ページ #####
 @app.route('/history/<current_user>')
 def history(current_user):
-    datas = database.select()
+    datas = database.select(current_user)
     return render_template('history.html',datas = datas)
 
 ##### 履歴全削除ajax #####
-@app.route('/ajax/delete-historys/', methods=['GET'])
-def ajax_delete_historys():
-    return jsonify(database.delete_historys())
+@app.route('/ajax/delete-historys/<current_user>', methods=['GET'])
+def ajax_delete_historys(current_user):
+    return jsonify(database.delete_historys(current_user))
 
 ##### アーカイブページ #####
 @app.route('/archive/<current_user>',methods=['GET'])
 def archive(current_user):
-    archives = database.archive_sl()
+    archives = database.archive_sl(current_user)
     return render_template('archive.html',archives = archives)
 
 ##### アーカイブ登録ajax #####
-@app.route('/ajax/<articleID>', methods=['GET'])
-def ajax(articleID):
+@app.route('/ajax/<articleID>/<current_user>', methods=['GET'])
+def ajax(articleID,current_user):
     print(articleID)
-    return jsonify(database.archive_up(articleID))
+    return jsonify(database.archive_up(articleID,current_user))
 
 ##### アーカイブ全削除ajax #####
 @app.route('/ajax/delete-archives/', methods=['GET'])
@@ -213,8 +213,8 @@ def ajax_delete(articleID):
 ##### 検索結果ページ #####
 class TITLE:
     title = ""
-@app.route('/result/', methods=['GET','POST'])
-def result():
+@app.route('/result/<current_user>', methods=['GET','POST'])
+def result(current_user):
     if not os.path.exists("static/files/audio"):
         print("audioフォルダを作成しました")
         os.mkdir("static/files/audio")
@@ -233,7 +233,7 @@ def result():
         print(title)
         print(url)
         # 新しい履歴を反映
-        database.update(title,url)
+        database.update(current_user,title,url)
         i = 0
         print(class_name)
         for tag in soup.select(class_name):

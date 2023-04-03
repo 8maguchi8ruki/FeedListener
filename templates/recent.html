@@ -44,11 +44,12 @@
             let input3 = document.createElement("input");
 
             form.classList.add("recent");
+            form.classList.add("to-result");
             form.method = "POST";
-            form.action = "{{ url_for('result')}}";
+            form.action = "/result";
 
             input.type = "hidden";
-            input.value = mylists[j][1];
+            input.value = mylists[j][2];
             input.name = "target-site";
 
             input2.type = "hidden";
@@ -57,7 +58,7 @@
             input2.setAttribute("onclick","loading()");
 
             input3.type = "submit";
-            input3.value = mylists[j][1] + " New!" ;
+            input3.value = mylists[j][2] + " New!" ;
             input3.setAttribute("onclick","loading()");
             input3.classList.add("target-site");
             input3.classList.add("sitename");

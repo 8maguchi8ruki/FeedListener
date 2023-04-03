@@ -32,7 +32,7 @@
         <ul style="padding-left: 0;">
             {% set ns = namespace(len = datas|length - 1) %}
             {% for data in datas %}
-            <li style="margin: 10px 0; list-style-type: none;"><a href="{{ datas[ns.len][2] }}">{{ datas[ns.len][1]}}</a></li>
+            <li style="margin: 10px 0; list-style-type: none;"><a href="{{ datas[ns.len][3] }}">{{ datas[ns.len][2]}}</a></li>
             {% set ns.len = ns.len - 1 %}
             {% endfor %}
         </ul>

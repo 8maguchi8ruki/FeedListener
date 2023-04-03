@@ -90,18 +90,22 @@
     </div>
 
     <script>
-        let secret = document.getElementById("secret");
-        console.log(secret)
-        let user_id = secret.querySelector(".user_id");
-        let user_name = secret.querySelector(".user_name");
-        let user_photo = secret.querySelector(".user_photo");
-        user_id = user_id.textContent;
-        user_name = user_name.textContent;
-        user_photo = user_photo.textContent;
-        console.log(user_id, user_name, user_photo);
-        sessionStorage.setItem("user_id" , user_id)
-        sessionStorage.setItem("user_name" , user_name)
-        sessionStorage.setItem("user_photo" , user_photo)
+            let secret = document.getElementById("secret");
+            console.log(secret)
+            let user_id = secret.querySelector(".user_id");
+            let user_name = secret.querySelector(".user_name");
+            let user_photo = secret.querySelector(".user_photo");
+            user_id = user_id.textContent;
+            user_name = user_name.textContent;
+            user_photo = user_photo.textContent;
+            console.log(user_id, user_name, user_photo);
+            sessionStorage.setItem("user_id" , user_id)
+            sessionStorage.setItem("user_name" , user_name)
+            sessionStorage.setItem("user_photo" , user_photo)
+
+            user_photo = sessionStorage.getItem("user_photo");
+            user_id = sessionStorage.getItem("user_id");
+            $("#user_photo").attr("src" , user_photo);
 
     </script>
 {% endblock %}
