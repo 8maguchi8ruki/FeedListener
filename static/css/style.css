@@ -325,7 +325,7 @@ h1 p{
     display: none;
 }
 
-.wrap-add-site h3,.wrap-delete-archives h3,.wrap-delete-historys h3,.scroll-content h3{
+.wrap-delete-archives h3,.wrap-delete-historys h3{
     margin-bottom: 5px;
     margin-top: 10px;
     width: 100%;
@@ -355,19 +355,17 @@ h1 p{
     z-index: 98;
     background-color: #252525;;
     padding: 10px;
-    padding-top: 90px;
-    padding-bottom: 20px;
+    padding-top: 82px;
+    padding-bottom: 72px;
     box-sizing: border-box;
 }
 
 #all-site .scroll-content{
     width: 100%;
     margin: 0 auto;
-    margin-top: 40px;
 }
 .scroll-content h3{
     color: #2cb44c;
-    font-size: 1rem;
 }
 .site-button{
     width: 100%;
@@ -376,7 +374,7 @@ h1 p{
     color: #252525;
     font-size: 1.2em;
     text-align: start;
-    margin: 5px 0;
+    margin-bottom: 10px;
 }
 .site-button:hover,.mylist .sitename:hover{
     cursor: pointer;
@@ -711,8 +709,9 @@ footer p{
     padding: 10px;
     line-height: 30px;
     box-sizing: border-box;
-    background: linear-gradient(90deg, #54af69 ,#54aca9);
+    background: #ddd;
     font-weight: bold;
+    word-wrap: break-word;
 }
 .download{
     display: block;

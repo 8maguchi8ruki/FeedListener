@@ -145,7 +145,7 @@ def select(current_user):
 def download():
     return render_template("download.html")
 
-##### 履歴ページ #####
+##### アカウントページ #####
 @app.route('/acount/<current_user>')
 def acount(current_user):
     datas = database.select(current_user)
@@ -180,6 +180,7 @@ def contact_success():
 ##### 履歴ページ #####
 @app.route('/history/<current_user>')
 def history(current_user):
+    database.history_create()
     datas = database.select(current_user)
     return render_template('history.html',datas = datas)
 
@@ -191,6 +192,7 @@ def ajax_delete_historys(current_user):
 ##### アーカイブページ #####
 @app.route('/archive/<current_user>',methods=['GET'])
 def archive(current_user):
+    database.archive_create()
     archives = database.archive_sl(current_user)
     return render_template('archive.html',archives = archives)
 

@@ -3,6 +3,19 @@ from tokenize import String
 
 from markupsafe import string
 
+
+##### 履歴表仮作成 #####
+def history_create():
+    conn = sqlite3.connect('fr_db')
+    c = conn.cursor()
+    c.execute('CREATE TABLE IF NOT EXISTS historys(id INTEGER PRIMARY KEY AUTOINCREMENT , user_id STRING ,title STRING , url STRING)')
+    conn.commit()
+    c.close()
+    conn.close()
+
+
+
+
 ##### 履歴表更新 #####
 def update(current_user,title,url):
     conn = sqlite3.connect('fr_db')
@@ -48,6 +61,18 @@ def count():
     c.close()
     conn.close()
     return result
+
+
+##### アーカイブ表仮作成 #####
+def archive_create():
+    conn = sqlite3.connect('fr_db')
+    c = conn.cursor()
+    c.execute('CREATE TABLE IF NOT EXISTS archives(id INTEGER PRIMARY KEY AUTOINCREMENT , user_id STRING ,title STRING , url STRING)')
+    conn.commit()
+    c.close()
+    conn.close()
+
+
 
 ##### アーカイブ保存 #####
 def archive_up(articleID,current_user):
@@ -124,41 +149,41 @@ def create_all_site():
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
     # c.execute("DELETE FROM all_site")
-    c.execute('CREATE TABLE IF NOT EXISTS all_site(id INTEGER PRIMARY KEY , sitename STRING)')
-    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 主要 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 国内 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 国際 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 スポーツ 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 エンタメ 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 経済 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 IT 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 科学 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 ライフ 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("産経新聞【 社会 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("産経新聞【 政治 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("産経新聞【 国際 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("産経新聞【 経済 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("産経新聞【 スポーツ 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("産経新聞【 エンタメ 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("産経新聞【 ライフ 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("GIZMODO【 テクノロジ 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("GIZMODO【 サイエンス 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("GIZMODO【 プロダクト 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("GIZMODO【 エンタメ 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("GIZMODO【 ライフ 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("GIZMODO【 ビジネス 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN【 World 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN【 USA 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN【 Business 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN【 Tech 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN【 Entertainment 】")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ World ） - EN")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ USA ） - EN")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ Business ） - EN")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ Sports ） - EN")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ Entertainment ） - EN")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("Techcrunch【 Startup 】 - EN")')
-    c.execute('INSERT INTO all_site(sitename) VALUES("Premierleague - EN")')
+    c.execute('CREATE TABLE IF NOT EXISTS all_site(sitename STRING PRIMARY KEY)')
+    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 主要 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 国内 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 国際 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 スポーツ 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 エンタメ 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 経済 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 IT 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 科学 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 ライフ 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("産経新聞【 社会 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("産経新聞【 政治 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("産経新聞【 国際 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("産経新聞【 経済 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("産経新聞【 スポーツ 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("産経新聞【 エンタメ 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("産経新聞【 ライフ 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("GIZMODO【 テクノロジ 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("GIZMODO【 サイエンス 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("GIZMODO【 プロダクト 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("GIZMODO【 エンタメ 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("GIZMODO【 ライフ 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("GIZMODO【 ビジネス 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("CNN【 World 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("CNN【 USA 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("CNN【 Business 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("CNN【 Tech 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("CNN【 Entertainment 】") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ World ） - EN") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ USA ） - EN") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ Business ） - EN") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ Sports ） - EN") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ Entertainment ） - EN") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("Techcrunch【 Startup 】 - EN") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("Premierleague - EN") ON CONFLICT (sitename) DO NOTHING')
     conn.commit()
     c.close()
     conn.close()

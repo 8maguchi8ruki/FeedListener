@@ -48,34 +48,40 @@
             div.appendChild(button2);
             div.appendChild(button);
             sites.appendChild(div);
+            console.log("出力テスト！！！！！！！！")
+            console.log(mylists[j][2])
+            console.log(mylists)
         }
 
         // 全サイト生成
-        function insert_sites(data){
-            let judge = document.querySelector(".site-button");
-            // 生成済みかどうか　(生成済みの場合はここで終了)
-            if(judge != null){
-                console.log("生成済み！！")
-                return
-            }else{
+        function insert_sites(insert_data){
+            // let judge = document.querySelector(".site-button");
+            // // 生成済みかどうか　(生成済みの場合はここで終了)
+            // if(judge != null){
+            //     console.log("生成済み！！")
+            //     return
+            // }else{
                 // 生成処理
                 let parent = document.querySelector("#all-site");
                 let div = document.createElement("div");
                 let div2 = document.createElement("div");
                 div2.classList.add("scroll-content");
                 let h3 = document.createElement("h3");
-                h3.textContent = "追加するサイトを選択してください"
+                h3.textContent = "サイトを追加"
                 div2.appendChild(h3);
-                for(let i=0;i<data.length;i++){
+                for(let i=0;i<insert_data.length;i++){
+                    
                     let button = document.createElement("button");
                     button.classList.add("site-button");
                     button.classList.add("sitename");
-                    button.textContent = data[i][1];
-                    button.value = data[i][1];
+                    button.textContent = insert_data[i][0];
+                    button.value = insert_data[i][0];
                     div2.appendChild(button)
+                    console.log(i)
                 }
                 div.appendChild(div2);
                 parent.appendChild(div);
+                
                  // サイト別に背景色を設定する
                 let site = document.querySelectorAll(".sitename");
                 console.log(site);
@@ -99,7 +105,7 @@
                     }
                     console.log(site_value);
                 }
-            }
+            
 
         }
 
@@ -116,8 +122,19 @@
                     current_user = sessionStorage.getItem("user_id");
                     // 全サイトajax
                     $.get("/ajax/all-site/" + current_user, function(data){
-                        // 全サイト生成関数呼び出し
-                        insert_sites(data);
+                        
+                        let insert_data = Array.from(new Set(data));
+                        console.log(insert_data)
+
+                        let judge = document.querySelector(".site-button");
+                        // 生成済みかどうか　(生成済みの場合はここで終了)
+                        if(judge != null){
+                            console.log("生成済み！！")
+                            return
+                        }else{
+                            insert_sites(insert_data);
+                        }
+
                         // すでにマイリストに登録されているサイト要素に対して、disabled属性を付与
                         let mysites = document.querySelectorAll(".mylist button");
                         let allsites = document.querySelectorAll(".scroll-content button");
