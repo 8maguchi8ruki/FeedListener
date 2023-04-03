@@ -69,7 +69,8 @@ def google_auth():
     user_name = user_info.name
     print(user_photo)
     print(user_id)
-    database.update_user(user_id , user_name , user_photo)
+    user_id = int(user_id) / 1000000
+    database.update_user(str(user_id) , user_name , user_photo)
     return redirect(url_for("home", current_user = user_id))
 
 
@@ -85,12 +86,13 @@ def home(current_user):
     user_photo = ""
     print("ここからテスト")
     print(data)
+    print(current_user)
     for d in data:
         print(d[0], current_user)
-        if(d[0] == current_user):
+        if str(d[0]) == current_user:
             user_name = d[1]
             user_photo = d[2]
-            print(user_photo)
+            print(user_name , user_photo)
 
     return render_template('home.html', current_user = current_user , user_photo = user_photo , user_name = user_name)
 
