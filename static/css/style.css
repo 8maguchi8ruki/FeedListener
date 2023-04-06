@@ -178,7 +178,7 @@ h1 p{
 
 .sitename{
     width: 100%;
-    line-height: 75px;
+    line-height: 50px;
     color: #252525;
     font-size: 1.2em;
     text-align: start;
@@ -297,7 +297,7 @@ h1 p{
     top: 0;
     right: 0;
     width: 80px;    
-    line-height: 80px;
+    line-height: 50px;
     background-color: rgba(0, 0, 0, 0);
     color: #252525;
     border: none;
@@ -369,7 +369,7 @@ h1 p{
 }
 .site-button{
     width: 100%;
-    line-height: 75px;
+    line-height: 50px;
     border: none;
     color: #252525;
     font-size: 1.2em;

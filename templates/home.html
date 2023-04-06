@@ -2,6 +2,23 @@
 {% block content %}
 
 <div class="wrap-content">
+
+
+    <form action="/mylist" method="POST" class="to-mylist menu">
+        <div class="menu-content">
+            <button type="submit">
+                <div class="menu-left">
+                    <h2>マイリスト</h2>
+                    <p>お気に入りのサイトを登録</p>
+                </div>
+                <div class="menu-right">
+                    <img src="../static/img/menu4.svg" alt="">
+                </div>
+            </button>
+        </div>    
+    </form>
+
+    
     <!-- 最新の投稿 -->
     <form action="/recent" method="POST" class="recent-post menu to-recent">
         <div class="menu-content">
@@ -32,19 +49,7 @@
         </div>  
     </form>
 
-    <form action="/mylist" method="POST" class="to-mylist menu">
-        <div class="menu-content">
-            <button type="submit">
-                <div class="menu-left">
-                    <h2>マイリスト</h2>
-                    <p>お気に入りのサイトを登録</p>
-                </div>
-                <div class="menu-right">
-                    <img src="../static/img/menu4.svg" alt="">
-                </div>
-            </button>
-        </div>    
-    </form>
+
 
     <!-- <form action="{{ url_for('download')}}" method="POST" class="downloads menu">
         <div class="menu-content">
