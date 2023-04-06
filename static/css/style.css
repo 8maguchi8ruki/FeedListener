@@ -104,7 +104,7 @@ body{
     min-height: 100vh;
     padding: 10px;
     padding-left: 5px;
-    padding-top: 100px;
+    padding-top: 90px;
     padding-bottom: 80px;
     box-sizing: border-box;
     margin: 0 auto;
@@ -183,13 +183,13 @@ h1 p{
 .sitename{
     width: 100%;
     line-height: 50px;
-    color: #ccc;
+    color: #252525;
     font-size: 1.2em;
     text-align: start;
-    background-color: #3c3c3c;
+    background: none;
     animation: 0.5s ease-in-out fadein;
     font-weight: bold;
-    border: 1px solid #ccc;
+    border: 2px solid #252525;
 }
 .mylist .sitename{
     line-height: 70px;
@@ -287,12 +287,12 @@ h1 p{
 .recent .target-site , .select-site .target-site{
     width: 100%;
     line-height: 75px;
-    color: #ccc;
+    color: #252525;
     font-size: 1.2em;
     text-align: start;
     position: relative;
     z-index: 10;
-    border: 2px solid #ccc;
+    border: 2px solid #252525;
 }
 .to-mylist h3,.to-mylist p{
     color: #252525;
@@ -310,7 +310,7 @@ h1 p{
     width: 80px;    
     line-height: 70px;
     background-color: rgba(0, 0, 0, 0);
-    color: #ccc;
+    color: #252525;
     border: none;
     z-index: 97;
 }
@@ -366,7 +366,7 @@ h1 p{
     z-index: 98;
     background: linear-gradient(90deg, #2e2e2e ,#383838);
     padding: 10px;
-    padding-top: 100px;
+    padding-top: 90px;
     padding-bottom: 72px;
     padding-left: 5px;
     box-sizing: border-box;
@@ -775,7 +775,7 @@ footer p{
     width: 100%;
     background-color: #E7E9EB;
     background: linear-gradient(90deg, #54af69 ,#54aca9);
-    border: 1px solid #aaa;
+    border: 2px solid #252525;
     margin: 10px 0;
     padding: 10px;
     box-sizing: border-box;
@@ -795,7 +795,7 @@ footer p{
     width: 80px;
     height: 30px;
     border: none;
-    color: #2cb44c;
+    color: #ccc;
     font-weight: bold;
     background-color: #3c3c3c;
     text-align: center;
@@ -822,7 +822,7 @@ footer p{
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    border-bottom: 1px dashed #ddd;
+    border-bottom: 1px dashed #252525;
     font-weight: bold;
 }
 .historys ul li a{
@@ -841,7 +841,7 @@ footer p{
     width: 100px;
     height: 30px;
     border: none;
-    background-color: #ffffff;
+    background: none;
     color: #252525;
     text-align: end;
     position: absolute;
