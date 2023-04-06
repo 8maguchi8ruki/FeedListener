@@ -741,8 +741,8 @@ def result(current_user):
 
 
 @app.errorhandler(500)
-def server_error(error):
-    return render_template('server_error.html')
+def server_error():
+    return render_template('500.html')
 
 
 if __name__ == '__main__':
