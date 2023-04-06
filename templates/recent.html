@@ -41,7 +41,7 @@
             let form = document.createElement("form");
             let input = document.createElement("input");
             let input2 = document.createElement("input");
-            let input3 = document.createElement("input");
+            let button = document.createElement("button");
 
             form.classList.add("recent");
             form.classList.add("to-result");
@@ -57,15 +57,16 @@
             input2.name = "url";
             input2.setAttribute("onclick","loading()");
 
-            input3.type = "submit";
-            input3.value = mylists[j][2] + " New!" ;
-            input3.setAttribute("onclick","loading()");
-            input3.classList.add("target-site");
-            input3.classList.add("sitename");
+            button.type = "submit";
+            button.value = mylists[j][2] + " New!" ;
+            button.textContent = mylists[j][2] + " New!" ;
+            button.setAttribute("onclick","loading()");
+            button.classList.add("target-site");
+            button.classList.add("sitename");
 
             form.appendChild(input);
             form.appendChild(input2);
-            form.appendChild(input3);
+            form.appendChild(button);
             form_parent.appendChild(form);
         }
 

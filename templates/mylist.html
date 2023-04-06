@@ -55,12 +55,6 @@
 
         // 全サイト生成
         function insert_sites(insert_data){
-            // let judge = document.querySelector(".site-button");
-            // // 生成済みかどうか　(生成済みの場合はここで終了)
-            // if(judge != null){
-            //     console.log("生成済み！！")
-            //     return
-            // }else{
                 // 生成処理
                 let parent = document.querySelector("#all-site");
                 let div = document.createElement("div");
@@ -130,11 +124,10 @@
                         // 生成済みかどうか　(生成済みの場合はここで終了)
                         if(judge != null){
                             console.log("生成済み！！")
-                            return
                         }else{
                             insert_sites(insert_data);
                         }
-
+                        
                         // すでにマイリストに登録されているサイト要素に対して、disabled属性を付与
                         let mysites = document.querySelectorAll(".mylist button");
                         let allsites = document.querySelectorAll(".scroll-content button");
@@ -153,6 +146,9 @@
                         $(".close-site").addClass("active");
                         $(".close-site").css("display","block");
                         $("#all-site div").css("display","block");
+
+
+
                     });
                 },
             }

@@ -23,10 +23,10 @@ import urllib.parse
 
 app = Flask(__name__)
 app.secret_key = os.urandom(12)
-
 oauth = OAuth(app)
 user_info = ""
 user_photo = ""
+
 
 ##### トップページ #####
 user_photo = ""
@@ -738,6 +738,13 @@ def result(current_user):
     # 最新の履歴データのIDを取得
     articleID = database.count()
     return render_template('result.html', result=data, url = url , title = t.title , articleID=articleID[0] , rannum = rannum)
+
+
+@app.errorhandler(500)
+def server_error(error):
+    return render_template('server_error.html')
+
+
 if __name__ == '__main__':
     app.run()   
 

@@ -177,49 +177,7 @@ h1 p{
     position: relative;
 }
 
-.sitename{
-    width: 100%;
-    line-height: 50px;
-    color: #252525;
-    font-size: 1.2em;
-    text-align: start;
-    background: linear-gradient(90deg, #54af69 ,#54aca9);
 
-    animation: 0.5s ease-in-out fadein;
-    font-weight: bold;
-    border: 2px solid #252525;
-}
-.mylist .sitename{
-    line-height: 70px;
-}
-.yahoo::first-letter{
-    color: #fd3a3a;
-    font-size: 1.2em;
-}
-.sankei::first-letter{
-    color: #4548ff;
-    font-size: 1.2em;
-}
-.gizmodo::first-letter{
-    color: #9f56ff;
-    font-size: 1.2em;
-}
-.cnn::first-letter{
-    color: #ff7d49;
-    font-size: 1.2em;
-}
-.cnn-en::first-letter{
-    color: #ff67ff;
-    font-size: 1.2em;
-}
-.techcrunch::first-letter{
-    color:#70d788;
-    font-size: 1.2em;
-}
-.premierleague::first-letter{
-    color:#a77dcb;
-    font-size: 1.2em;
-}
 
 .sitename.change-backgroud{
     opacity: 0.2;
@@ -292,6 +250,7 @@ h1 p{
     position: relative;
     z-index: 10;
     border: 2px solid #252525;
+    overflow-x: scroll;
 }
 .to-mylist h3,.to-mylist p{
     color: #252525;
@@ -323,12 +282,15 @@ h1 p{
 }
 .add-site , .close-site{
     position: absolute;
-    top: 0;
+    top: 5px;
     right: 0;
     color: #252525;
     z-index: 99;
     transform: translateY(-17px);
-    padding: 10px 0 10px 50px;
+    padding: 10px 10px 10px 50px;
+}
+.close-site{
+    color: #ccc;
 }
 
 .add-site.active{
@@ -433,6 +395,8 @@ h1 p{
     box-sizing: border-box;
     border: 2px solid #252525;
     text-decoration: none;
+    background: linear-gradient(90deg, #54af69 ,#54aca9);
+
 }
 .others img{
     width: 100%;
@@ -446,6 +410,7 @@ h1 p{
     color: #252525;
     padding-left: 10px;
     box-sizing: border-box;
+    
 }
 
 #secret{
@@ -562,7 +527,8 @@ form.site input{
 }
 .recent,.select-site{
     margin-top: 10px;
-    
+    background: linear-gradient(90deg, #54af69 ,#54aca9);
+
 }
 
 /***** ローディング *****/
@@ -938,4 +904,50 @@ footer p{
 .help h4{
     border-left: 2px solid #ddd;
     padding-left: 10px;
+}
+
+
+
+.sitename{
+    width: 100%;
+    line-height: 50px;
+    color: #252525;
+    font-size: 1.2em;
+    text-align: start;
+    background: linear-gradient(90deg, #54af69 ,#54aca9);
+
+    animation: 0.5s ease-in-out fadein;
+    font-weight: bold;
+    border: 2px solid #252525;
+}
+.mylist .sitename{
+    line-height: 70px;
+}
+.yahoo::first-letter{
+    color: #fd3a3a;
+    font-size: 1.5em;
+}
+.sankei::first-letter{
+    color: #4548ff;
+    font-size: 1.5em;
+}
+.gizmodo::first-letter{
+    color: #9f56ff;
+    font-size: 1.5em;
+}
+.cnn::first-letter{
+    color: #ff7d49;
+    font-size: 1.5em;
+}
+.cnn-en::first-letter{
+    color: #ff67ff;
+    font-size: 1.5em;
+}
+.techcrunch::first-letter{
+    color:#70d788;
+    font-size: 1.5em;
+}
+.premierleague::first-letter{
+    color:#a77dcb;
+    font-size: 1.5em;
 }

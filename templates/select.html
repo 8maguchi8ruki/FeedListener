@@ -47,43 +47,50 @@
     let value = "";
     for(let j=0;j<mylists.length;j++){
             let form = document.createElement("form");
-            let input = document.createElement("input");
+            let button = document.createElement("button");
 
             form.classList.add("select-site");
             form.method = "POST";
 
-            input.type = "submit";
-            input.name = "sitename";
-            input.classList.add("target-site");
-            input.classList.add("sitename");
+            button.type = "submit";
+            button.name = "sitename";
+            button.classList.add("target-site");
+            button.classList.add("sitename");
 
             value = mylists[j][2];
             let pattern = /- EN/;
             if(value.match(/Yahoo!/) && cnt1 == 0){
-                input.value = "Yahoo!";
+                button.value = "Yahoo!";
+                button.textContent = "Yahoo!";
                 cnt1 = cnt1 + 1;
             }else if(value.match(/産経新聞/) && cnt2 == 0){
-                input.value = "産経新聞";
+                button.value = "産経新聞";
+                button.textContent = "産経新聞";
                 cnt2 = cnt2 + 1;
             }else if(value.match(/GIZMODO/) && cnt3 == 0){
-                input.value = "GIZMODO";
+                button.value = "GIZMODO";
+                button.textContent = "GIZMODO";
                 cnt3 = cnt3 + 1;
             }else if(value.match(/CNN/) && value.match(pattern) && cnt4 == 0){
-                input.value = "CNN - EN";
+                button.value = "CNN - EN";
+                button.textContent = "CNN - EN";
                 cnt4 = cnt4 + 1;
             }else if(value.match(/CNN/) && cnt5 == 0){
-                input.value = "CNN";
+                button.value = "CNN";
+                button.textContent = "CNN";
                 cnt5 = cnt5 + 1;
             }else if(value.match(/Techcrunch/) && value.match(pattern) && cnt6 == 0){
-                input.value = "Techcrunch - EN";
+                button.value = "Techcrunch - EN";
+                button.textContent = "Techcrunch - EN";
                 cnt6 = cnt6 + 1;
             }else if(value.match(/Premierleague/) && value.match(pattern) && cnt7 == 0){
-                input.value = "Premierleague - EN";
+                button.value = "Premierleague - EN";
+                button.textContent = "Premierleague - EN";
                 cnt7 = cnt7 + 1;
             }else{
                 continue;
             }
-            form.appendChild(input);
+            form.appendChild(button);
             form_parent.appendChild(form);
         }
 
