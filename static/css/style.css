@@ -93,19 +93,23 @@ html{
 }
 body{
     width: 100%;
+    min-height: 100vh;
     margin: 0;
     box-sizing: border-box;
-    background-color: #ffffff;
+    background-color: #f9f9f9;
     overflow-x: hidden;
 }
 .wrap{
     width: 100%;
+    min-height: 100vh;
     padding: 10px;
     padding-left: 5px;
-    padding-top: 82px;
+    padding-top: 100px;
     padding-bottom: 80px;
     box-sizing: border-box;
     margin: 0 auto;
+    background: linear-gradient(90deg, #54af69 ,#54aca9);
+
 }
 .wrap-content{
     width: 100%;
@@ -115,10 +119,10 @@ h2,h3,h4,p,li{
     color: #252525;
 }
 h3{
-    border-left: 5px solid #2cb44c;
+    border-left: 5px solid #252525;
     padding-left: 5px;
-    border-bottom: 1px solid #ddd;
     margin: 10px 0;
+    color: #252525;
 }
 
 
@@ -179,35 +183,46 @@ h1 p{
 .sitename{
     width: 100%;
     line-height: 50px;
-    color: #252525;
+    color: #ccc;
     font-size: 1.2em;
     text-align: start;
-    background-color: #f9f9f9;
+    background-color: #3c3c3c;
     animation: 0.5s ease-in-out fadein;
     font-weight: bold;
-    border: 1px solid #aaa;
+    border: 1px solid #ccc;
 }
-.yahoo{
-    background-color:  #d16c6c;
+.mylist .sitename{
+    line-height: 70px;
 }
-.sankei{
-    background-color:  #7d7eba;
+.yahoo::first-letter{
+    color: #fd3a3a;
+    font-size: 1.2em;
 }
-.gizmodo{
-    background-color:  #999ca5;
+.sankei::first-letter{
+    color: #4548ff;
+    font-size: 1.2em;
 }
-.cnn{
-    background-color:  #ed7c4f;
+.gizmodo::first-letter{
+    color: #9f56ff;
+    font-size: 1.2em;
 }
-.cnn-en{
-    background-color:  #c77bc7;
+.cnn::first-letter{
+    color: #ff7d49;
+    font-size: 1.2em;
 }
-.techcrunch{
-    background-color: #70d788;
+.cnn-en::first-letter{
+    color: #ff67ff;
+    font-size: 1.2em;
 }
-.premierleague{
-    background-color: #a77dcb;
+.techcrunch::first-letter{
+    color:#70d788;
+    font-size: 1.2em;
 }
+.premierleague::first-letter{
+    color:#a77dcb;
+    font-size: 1.2em;
+}
+
 .sitename.change-backgroud{
     opacity: 0.2;
 }
@@ -238,7 +253,7 @@ h1 p{
 .menu .menu-content{
     margin: 10px 0;
     /* box-shadow: #767676 5px 5px 2px 0px; */
-    border: 1px solid #aaa;
+    border: 2px solid #252525;
     animation: 0.5s ease-in-out fadein;
 }
 .menu .menu-content:hover{
@@ -262,8 +277,7 @@ h1 p{
     width: 100%;
     height: 150px;
     border: none;
-    /* background-color: #538f62; */
-    background: linear-gradient(90deg, #54af69 ,#54aca9);
+    background: none;
     color: #252525;
     font-weight: bold;
     font-size: 1.5em;
@@ -273,15 +287,12 @@ h1 p{
 .recent .target-site , .select-site .target-site{
     width: 100%;
     line-height: 75px;
-    color: #252525;
+    color: #ccc;
     font-size: 1.2em;
     text-align: start;
     position: relative;
     z-index: 10;
-    border: 1px solid #aaa;
-}
-.to-mylist button{
-    background-color: rgb(86, 177, 177);
+    border: 2px solid #ccc;
 }
 .to-mylist h3,.to-mylist p{
     color: #252525;
@@ -297,9 +308,9 @@ h1 p{
     top: 0;
     right: 0;
     width: 80px;    
-    line-height: 50px;
+    line-height: 70px;
     background-color: rgba(0, 0, 0, 0);
-    color: #252525;
+    color: #ccc;
     border: none;
     z-index: 97;
 }
@@ -315,7 +326,7 @@ h1 p{
     position: absolute;
     top: 0;
     right: 0;
-    color: #2cb44c;
+    color: #252525;
     z-index: 99;
     transform: translateY(-17px);
     padding: 10px 0 10px 50px;
@@ -353,10 +364,11 @@ h1 p{
     top: 0;
     left: 0;
     z-index: 98;
-    background-color: #252525;;
+    background: linear-gradient(90deg, #2e2e2e ,#383838);
     padding: 10px;
-    padding-top: 82px;
+    padding-top: 100px;
     padding-bottom: 72px;
+    padding-left: 5px;
     box-sizing: border-box;
 }
 
@@ -366,12 +378,14 @@ h1 p{
 }
 .scroll-content h3{
     color: #2cb44c;
+    border-left: 5px solid #2cb44c;
 }
 .site-button{
     width: 100%;
     line-height: 50px;
     border: none;
-    color: #252525;
+    color: #ccc;
+    border: 1px solid #ccc;
     font-size: 1.2em;
     text-align: start;
     margin-bottom: 10px;
@@ -414,16 +428,16 @@ h1 p{
     display: flex;
     align-items: center;
     margin: 5px 0;
-    background-color: #8da493;
+    background: none;
     font-weight: bold;
     box-sizing: border-box;
-    border: 1px solid #aaa;
+    border: 2px solid #252525;
     text-decoration: none;
 }
 .others img{
     width: 100%;
     height: 100%;
-    border: 1px solid #ddd;
+    /* border-bottom: 2px solid #252525; */
 }
 .others-menu li{
     width: 100%;
