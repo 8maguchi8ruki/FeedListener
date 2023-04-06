@@ -18,7 +18,6 @@ from flask import Flask, render_template, url_for, redirect
 import os
 import requests
 from authlib.integrations.flask_client import OAuth
-import urllib.parse
 
 
 app = Flask(__name__)
@@ -27,20 +26,17 @@ oauth = OAuth(app)
 user_info = ""
 user_photo = ""
 
-
-##### トップページ #####
+##### ログインページ #####
 user_photo = ""
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# ログイン処理
+# googleログイン処理
 @app.route('/google/')
 def google():
-
     GOOGLE_CLIENT_ID = '706938186994-g2dj2ptk02p4ula21koqnqsu1gq0q3nk.apps.googleusercontent.com'
     GOOGLE_CLIENT_SECRET = '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'
-
     CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
     oauth.register(
         name='google',
@@ -51,12 +47,9 @@ def google():
             'scope': 'openid email profile'
         }
     )
-
-    # Redirect to google_auth function
+    # リダイレクト
     redirect_uri = url_for('google_auth', _external=True)
-    print(redirect_uri)
     return oauth.google.authorize_redirect(redirect_uri)
-
 
 @app.route('/google/auth/')
 def google_auth():
@@ -69,54 +62,47 @@ def google_auth():
     user_name = user_info.name
     print(user_photo)
     print(user_id)
-    user_id = int(user_id) / 1000000
+    user_id = int(user_id) / 200000
     database.update_user(str(user_id) , user_name , user_photo)
     return redirect(url_for("home", current_user = user_id))
 
 
 
+##### ホームページ #####
 @app.route('/home/<current_user>' , methods=["GET"])
 def home(current_user):
     if os.path.exists("static/files/audio"):
         print("audioフォルダを削除しました")
         shutil.rmtree("static/files/audio")
-    print(current_user)
     data = database.select_user()
     user_name = ""
     user_photo = ""
-    print("ここからテスト")
-    print(data)
-    print(current_user)
     for d in data:
-        print(d[0], current_user)
+        # print(d[0], current_user)
         if str(d[0]) == current_user:
             user_name = d[1]
             user_photo = d[2]
             print(user_name , user_photo)
-
     return render_template('home.html', current_user = current_user , user_photo = user_photo , user_name = user_name)
 
 
  
-
-
-
-##### トップページ全サイト取得ajax #####
+##### ホームページ全サイト取得ajax #####
 @app.route('/ajax/all-site/<current_user>')
 def all_site(current_user):
     return jsonify(database.select_all_site(current_user))
-
-# トップページサイト追加ajax
+##### ホームページサイト追加ajax #####
 @app.route('/ajax/add-site/<current_user>/<sitename>')
 def add_site(current_user , sitename):
     database.update_site(current_user , sitename)
     return jsonify(database.select_site(current_user))
-
-# トップページサイト削除ajax
+##### ホームページサイト削除ajax #####
 @app.route('/ajax/delete-site/<current_user>/<sitename>')
 def delete_site(current_user , sitename):
     database.delete_site(current_user , sitename)
     return jsonify(database.select_site(current_user))
+
+
 
 ##### マイリストページ #####
 @app.route('/mylist/<current_user>', methods=['GET','POST'])
@@ -124,13 +110,17 @@ def mylist(current_user):
     database.create_all_site()
     return render_template("mylist.html", my_sites = database.select_site(current_user))
 
+
+
 ##### 検索ページ #####
 @app.route('/search/<current_user>', methods=['GET','POST'])
 def search(current_user):
     sitename = request.form.get('sitename')
     return render_template("search.html",sitename = sitename)
 
-##### 最新の投稿ページ #####
+
+
+##### 最新記事ページ #####
 @app.route('/recent/<current_user>', methods=['GET','POST'])
 def recent(current_user):
     database.create_all_site()
@@ -142,33 +132,20 @@ def select(current_user):
     database.create_all_site() 
     return render_template("select.html", my_sites = database.select_site(current_user))
 
-##### ダウンロードページ #####
-@app.route('/download/', methods=['GET','POST'])
-def download():
-    return render_template("download.html")
-
-##### アカウントページ #####
-@app.route('/acount/<current_user>')
-def acount(current_user):
-    datas = database.select(current_user)
-    return render_template('acount.html',datas = datas)
 
 
 ##### ヘルプページ #####
 @app.route('/help/', methods=['GET','POST'])
 def help():
     return render_template("help.html")
-
 ##### プライバシポリシーページ #####
 @app.route('/policy/', methods=['GET','POST'])
 def policy():
     return render_template("policy.html")
-
 ##### お問い合わせページ #####
 @app.route('/contact/', methods=['GET','POST'])
 def contact():
     return render_template("contact.html")
-
 ##### お問い合わせ成功ページ #####
 @app.route('/contact-success/', methods=['GET','POST'])
 def contact_success():
@@ -179,17 +156,23 @@ def contact_success():
     contact_me.send(name,email,text)
     return render_template("contact-success.html")
 
+
+
+
+
 ##### 履歴ページ #####
 @app.route('/history/<current_user>')
 def history(current_user):
     database.history_create()
-    datas = database.select(current_user)
+    datas = database.history_select(current_user)
     return render_template('history.html',datas = datas)
 
 ##### 履歴全削除ajax #####
 @app.route('/ajax/delete-historys/<current_user>', methods=['GET'])
 def ajax_delete_historys(current_user):
-    return jsonify(database.delete_historys(current_user))
+    return jsonify(database.delete_history(current_user))
+
+
 
 ##### アーカイブページ #####
 @app.route('/archive/<current_user>',methods=['GET'])
@@ -214,6 +197,8 @@ def ajax_delete_archives():
 def ajax_delete(articleID):
     return jsonify(database.delete_this(articleID))
 
+
+
 ##### 検索結果ページ #####
 class TITLE:
     title = ""
@@ -222,10 +207,8 @@ def result(current_user):
     if not os.path.exists("static/files/audio"):
         print("audioフォルダを作成しました")
         os.mkdir("static/files/audio")
-
     # HTMLformから値を取得
     url = request.form.get('url')
-    print(url)
     path = "static/files/text/article.txt"
     sitename = ""
     target_site = ""
@@ -234,10 +217,8 @@ def result(current_user):
         res = requests.get(url)
         soup = bs4(res.content, "lxml")
         title = soup.find("title").text
-        print(title)
-        print(url)
         # 新しい履歴を反映
-        database.update(current_user,title,url)
+        database.history_update(current_user,title,url)
         i = 0
         print(class_name)
         for tag in soup.select(class_name):
@@ -295,16 +276,9 @@ def result(current_user):
     elif "premierleague.com" in url:
         sitename = "premierleague"
         Scraping(".standardArticle p" , sitename)
-    # ITmedia
-    # elif "itmedia.co.jp" in url:
-    #     sitename = "itmedia"
-    #     Scraping(".inner p" , sitename)
-    # GIGAZINE
-    # elif "gigazine.net" in url:
-    #     sitename = "gigazine"
-    #     Scraping(".preface" , sitename)
     
-    # 最新の投稿
+
+    ##### 最新の投稿 #####
     elif url == "new-post":
             target_site = request.form.get('target-site')
             print(target_site)
@@ -712,7 +686,7 @@ def result(current_user):
     else:
         return render_template("404.html")
 
- 
+
     #article.txtをarticle.mp3へ変換
     print("----- 記事情報取得中 -----")
     time.sleep(2)
@@ -721,7 +695,6 @@ def result(current_user):
     data = f.read()
     if "EN" in target_site or "EN" in sitename:
         hoge = gTTS(data,lang="en")
-        print("英語の記事です！")
     else:
         hoge = gTTS(data,lang="ja")
     rannum = random.uniform(0,10000)    
@@ -732,25 +705,23 @@ def result(current_user):
         res = requests.get(url)
         soup = bs4(res.content , "lxml")
         t.title = soup.find("title").text
-
     t = TITLE()
+
     get_title(t)
+
     # 最新の履歴データのIDを取得
     articleID = database.count()
     return render_template('result.html', result=data, url = url , title = t.title , articleID=articleID[0] , rannum = rannum)
 
 
+# サーバーエラー時
 @app.errorhandler(500)
 def server_error():
     return render_template('500.html')
 
 
 if __name__ == '__main__':
-    app.run()   
-
-
-# app = Flask(__name__)
-# rannum = ""
+    app.run()
 
 
 

@@ -12,15 +12,14 @@
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <title>Feedread</title>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-233094915-1">
     </script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-233094915-1');
-</script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-233094915-1');
+    </script>
 </head>
 
 <body>
@@ -29,21 +28,10 @@
             <i class="fas fa-rss fa-2x" style="color: #2bc44c;"></i>Feedread
             <p>web記事を音声で。移動中も効率的なインプットを。</p>
         </h1>
-        <!-- <i class="fas fa-bars fa-2x" id="hamburger-trigger" style="color: #2bc44c;"></i>
-        <i class="fas fa-times fa-2x" id="hamburger-close" style="color: #2bc44c;"></i> -->
         <a href="/">
-            <button class="logout">ログアウト</button>
+            <button class="logout logout-mobile">ログアウト</button>
         </a>
     </header>   
-
-    <div id="hamburger-menu">
-        <ul>
-            <li class="help"><a href="/help">ヘルプ</a></li>
-            <li class="policy"><a href="/policy">プライバシーポリシー</a></li>
-            <li class="contact"><a href="/contact">お問い合わせ</a></li>
-        </ul>
-        <p>copyright Feedread 2022</p>
-    </div>
 
     <div class="wrap">
         {% block content %}
@@ -77,62 +65,51 @@
                             <p>アカウント</p>
                         </div>
                     </a>
-
                 </div>
 
-
-                <div class="sub-menu-pc">
+                <!-- pcメニュー -->
+                <div id="sub-menu-pc">
+                    <a href="/">
+                        <button class="logout logout-pc">ログアウト</button>
+                    </a>
                     <nav>
-                        <li>
-                            <a href="/archive">アーカイブ</a>
-                        </li>
-                        <li>
-                            <a href="/history">履歴</a>
-                        </li>
-                        <li>
-                            <a href="/acount">アカウント</a>
-                        </li>
-                        <li>
-                            <a href="/help">ヘルプ</a>
-                        </li>
-                        <li>
-                            <a href="/contact">コンタクト</a>
-                        </li>
-                        <li>
-                            <a href="/policy">ポリシー</a>
-                        </li>
+                        <a href="/home" class="to-home">
+                           <li>ホーム</li>
+                        </a>
+                        <a href="/archive" class="to-archive">
+                            <li>アーカイブ</li>
+                        </a>
+                        <a href="/history" class="to-history">
+                            <li>履歴</li>
+                        </a>
+                        <a href="/help" class="to-help">
+                            <li>ヘルプ</li>
+                        </a>
+                        <a href="/contact" class="to-contact">
+                            <li>コンタクト</li>
+                        </a>
+                        <a href="/policy" class="to-policy">
+                            <li>ポリシー</li>
+                        </a>
+
                     </nav>
                 </div>
-
-                
-
     </div>
-    <!-- <footer>
-        <ul>
-            <li class="help"><a href="/help">ヘルプ</a></li>
-            <li class="policy"><a href="/policy">プライバシーポリシー</a></li>
-            <li class="contact"><a href="/contact">お問い合わせ</a></li>
-        </ul>
-        <p>copyright haruki-yamaguchi 2021</p>
-    </footer> -->
+   
     <script>
+        // ユーザーごとにセッション管理
+        user_photo = sessionStorage.getItem("user_photo");
+        user_id = sessionStorage.getItem("user_id");
+        $("#user_photo").attr("src" , user_photo);
+        $("#sub-menu .to-home, #sub-menu-pc .to-home").attr("href" , "/home/" + user_id);
+        $("#sub-menu .to-archive, #sub-menu-pc .to-archive").attr("href" , "/archive/" + user_id);
+        $("#sub-menu .to-history, #sub-menu-pc .to-history").attr("href" , "/history/" + user_id);
+        $(".to-recent").attr("action" , "/recent/" + user_id);
+        $(".to-select").attr("action" , "/select/" + user_id);
+        $(".to-mylist").attr("action" , "/mylist/" + user_id);        
+        $(".select-site").attr("action" , "/search/" + user_id); 
+        $(".to-result").attr("action" , "/result/" + user_id);
 
-        // ハンバーガメニュークラス切り替え
-        (function ($) {
-        $(".background").on("click", function () {
-            $(this).toggleClass("active");
-            $(".inner-content").toggleClass("active");
-        });
-        $("#hamburger-trigger").on("click", function(){
-            $(this).toggleClass("active");
-            $("#hamburger-close").toggleClass("active");
-            $("#hamburger-menu").toggleClass("active");
-        })
-        $("#hamburger-close").on("click", function(){
-            $(this).toggleClass("active");
-            $("#hamburger-trigger").toggleClass("active");
-            $("#hamburger-menu").toggleClass("active");
-        })})(jQuery);
 
 
         // サイト別に背景色を設定する
@@ -158,25 +135,6 @@
             }
             console.log(site_value);
         }
-
-
-        
-        
-        
-        user_photo = sessionStorage.getItem("user_photo");
-        user_id = sessionStorage.getItem("user_id");
-        console.log(user_photo);
-        $("#user_photo").attr("src" , user_photo);
-        $("#sub-menu .to-home").attr("href" , "/home/" + user_id);
-        $("#sub-menu .to-archive").attr("href" , "/archive/" + user_id);
-        $("#sub-menu .to-history").attr("href" , "/history/" + user_id);
-        $(".to-recent").attr("action" , "/recent/" + user_id);
-        $(".to-select").attr("action" , "/select/" + user_id);
-        $(".to-mylist").attr("action" , "/mylist/" + user_id);        
-        $(".select-site").attr("action" , "/search/" + user_id); 
-        $(".to-result").attr("action" , "/result/" + user_id);
-
-
     </script>
 </body>
 </html>

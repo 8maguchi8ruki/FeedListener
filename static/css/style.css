@@ -1,5 +1,4 @@
 /***** アニメーション *****/
-
 @keyframes fadein{
     0%{transform: translateY(3px); opacity: 0.5;}
     100%{transform: translateY(0); opacity: 1;}
@@ -12,7 +11,6 @@
     0%{opacity: 1;}
     100%{opacity: 0.5;}
 }
-
 @keyframes search{
     10%{transform: translateX(-10px)rotateZ(-45deg);}
     20%{transform: translateX(-10px) translateY(-10px)rotateZ(-45deg);}
@@ -24,10 +22,6 @@
     55%{transform: translateY(0)rotateZ(-45deg);}
 }
 
-/* ハンバーガーメニュー */
-#hamburger-menu,#hamburger-trigger,#hamburger-close{
-    display: none;
-}
 
 /* ログイン */
 .login-wrap{
@@ -52,9 +46,8 @@
 .login-box p{
     width: 100%;
     margin: 0 auto;
-    /* font-weight: bold; */
 }
-.login-box .login-btn {
+.login-box .login-btn{
     justify-content: center;
     flex-direction: row;
     display: flex;
@@ -69,15 +62,14 @@
     border-radius: 15px;
     box-sizing: border-box;
 }
-.login-box .btn-text {
+.login-box .btn-text{
     justify-content: center;
     padding: 10px;
     font-family: 'Poppins', sans-serif;
     color: rgb(85, 85, 85);
     font-weight: bold;
 }
-
-.logout{
+.logout-mobile{
     width: 120px;
     height: 30px;
     font-size: 0.8rem;
@@ -85,7 +77,9 @@
     top: 12px;
     right: 10px;
 }
-
+.logout-pc{
+    display: none;
+}
 
 /***** 共通 *****/
 html{
@@ -119,7 +113,6 @@ h2,h3,h4,p,li{
 }
 h3{
     margin: 10px 0;
-    color: #252525;
 }
 
 
@@ -176,13 +169,52 @@ h1 p{
     box-sizing: border-box;
     position: relative;
 }
+.sitename{
+    width: 100%;
+    line-height: 50px;
+    color: #252525;
+    font-size: 1.2em;
+    text-align: start;
+    background: linear-gradient(90deg, #54af69 ,#54aca9);
 
-
-
+    animation: 0.5s ease-in-out fadein;
+    font-weight: bold;
+    border: 2px solid #252525;
+}
+.mylist .sitename{
+    line-height: 70px;
+}
+.yahoo::first-letter{
+    color: #fd3a3a;
+    font-size: 1.5em;
+}
+.sankei::first-letter{
+    color: #4548ff;
+    font-size: 1.5em;
+}
+.gizmodo::first-letter{
+    color: #9f56ff;
+    font-size: 1.5em;
+}
+.cnn::first-letter{
+    color: #ff7d49;
+    font-size: 1.5em;
+}
+.cnn-en::first-letter{
+    color: #ff67ff;
+    font-size: 1.5em;
+}
+.techcrunch::first-letter{
+    color:#70d788;
+    font-size: 1.5em;
+}
+.premierleague::first-letter{
+    color:#a77dcb;
+    font-size: 1.5em;
+}
 .sitename.change-backgroud{
     opacity: 0.2;
 }
-
 .menu{
     position: relative;
     width: 100%;
@@ -208,7 +240,6 @@ h1 p{
 }
 .menu .menu-content{
     margin: 10px 0;
-    /* box-shadow: #767676 5px 5px 2px 0px; */
     border: 2px solid #252525;
     animation: 0.5s ease-in-out fadein;
 }
@@ -234,16 +265,19 @@ h1 p{
     height: 150px;
     border: none;
     background: linear-gradient(90deg, #54af69 ,#54aca9);
-
     color: #252525;
     font-weight: bold;
     font-size: 1.5em;
     text-align: start;
     text-decoration: none;
 }
+
+.recent,.select-site{
+    margin-top: 10px;
+    background: linear-gradient(90deg, #54af69 ,#54aca9);
+}
 .recent .target-site , .select-site .target-site{
     width: 100%;
-    line-height: 75px;
     color: #252525;
     font-size: 1.2em;
     text-align: start;
@@ -251,6 +285,8 @@ h1 p{
     z-index: 10;
     border: 2px solid #252525;
     overflow-x: scroll;
+    line-height: 75px;
+    height: 100%;
 }
 .to-mylist h3,.to-mylist p{
     color: #252525;
@@ -266,7 +302,7 @@ h1 p{
     top: 0;
     right: 0;
     width: 80px;    
-    line-height: 70px;
+    line-height: 75px;
     background-color: rgba(0, 0, 0, 0);
     color: #252525;
     border: none;
@@ -354,8 +390,6 @@ h1 p{
 }
 .site-button:hover,.mylist .sitename:hover{
     cursor: pointer;
-    opacity: 0.5;
-    color: #2cb44c;
 }
 .site-button.disabled{
     opacity: 0.2;
@@ -466,10 +500,7 @@ h1 p{
 
 
 
-
 /***** 検索フォーム *****/
-
-
 form.site input{
     width: 100%;
     margin: 10px 0;
@@ -525,11 +556,8 @@ form.site input{
     display: flex;
 
 }
-.recent,.select-site{
-    margin-top: 10px;
-    background: linear-gradient(90deg, #54af69 ,#54aca9);
 
-}
+
 
 /***** ローディング *****/
 #loader-bg{
@@ -568,88 +596,8 @@ form.site input{
     display: block;
 }
 
-/***** フッター *****/
-/* footer{
-    display: none;
-    width: 100%;
-    height: 150px;
-    background-color: #252525;;
-    border-top: 1px solid #ddd;
-    position: fixed;
-    bottom: 0;
-    padding: 40px 0;
-    z-index: 100;
-}
-footer ul{
-    width: 1000px;
-    margin: 0 auto;
-    padding-left: 0;
-    display: flex;
-    justify-content: space-around;
-}
-footer ul li{
-    width: 30%;
-    line-height: 40px;
-    margin: 20px;
-    color: #252525;
-    font-weight: bold;
-    border-bottom: 1px solid #f9f9f9;
-    list-style: none;
-    position: relative;
-}
-footer ul li.help::after{
-    content: "help";
-    position: absolute;
-    font-size: 0.8em;
-    left: 0;
-    bottom: 0;
-    color: #ddd;
-    margin-bottom: -40px;
-}
-footer ul li.policy::after{
-    content: "privacy policy";
-    position: absolute;
-    font-size: 0.8em;
-    left: 0;
-    bottom: 0;
-    color: #ddd;
-    margin-bottom: -40px;
-}
-footer ul li.contact::after{
-    content: "contact me";
-    position: absolute;
-    font-size: 0.8em;
-    left: 0;
-    bottom: 0;
-    color: #ddd;
-    margin-bottom: -40px;
-}
-footer ul li a{
-    color: #252525;
-    text-decoration: none;
-}
-footer ul li a:hover{
-    cursor: pointer;
-    color: #252525;
-    border-color: #252525;
-}
 
-
-footer p{
-    width: 100%;
-    height: 50px;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    color: #252525;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: normal;
-} */
-    
-
+/* サブメニュー */
 #sub-menu{
     position: fixed;
     left: 0;
@@ -662,10 +610,9 @@ footer p{
     box-sizing: border-box;
     border-top: 1px solid #ddd;
 }
-.sub-menu-pc{
+#sub-menu-pc{
     display: none;
 }
-
 
 
 
@@ -702,6 +649,8 @@ footer p{
     -ms-wrap-margin: 0 auto;
 }
 
+
+
 /***** アーカイブページ *****/
 #archive-button{
     width: 180px;
@@ -713,7 +662,6 @@ footer p{
 #archives{
     list-style-type: none;
 }
-
 #archives li{
     width: 100%;
     margin: 30px 0 25px 0;
@@ -802,6 +750,7 @@ footer p{
 }
 
 
+
 /***** 削除ダイアログ *****/
 .delete-trigger{
     width: 100px;
@@ -858,6 +807,7 @@ footer p{
 }
 
 
+
 /***** お問い合わせページ *****/
 .contact-form label{
     color: #252525;
@@ -904,50 +854,4 @@ footer p{
 .help h4{
     border-left: 2px solid #ddd;
     padding-left: 10px;
-}
-
-
-
-.sitename{
-    width: 100%;
-    line-height: 50px;
-    color: #252525;
-    font-size: 1.2em;
-    text-align: start;
-    background: linear-gradient(90deg, #54af69 ,#54aca9);
-
-    animation: 0.5s ease-in-out fadein;
-    font-weight: bold;
-    border: 2px solid #252525;
-}
-.mylist .sitename{
-    line-height: 70px;
-}
-.yahoo::first-letter{
-    color: #fd3a3a;
-    font-size: 1.5em;
-}
-.sankei::first-letter{
-    color: #4548ff;
-    font-size: 1.5em;
-}
-.gizmodo::first-letter{
-    color: #9f56ff;
-    font-size: 1.5em;
-}
-.cnn::first-letter{
-    color: #ff7d49;
-    font-size: 1.5em;
-}
-.cnn-en::first-letter{
-    color: #ff67ff;
-    font-size: 1.5em;
-}
-.techcrunch::first-letter{
-    color:#70d788;
-    font-size: 1.5em;
-}
-.premierleague::first-letter{
-    color:#a77dcb;
-    font-size: 1.5em;
 }

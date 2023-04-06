@@ -32,13 +32,14 @@
     .article h3{
         margin:  22px 0;
     }
-    h3{
+    .scroll-content h3{
         background-color: #f9f9f9;
+        color: #252525;
     }
     #all-site div{
         width: 70%;
-        /* background-color: #fff; */
-        margin-top: 125px;
+        background-color: #f9f9f9;
+        margin-top: 150px;
         padding-top: 0;
     }
     .others , #sub-menu{
@@ -47,14 +48,19 @@
     .menu{
         width: 100%;
     }
-
-    .menu .menu-content{
-        border: none;
-    }
     .menu button{
         height: 200px;
     }
-    .sub-menu-pc{
+    .logout-pc{
+        display: block;
+        width: 150px;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+    .logout-mobile{
+        display: none;
+    }
+    #sub-menu-pc{
         display: block;
         position: absolute;
         top: 0;
@@ -66,18 +72,21 @@
         box-sizing: border-box;
         border-left: 1px solid #aaa;
     }
-    .sub-menu-pc li{
+    #sub-menu-pc li{
         font-size: 1rem;
         line-height: 50px;
         margin-bottom: 10px;
-        border-bottom: 1px solid #aaa;
-        background-color: #ddd;
+        border: 2px solid #252525;
+        background: linear-gradient(90deg,  #54aca9 , #54af69);
         padding-left: 10px;
         box-sizing: border-box;
     }
-    .sub-menu-pc a{
+    #sub-menu-pc a{
         text-decoration: none;
         color: #252525;
         font-weight: bold;
+    }
+    .login-wrap .login-box{
+        width: 700px;
     }
 }

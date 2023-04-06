@@ -1,10 +1,56 @@
 import sqlite3
 from tokenize import String
-
 from markupsafe import string
 
 
-##### 履歴表仮作成 #####
+
+##### ユーザー登録 #####
+def update_user(user_id , user_name , user_photo):
+    datas = []
+    print(user_id , user_name , user_photo)
+    conn = sqlite3.connect('fr_db')
+    c = conn.cursor()
+    c.execute('CREATE TABLE IF NOT EXISTS all_user(user_id STRING PRIMARY KEY ,user_name STRING , user_photo STRING)')
+    c.execute(f'REPLACE INTO all_user(user_id ,user_name , user_photo) VALUES(?,?,?) ON CONFLICT (user_id) DO NOTHING',[user_id , user_name , user_photo])
+    for row in c:
+        datas.append(row)
+    print(datas)
+    conn.commit()
+    c.close()
+    conn.close()
+
+##### ユーザー参照 #####
+def select_user():
+    datas = []
+    conn = sqlite3.connect('fr_db')
+    c = conn.cursor()
+    c.execute('CREATE TABLE IF NOT EXISTS all_user(user_id STRING ,user_name STRING , user_photo STRING)')
+    c.execute(f'SELECT * FROM all_user') 
+    #  WHERE user_id = {user_id}
+    for row in c:
+        datas.append(row)
+    print(datas)
+    conn.commit()
+    c.close()
+    conn.close()
+    return datas
+
+##### ユーザー削除 #####
+def delete_user(sitename):
+    print(sitename)
+    conn = sqlite3.connect('fr_db')
+    c = conn.cursor()
+    # c.execute("DELETE FROM my_site")
+    c.execute('DELETE FROM my_site WHERE sitename = "{}"'.format(sitename))
+    conn.commit()
+    c.close()
+    conn.close()
+
+
+
+
+
+##### 履歴表作成 #####
 def history_create():
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
@@ -13,11 +59,8 @@ def history_create():
     c.close()
     conn.close()
 
-
-
-
 ##### 履歴表更新 #####
-def update(current_user,title,url):
+def history_update(current_user,title,url):
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
     c.execute('CREATE TABLE IF NOT EXISTS historys(id INTEGER PRIMARY KEY AUTOINCREMENT, user_id STRING , title STRING , url STRING)')
@@ -28,7 +71,7 @@ def update(current_user,title,url):
     return
 
 ##### 履歴表参照 #####
-def select(current_user):
+def history_select(current_user):
     datas = []
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
@@ -41,7 +84,7 @@ def select(current_user):
     return datas
 
 ##### 履歴表削除 #####
-def delete_historys(current_user):
+def delete_history(current_user):
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
     c.execute(f'DELETE FROM historys WHERE user_id = {current_user}') 
@@ -50,11 +93,10 @@ def delete_historys(current_user):
     conn.close()
     return
 
-##### 最新のレコードIDを取得 #####
+##### 履歴表から最新のレコードIDを取得 #####
 def count():
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
-    # c.execute('CREATE TABLE IF NOT EXISTS historys(id INTEGER PRIMARY KEY AUTOINCREMENT, title STRING , url STRING)')
     c.execute('SELECT MAX(id) FROM historys')
     result = c.fetchall()
     conn.commit()
@@ -63,7 +105,10 @@ def count():
     return result
 
 
-##### アーカイブ表仮作成 #####
+
+
+
+##### アーカイブ表作成 #####
 def archive_create():
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
@@ -72,13 +117,10 @@ def archive_create():
     c.close()
     conn.close()
 
-
-
-##### アーカイブ保存 #####
+##### アーカイブ登録 #####
 def archive_up(articleID,current_user):
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
-    # アーカイブ表を作成
     c.execute('CREATE TABLE IF NOT EXISTS archives(id INTEGER PRIMARY KEY AUTOINCREMENT , user_id STRING ,title STRING , url STRING)')
     # アーカイブ対象レコードをアーカイブ表に追加
     c.execute('SELECT * FROM historys WHERE id = {}'.format(articleID))
@@ -127,7 +169,57 @@ def delete_this(articleID):
     conn.close()
     return
 
-# 問い合わせユーザー表
+
+
+
+
+##### マイリスト登録 #####
+def update_site(current_user , name):
+    datas = []
+    print(name)
+    conn = sqlite3.connect('fr_db')
+    c = conn.cursor()
+    c.execute('CREATE TABLE IF NOT EXISTS my_site(user_id STRING , sitename STRING)')
+    c.execute('INSERT INTO my_site(user_id,sitename) VALUES(?,?)',[current_user ,name])
+    for row in c:
+        datas.append(row)
+    print("登録されているか")
+    print(datas)
+    conn.commit()
+    c.close()
+    conn.close()
+
+##### マイリスト削除 #####
+def delete_site(current_user , sitename):
+    print(current_user , sitename)
+    conn = sqlite3.connect('fr_db')
+    c = conn.cursor()
+    c.execute('DELETE FROM my_site WHERE sitename = "{}"'.format(sitename))
+    conn.commit()
+    c.close()
+    conn.close()
+
+##### マイリスト参照 #####
+def select_site(current_user):
+    datas = []
+    conn = sqlite3.connect('fr_db')
+    c = conn.cursor()
+    c.execute('CREATE TABLE IF NOT EXISTS my_site(id INTEGER PRIMARY KEY AUTOINCREMENT, user_id STRING ,sitename STRING)')
+    c.execute(f'SELECT DISTINCT * FROM my_site WHERE user_id = {current_user}') 
+    for row in c:
+        datas.append(row)
+    print("テスト")
+    print(datas)
+    conn.commit()
+    c.close()
+    conn.close()
+    return datas
+
+
+
+
+
+##### 問い合わせユーザー表 #####
 def contact_user(name,email,text):
     datas = []
     conn = sqlite3.connect('fr_db')
@@ -144,11 +236,13 @@ def contact_user(name,email,text):
     return "done!!"
 
 
-# 全サイト表作成
+
+
+
+###### 全サイト表作成 #####
 def create_all_site():
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
-    # c.execute("DELETE FROM all_site")
     c.execute('CREATE TABLE IF NOT EXISTS all_site(sitename STRING PRIMARY KEY)')
     c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 主要 】") ON CONFLICT (sitename) DO NOTHING')
     c.execute('INSERT INTO all_site(sitename) VALUES("Yahoo!【 国内 】") ON CONFLICT (sitename) DO NOTHING')
@@ -188,7 +282,7 @@ def create_all_site():
     c.close()
     conn.close()
 
-# 全サイト表参照
+##### 全サイト表参照 #####
 def select_all_site(current_user):
     datas = []
     conn = sqlite3.connect('fr_db')
@@ -202,91 +296,3 @@ def select_all_site(current_user):
     c.close()
     conn.close()
     return datas
-
-# マイサイト表登録
-def update_site(current_user , name):
-    datas = []
-    print(name)
-    conn = sqlite3.connect('fr_db')
-    c = conn.cursor()
-    # c.execute("DELETE FROM my_site")
-    c.execute('CREATE TABLE IF NOT EXISTS my_site(user_id STRING , sitename STRING)')
-    c.execute('INSERT INTO my_site(user_id,sitename) VALUES(?,?)',[current_user ,name])
-    for row in c:
-        datas.append(row)
-    print("登録されているか")
-    print(datas)
-    conn.commit()
-    c.close()
-    conn.close()
-
-def delete_site(current_user , sitename):
-    print(current_user , sitename)
-    conn = sqlite3.connect('fr_db')
-    c = conn.cursor()
-    # c.execute("DELETE FROM my_site")
-    c.execute('DELETE FROM my_site WHERE sitename = "{}"'.format(sitename))
-    conn.commit()
-    c.close()
-    conn.close()
-
-# マイサイト表参照
-def select_site(current_user):
-    datas = []
-    conn = sqlite3.connect('fr_db')
-    c = conn.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS my_site(id INTEGER PRIMARY KEY AUTOINCREMENT, user_id STRING ,sitename STRING)')
-    c.execute(f'SELECT DISTINCT * FROM my_site WHERE user_id = {current_user}') 
-    for row in c:
-        datas.append(row)
-    print("テスト")
-    print(datas)
-    conn.commit()
-    c.close()
-    conn.close()
-    return datas
-
-
-
-
-# ユーザー登録
-def update_user(user_id , user_name , user_photo):
-    datas = []
-    print(user_id , user_name , user_photo)
-    conn = sqlite3.connect('fr_db')
-    c = conn.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS all_user(user_id STRING PRIMARY KEY ,user_name STRING , user_photo STRING)')
-    c.execute(f'REPLACE INTO all_user(user_id ,user_name , user_photo) VALUES(?,?,?) ON CONFLICT (user_id) DO NOTHING',[user_id , user_name , user_photo])
-    for row in c:
-        datas.append(row)
-    print(datas)
-    conn.commit()
-    c.close()
-    conn.close()
-
-
-# ユーザー参照
-def select_user():
-    datas = []
-    conn = sqlite3.connect('fr_db')
-    c = conn.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS all_user(user_id STRING ,user_name STRING , user_photo STRING)')
-    c.execute(f'SELECT * FROM all_user') 
-    #  WHERE user_id = {user_id}
-    for row in c:
-        datas.append(row)
-    print(datas)
-    conn.commit()
-    c.close()
-    conn.close()
-    return datas
-
-def delete_user(sitename):
-    print(sitename)
-    conn = sqlite3.connect('fr_db')
-    c = conn.cursor()
-    # c.execute("DELETE FROM my_site")
-    c.execute('DELETE FROM my_site WHERE sitename = "{}"'.format(sitename))
-    conn.commit()
-    c.close()
-    conn.close()

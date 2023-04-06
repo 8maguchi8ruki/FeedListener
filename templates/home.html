@@ -18,7 +18,7 @@
         </div>    
     </form>
 
-    
+
     <!-- 最新の投稿 -->
     <form action="/recent" method="POST" class="recent-post menu to-recent">
         <div class="menu-content">
@@ -48,22 +48,6 @@
             </button>
         </div>  
     </form>
-
-
-
-    <!-- <form action="{{ url_for('download')}}" method="POST" class="downloads menu">
-        <div class="menu-content">
-            <button type="submit">
-                <div class="menu-left">
-                    <h2>ダウンロード</h2>
-                    <p>Comming Soon...</p>
-                </div>
-                <div class="menu-right">
-                    <img src="../static/img/menu3.svg" alt="">
-                </div>
-            </button>
-        </div>    
-    </form> -->
 
     <div class="others">
         <div>
@@ -111,6 +95,5 @@
             user_photo = sessionStorage.getItem("user_photo");
             user_id = sessionStorage.getItem("user_id");
             $("#user_photo").attr("src" , user_photo);
-
     </script>
 {% endblock %}
