@@ -135,8 +135,9 @@ h1{
     margin: 0 auto;
     position: relative;
     padding-left: 0;
-    font-size: 1em;
+    font-size: 1.2em;
     margin-left: 45px;
+    margin-top: 5px;
 }
 h1 a{
     color: #252525;
@@ -155,10 +156,13 @@ header p{
 }
 header img{
     position: absolute;
-    left: 10px;
-    top: 5px;
+    left: 0;
+    top: -5px;
     width: 40px;
-    height: 30px;
+    height: 40px;
+}
+header div{
+    position: relative;
 }
 
 

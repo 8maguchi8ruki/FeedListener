@@ -10,10 +10,18 @@
     header{
         border: none;
     }
-    h1{
+    header div{
         width: 1000px;
         margin: 0 auto;
+    }
+    header img{
+        width: 70px;
+        height: 70px;
+    }
+    h1{
         font-size: 2rem;
+        margin-top: 10px;
+        margin-left: 80px;
     }
     h1 p{
         font-size: 1rem;
