@@ -713,12 +713,6 @@ def result(current_user):
     return render_template('result.html', result=data, url = url , title = t.title , articleID=articleID[0] , rannum = rannum)
 
 
-# サーバーエラー時
-@app.errorhandler(500)
-def server_error():
-    return render_template('500.html')
-
-
 
 if __name__ == ('__main__'):
     app.run(debug=True, host='0.0.0.0', port=5050)
