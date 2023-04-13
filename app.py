@@ -21,6 +21,7 @@ from authlib.integrations.flask_client import OAuth
 
 app = Flask(__name__)
 app.secret_key = os.urandom(12)
+print(app.secret_key)
 oauth = OAuth(app)
 user_info = ""
 user_photo = ""
