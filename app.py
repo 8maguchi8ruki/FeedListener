@@ -14,7 +14,7 @@ import random
 import os
 import shutil
 from flask import Flask, render_template, url_for, redirect
-import os
+import time
 import requests
 from authlib.integrations.flask_client import OAuth
 
@@ -53,6 +53,7 @@ def google():
 
 @app.route('/google/auth/')
 def google_auth():
+    time.sleep(2)
     token = oauth.google.authorize_access_token()
     user_info = token['userinfo']
     print("ユーザーデータ:")
