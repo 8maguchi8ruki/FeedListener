@@ -1,11 +1,16 @@
 <img style="width:300px;" src="https://user-images.githubusercontent.com/77283970/231783718-2fdef319-79be-4b7f-8f0b-16b7af5e1fa3.png">
 
-<p>Web記事の読み上げに特化した音声読み上げアプリケーションです。</p>
+<p>
+Web記事の読み上げに特化した音声読み上げアプリケーションです。
+  
+＊スマートフォンでの利用を推奨しています。
+</p>
+
 <a href="https://www.feed-listener.com">https://www.feed-listener.com</a>
 
 <hr>
 
-<h2>Feed Listenerの特徴</h2>
+<h3>Feed Listenerの特徴</h3>
 <h4>Googleアシスタントの音声読み上げは意外とポンコツ</h4>
 
 <video src="https://user-images.githubusercontent.com/77283970/231780953-1064b3a8-1f58-4474-96c3-b06916ef3507.mp4"></video>
@@ -14,7 +19,7 @@
 
 Googleアシスタントはこんな感じで、いきなり「エイチティーティーピーコロンスラッシュスラッシュ...」って読み上げます。
 利用者は記事の内容が知りたいのでリンクを読まれては困りますし、なにより肝心の内容が頭に入ってきません。
-そこで、これらの問題を解決するために、不要な部分を取り除いて音声ファイルを出力してくれるのがFeed Listener最大の特徴です。
+そこで、これらの問題を解決するために、不要な部分を取り除いて音声ファイルを出力してくれるのがFeed Listenerの特徴です。
 下記の画像の通り、リンクと引用の文字列が取り除かれていることが確認できます。
 <br>
 
@@ -26,16 +31,16 @@ Googleアシスタントはこんな感じで、いきなり「エイチティ�
 
 <hr>
 
-<h2>使い方</h2>
+<h3>使い方</h3>
 
 <p>
-使い方は至ってシンプルです。まず、ホーム画面のマイリストを選択します。
+使い方は至ってシンプルです。下記のDEMOを見ていただくのがわかりやすいかと思います。まず、ホーム画面のマイリストを選択します。
 その後、マイリストページの【+】ボタンからお気に入りのサイトを追加します。
 追加が完了したらホーム画面の『最新記事』、『URLで検索』を選択することで対象の記事の音声ファイルが出力されます。
 （『URLで検索』の場合は対象のURLを入力する必要があります。）
 </p>
 
-<h2>HOW TO USE</h2>
+<h3>HOW TO USE</h3>
 
 <p>
 This is simple. 
@@ -48,10 +53,7 @@ When you don't need your favorite site and you want to delete it, of couse it ca
 please push the delete button on the right.👍
 </p>
 
-<h2>DEMO</h2>
+<h3>DEMO</h3>
 <video src="https://user-images.githubusercontent.com/77283970/231787433-9ee8e1cf-c4de-474a-a442-5153d6020fd6.mp4"></video>
 
 <br>
-
-まだまだ対応サイトが少ないので日々増やしていきます！💪💪
-ある程度自分が納得できるレベルになったら本格的にサービスとして運用する予定です！
