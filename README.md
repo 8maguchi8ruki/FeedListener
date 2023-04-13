@@ -14,8 +14,8 @@ Googleアシスタントはこんな感じで、いきなり「エイチティ�
 利用者は記事の内容が知りたいのでリンクを読まれては困りますし、なにより肝心の内容が頭に入ってきません。
 そこで、これらの問題を解決するために、不要な部分を取り除いて音声ファイルを出力してくれるのがFeed Listener最大の特徴です。
 <div>
-  <img src="https://user-images.githubusercontent.com/77283970/231784525-84c7cd6e-2434-4530-a220-498d3aef6bba.jpg">
-  <img src="https://user-images.githubusercontent.com/77283970/231784542-8028fcc8-ef06-4d2f-a143-af75c5b499e6.jpg">
+  <img style="width:350px;" src="https://user-images.githubusercontent.com/77283970/231784525-84c7cd6e-2434-4530-a220-498d3aef6bba.jpg">
+  <img style="width:350px;" src="https://user-images.githubusercontent.com/77283970/231784542-8028fcc8-ef06-4d2f-a143-af75c5b499e6.jpg">
  </div>
 
 
