@@ -53,7 +53,7 @@ def google():
 
 @app.route('/google/auth/')
 def google_auth():
-    time.sleep(2)
+    time.sleep(1)
     token = oauth.google.authorize_access_token()
     user_info = token['userinfo']
     print("ユーザーデータ:")
