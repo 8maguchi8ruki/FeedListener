@@ -229,10 +229,11 @@ def result(current_user):
             text_array.append(text)
 
             text = re.sub(r"https?://.*\n" , "" , text)
+            text = re.sub(r"https?://.*.html" , "" , text)
             text = re.sub(r"\n(\w|\s)*\n" , "" , text)
             print("ここから下が削除済み!!!!!!!!!!!!!!!!!!!!!")
             print(text)
-            
+
             if i == 0:
                 f = open(path, 'w', encoding="UTF-8")
                 f.write(text)
