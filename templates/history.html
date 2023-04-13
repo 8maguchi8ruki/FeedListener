@@ -41,13 +41,14 @@
 </div>
 
     <script>
+        current_user = sessionStorage.getItem("user_id");
         // コンポーネントのスクリプト
         Vue.component('mycomp',{
             template:'#mycomp-template',  
             methods:{
                 action:function(){
                     console.log("clicked!!!");
-                    $.get("/ajax/delete-historys/", function(){
+                    $.get("/ajax/delete-historys/" + current_user, function(){
                         location.reload();
                         console.log("done!!");
                     });

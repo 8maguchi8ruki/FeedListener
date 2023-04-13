@@ -150,10 +150,10 @@ def archive_sl(current_user):
     return datas
 
 ##### アーカイブ全削除 #####
-def delete_archives():
+def delete_archives(current_user):
     conn = sqlite3.connect('fr_db')
     c = conn.cursor()
-    c.execute('DELETE FROM archives') 
+    c.execute(f'DELETE FROM archives WHERE user_id = {current_user}') 
     conn.commit()
     c.close()
     conn.close()
@@ -271,13 +271,7 @@ def create_all_site():
     c.execute('INSERT INTO all_site(sitename) VALUES("CNN【 Business 】") ON CONFLICT (sitename) DO NOTHING')
     c.execute('INSERT INTO all_site(sitename) VALUES("CNN【 Tech 】") ON CONFLICT (sitename) DO NOTHING')
     c.execute('INSERT INTO all_site(sitename) VALUES("CNN【 Entertainment 】") ON CONFLICT (sitename) DO NOTHING')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ World ） - EN") ON CONFLICT (sitename) DO NOTHING')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ USA ） - EN") ON CONFLICT (sitename) DO NOTHING')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ Business ） - EN") ON CONFLICT (sitename) DO NOTHING')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ Sports ） - EN") ON CONFLICT (sitename) DO NOTHING')
-    c.execute('INSERT INTO all_site(sitename) VALUES("CNN（ Entertainment ） - EN") ON CONFLICT (sitename) DO NOTHING')
-    c.execute('INSERT INTO all_site(sitename) VALUES("Techcrunch【 Startup 】 - EN") ON CONFLICT (sitename) DO NOTHING')
-    c.execute('INSERT INTO all_site(sitename) VALUES("Premierleague - EN") ON CONFLICT (sitename) DO NOTHING')
+    c.execute('INSERT INTO all_site(sitename) VALUES("GIGAZINE") ON CONFLICT (sitename) DO NOTHING')
     conn.commit()
     c.close()
     conn.close()

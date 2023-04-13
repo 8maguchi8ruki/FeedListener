@@ -220,8 +220,8 @@ header div{
     color:#70d788;
     font-size: 1.5em;
 }
-.premierleague::first-letter{
-    color:#a77dcb;
+.gigazine::first-letter{
+    color:#e5ff3a;
     font-size: 1.5em;
 }
 .sitename.change-backgroud{
@@ -603,9 +603,11 @@ form.site input{
 }
 .comment{
     display: none;
+    animation: 0.75s ease-in-out fadeout;
 }
 .comment.active{
     display: block;
+    animation: 0.75s ease-in-out fadein2;
 }
 
 

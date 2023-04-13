@@ -187,9 +187,9 @@ def ajax(articleID,current_user):
     return jsonify(database.archive_up(articleID,current_user))
 
 ##### アーカイブ全削除ajax #####
-@app.route('/ajax/delete-archives/', methods=['GET'])
-def ajax_delete_archives():
-    return jsonify(database.delete_archives())
+@app.route('/ajax/delete-archives/<current_user>', methods=['GET'])
+def ajax_delete_archives(current_user):
+    return jsonify(database.delete_archives(current_user))
 
 ##### アーカイブ個別削除ajax #####
 @app.route('/ajax/delete/<articleID>', methods=['GET'])
@@ -220,14 +220,18 @@ def result(current_user):
         database.history_update(current_user,title,url)
         i = 0
         print(class_name)
+            
+        text_array = []
         for tag in soup.select(class_name):
             text = str(tag.text)
             print(text)
+            print(sitename)
+            text_array.append(text)
             # GIGAZINE記事のパースプログラム
-            if sitename == "gigazine":
-                print(text)
-                re.sub('http://', '', text)
-                print("ここから下が削除済み")
+            if sitename == "GIGAZINE":
+                text = re.sub(r"https?://.*\n" , "" , text)
+                text = re.sub(r"\n(\w|\s)*\n" , "" , text)
+                print("ここから下が削除済み!!!!!!!!!!!!!!!!!!!!!")
                 print(text)
             if i == 0:
                 f = open(path, 'w', encoding="UTF-8")
@@ -238,7 +242,9 @@ def result(current_user):
                 f.write(text)
                 f.close()
             i = i + 1
-
+        print(text_array)
+        
+            
     ##### サイト識別 #####
     # Cnet
     if "japan.cnet.com" in url:
@@ -272,9 +278,9 @@ def result(current_user):
     elif "edition.cnn.com" in url:
         sitename = "cnn -EN"
         Scraping(".zn-body__paragraph" , sitename)
-    elif "premierleague.com" in url:
-        sitename = "premierleague"
-        Scraping(".standardArticle p" , sitename)
+    elif "gigazine.net" in url:
+        sitename = "GIGAZINE"
+        Scraping("#article .cntimage .preface" , sitename)
     
 
     ##### 最新の投稿 #####
@@ -664,24 +670,15 @@ def result(current_user):
                 url = "https://edition.cnn.com" + url
                 print(url)
                 Scraping(".zn-body__paragraph" , target_site)
-                # Techcrunch スタートアップ
-            elif target_site == "Techcrunch【 Startup 】 - EN":
-                res = requests.get("https://techcrunch.com/category/startups")
+                # GIGAZINE
+            elif target_site == "GIGAZINE":
+                res = requests.get("https://gigazine.net/")
                 soup = bs4(res.content, "lxml")
-                h2 = soup.find('h2', class_="post-block__title")
-                a = h2.find('a')
+                div = soup.find('div', class_="thumb")
+                a = div.find('a')
                 url = a.get('href')
                 print(url)
-                Scraping(".article-content p" , target_site)
-            elif target_site == "Premierleague - EN":
-                res = requests.get("https://www.premierleague.com/news")
-                soup = bs4(res.content, "lxml")
-                section = soup.find('section', class_="featuredArticle")
-                a = section.find('a', class_="thumbnail thumbLong")
-                url = a.get('href')
-                url = "https://www.premierleague.com" + url
-                print(url)
-                Scraping(".standardArticle p" , target_site);    
+                Scraping("#article .cntimage .preface" , target_site)  
     else:
         return render_template("404.html")
 

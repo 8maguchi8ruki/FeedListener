@@ -18,6 +18,7 @@
         <p>Loading...</p>
         <p class="comment comment1">記事内容を取得中</p>
         <p class="comment comment2">音声ファイルを作成しています</p>
+        <p class="comment comment2">記事の長さによっては少々時間がかかる可能性があります</p>
     </div>
 </div>
 
@@ -82,9 +83,9 @@
                 button.value = "Techcrunch - EN";
                 button.textContent = "Techcrunch - EN";
                 cnt6 = cnt6 + 1;
-            }else if(value.match(/Premierleague/) && value.match(pattern) && cnt7 == 0){
-                button.value = "Premierleague - EN";
-                button.textContent = "Premierleague - EN";
+            }else if(value.match(/GIGAZINE/) && cnt7 == 0){
+                button.value = "GIGAZINE";
+                button.textContent = "GIGAZINE";
                 cnt7 = cnt7 + 1;
             }else{
                 continue;
