@@ -227,12 +227,12 @@ def result(current_user):
             print(text)
             print(sitename)
             text_array.append(text)
-            # GIGAZINE記事のパースプログラム
-            if sitename == "GIGAZINE":
-                text = re.sub(r"https?://.*\n" , "" , text)
-                text = re.sub(r"\n(\w|\s)*\n" , "" , text)
-                print("ここから下が削除済み!!!!!!!!!!!!!!!!!!!!!")
-                print(text)
+
+            text = re.sub(r"https?://.*\n" , "" , text)
+            text = re.sub(r"\n(\w|\s)*\n" , "" , text)
+            print("ここから下が削除済み!!!!!!!!!!!!!!!!!!!!!")
+            print(text)
+            
             if i == 0:
                 f = open(path, 'w', encoding="UTF-8")
                 f.write(text)
