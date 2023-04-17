@@ -230,10 +230,14 @@ def result(current_user):
             print(sitename)
             text_array.append(text)
 
-            text = re.sub(r"https?://.*\n" , "" , text)
-            text = re.sub(r"https?://.*.html" , "" , text)
-            text = re.sub(r"\n(\w|\s)*\n" , "" , text)
-            print("ここから下が削除済み!!!!!!!!!!!!!!!!!!!!!")
+            # 文の開始が連続した英単語で始まり、文の終わりが英単語の場合 ('は固有名詞などに対応するため 例:Tom's)
+            text = re.sub(r"\n(\w|')+\s+(\w|')+\s.*(\w|')+\n" , "" , text)
+            # 文にリンクが含まれている場合
+            text = re.sub(r"https?://.+\n" , "" , text)
+            # 改行されていないが、文にリンクが含まれている場合
+            text = re.sub(r"https?://.+.html" , "" , text)
+
+            print("ここから下は削除済みデータです")
             print(text)
 
             if i == 0:
