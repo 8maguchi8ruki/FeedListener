@@ -237,6 +237,7 @@ def result(current_user):
             # 改行されていないが、文にリンクが含まれている場合
             text = re.sub(r"https?://.+.html" , "" , text)
 
+            # 出力データの確認
             print("ここから下は削除済みデータです")
             print(text)
 
