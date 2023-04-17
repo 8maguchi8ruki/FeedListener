@@ -2,13 +2,14 @@
 
 <p>
 Web記事の読み上げに特化した音声読み上げアプリケーションです。
-  
+</p>
+
  <a href="https://www.feed-listener.com">https://www.feed-listener.com</a>
 
+ <p style="color:red;"> 
+📱＊スマートフォンでの利用を推奨しています。
   
-＊スマートフォンでの利用を推奨しています。
-  
-※利用するにはログインが必要です。
+📱＊利用するにはログインが必要です。
 </p>
 
 
