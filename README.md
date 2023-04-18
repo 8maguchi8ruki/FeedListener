@@ -43,7 +43,7 @@ BeautifulSoupが返すデータには改行文字列(\n)も含むため、改行
 
 <br>
 
-<img width="683" alt="スクリーンショット 2023-04-17 15 49 07" src="https://user-images.githubusercontent.com/77283970/232406292-19656b21-47c7-420e-823f-da4a1a6a7c77.png">
+<img width="679" alt="スクリーンショット 2023-04-18 16 08 58" src="https://user-images.githubusercontent.com/77283970/232699184-f3f545a5-e1ce-47cb-bac5-91c3c535d967.png">
 
 <hr>
 
