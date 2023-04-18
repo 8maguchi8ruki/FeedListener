@@ -53,7 +53,6 @@ def google():
 
 @app.route('/google/auth/')
 def google_auth():
-    time.sleep(1)
     token = oauth.google.authorize_access_token()
     user_info = token['userinfo']
     print("ユーザーデータ:")
@@ -230,7 +229,7 @@ def result(current_user):
             print(sitename)
             text_array.append(text)
 
-            # 英語記事の場合は排除対象としない
+            # 日本語記事の場合のみ英文を排除対象とする
             if not "EN" in target_site or "EN" in sitename:
                 # 文の開始が連続した英単語で始まり、文の終わりが英単語の場合 ('は固有名詞などに対応するため 例:Tom's)
                 text = re.sub(r"\n(\w|')+\s+(\w|')+\s.*(\w|')+\n" , "" , text)
