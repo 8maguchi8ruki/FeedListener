@@ -209,15 +209,11 @@ header div{
     font-size: 1.5em;
 }
 .cnn::first-letter{
-    color: #ff7d49;
-    font-size: 1.5em;
-}
-.cnn-en::first-letter{
-    color: #ff67ff;
+    color: #ff6223;
     font-size: 1.5em;
 }
 .techcrunch::first-letter{
-    color:#70d788;
+    color:#2ff85e;
     font-size: 1.5em;
 }
 .gigazine::first-letter{

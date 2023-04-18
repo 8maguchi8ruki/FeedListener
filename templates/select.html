@@ -58,12 +58,8 @@
             button.classList.add("sitename");
 
             value = mylists[j][2];
-            let pattern = /- EN/;
-            if(value.match(/Yahoo!/) && cnt1 == 0){
-                button.value = "Yahoo!";
-                button.textContent = "Yahoo!";
-                cnt1 = cnt1 + 1;
-            }else if(value.match(/産経新聞/) && cnt2 == 0){
+            let pattern = /-EN/;
+            if(value.match(/産経新聞/) && cnt2 == 0){
                 button.value = "産経新聞";
                 button.textContent = "産経新聞";
                 cnt2 = cnt2 + 1;
@@ -71,17 +67,13 @@
                 button.value = "GIZMODO";
                 button.textContent = "GIZMODO";
                 cnt3 = cnt3 + 1;
-            }else if(value.match(/CNN/) && value.match(pattern) && cnt4 == 0){
-                button.value = "CNN - EN";
-                button.textContent = "CNN - EN";
-                cnt4 = cnt4 + 1;
             }else if(value.match(/CNN/) && cnt5 == 0){
                 button.value = "CNN";
                 button.textContent = "CNN";
                 cnt5 = cnt5 + 1;
-            }else if(value.match(/Techcrunch/) && value.match(pattern) && cnt6 == 0){
-                button.value = "Techcrunch - EN";
-                button.textContent = "Techcrunch - EN";
+            }else if(value.match(/TechCrunch/) && value.match(pattern) && cnt6 == 0){
+                button.value = "TechCrunch -EN";
+                button.textContent = "TechCrunch -EN";
                 cnt6 = cnt6 + 1;
             }else if(value.match(/GIGAZINE/) && cnt7 == 0){
                 button.value = "GIGAZINE";

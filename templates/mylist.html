@@ -81,7 +81,7 @@
                 console.log(site);
                 for(let i=0;i<site.length;i++){
                     let site_value = site[i].getAttribute("value");
-                    let pattern = /- EN/;
+                    let pattern = /-EN/;
                     if(site_value.match(/Yahoo/)){
                         site[i].classList.add("yahoo");
                     }else if(site_value.match(/産経新聞/)){
@@ -92,7 +92,7 @@
                         site[i].classList.add("cnn-en");
                     }else if(site_value.match(/CNN/)){
                         site[i].classList.add("cnn");
-                    }else if(site_value.match(/Techcrunch/) && site_value.match(pattern)){
+                    }else if(site_value.match(/TechCrunch/) && site_value.match(pattern)){
                         site[i].classList.add("techcrunch");
                     }else if(site_value.match(/GIGAZINE/)){
                         site[i].classList.add("gigazine");
