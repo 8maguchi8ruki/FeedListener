@@ -32,6 +32,12 @@ user_photo = ""
 def index():
     return render_template('index.html')
 
+
+@app.route("/logout")
+def logout():
+    return redirect(url_for("index"))
+
+
 # googleログイン処理
 @app.route('/google/')
 def google():
