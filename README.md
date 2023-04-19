@@ -1,7 +1,7 @@
 <img style="width:300px;" src="https://user-images.githubusercontent.com/77283970/231783718-2fdef319-79be-4b7f-8f0b-16b7af5e1fa3.png">
 
 <h3>DEMO</h3>
-<video src="https://user-images.githubusercontent.com/77283970/231787433-9ee8e1cf-c4de-474a-a442-5153d6020fd6.mp4"></video>
+<video src=""></video>
 
 
 
