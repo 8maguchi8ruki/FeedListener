@@ -6,7 +6,7 @@ import requests
 import time
 from flask import request
 from flask import render_template,jsonify
-from flask import Flask
+from flask import Flask , session
 import database
 import contact_me
 import re
@@ -33,8 +33,10 @@ def index():
     return render_template('index.html')
 
 
+
 @app.route("/logout")
 def logout():
+    session.clear()
     return redirect(url_for("index"))
 
 
