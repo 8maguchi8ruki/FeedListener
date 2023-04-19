@@ -1,5 +1,10 @@
 <img style="width:300px;" src="https://user-images.githubusercontent.com/77283970/231783718-2fdef319-79be-4b7f-8f0b-16b7af5e1fa3.png">
 
+<h3>DEMO</h3>
+<video src="https://user-images.githubusercontent.com/77283970/231787433-9ee8e1cf-c4de-474a-a442-5153d6020fd6.mp4"></video>
+
+
+
 <p>
 Web記事の読み上げに特化した音声読み上げアプリケーションです。
 </p>
@@ -11,7 +16,6 @@ Web記事の読み上げに特化した音声読み上げアプリケーショ�
   
 📱＊利用するにはログインが必要です。
 </p>
-
 
 <hr>
 
@@ -50,7 +54,7 @@ BeautifulSoupが返すデータには改行文字列(\n)も含むため、改行
 <h3>使い方</h3>
 
 <p>
-使い方は至ってシンプルです。下記のDEMOを見ていただくのがわかりやすいかと思います。
+使い方は至ってシンプルです。
 まず、ホーム画面のマイリストを選択します。
 その後、マイリストページの【+】ボタンからお気に入りのサイトを追加します。
 追加が完了したらホーム画面の『最新記事』、『URLで検索』を選択することで対象の記事の音声ファイルが出力されます。
@@ -70,8 +74,6 @@ When you don't need your favorite site and you want to delete it, of couse it ca
 please push the delete button on the right.👍
 </p>
 
-<h3>DEMO</h3>
-<video src="https://user-images.githubusercontent.com/77283970/231787433-9ee8e1cf-c4de-474a-a442-5153d6020fd6.mp4"></video>
 
 <br>
 
