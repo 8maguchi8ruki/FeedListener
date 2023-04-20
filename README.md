@@ -87,6 +87,13 @@ BeautifulSoupが返すデータには改行文字列(\n)も含むため、改行
 
 
 <hr>
+<h3>使用した技術</h3>
+<h4>フロントエンド</h4>
+HTML,CSS,JavaScript(JQuery,Vue)
+<h4>バックエンド</h4>
+Python(Flask),SQlite3,heroku
+<h4>その他（ツール,API,ライブラリなど）</h4>
+Git,VScode,Google OAuth,gtts,BeutifulSoup　
 <h3>今後の開発の展望</h3>
 
 SPA化してUI/UXを向上させる。
