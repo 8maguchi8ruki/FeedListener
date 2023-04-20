@@ -91,16 +91,19 @@ BeautifulSoupが返すデータには改行文字列(\n)も含むため、改行
 <h4>フロントエンド</h4>
 HTML,CSS,JavaScript(JQuery,Vue)
 <h4>バックエンド</h4>
-Python(Flask),SQlite3,heroku
+Python(Flask),SQlite3,Heroku
 <h4>その他（ツール,API,ライブラリなど）</h4>
 Git,VScode,Google OAuth,gtts,BeutifulSoup　
+
+<hr>
+
 <h3>今後の開発の展望</h3>
 
 SPA化してUI/UXを向上させる。
 
 ↓
 
-AWSの知識を身につけ、herokuからAWSへ移行する。
+AWSの知識を身につけ、HerokuからAWSへ移行する。
 
 ↓
 
