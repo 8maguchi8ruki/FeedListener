@@ -99,16 +99,10 @@ Git,VScode,Google OAuth,gTTS,BeutifulSoup　
 
 <h3>今後の開発の展望</h3>
 
-SPA化してUI/UXを向上させる。
+↓SPA化してUI/UXを向上させる。
 
-↓
+↓AWSの知識を身につけ、HerokuからAWSへ移行する。
 
-AWSの知識を身につけ、HerokuからAWSへ移行する。
-
-↓
-
-ユーザーが安心して利用できるようセキュリティを徹底する。
-
-↓
+↓ユーザーが安心して利用できるようセキュリティを徹底する。
 
 公開
