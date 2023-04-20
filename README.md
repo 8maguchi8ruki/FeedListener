@@ -11,7 +11,7 @@ Web記事の読み上げに特化した音声読み上げアプリケーショ�
 
 テストアカウントでログイン済みのURLです
 
- <a href="https://www.feed-listener.com/home/504619528784697.7">feed-listener</a>
+ <a href="https://www.feed-listener.com/home/504619528784697.7">こちらから</a>
 
  <p style="color:red;"> 
 📱スマートフォンでの利用を推奨しています。
