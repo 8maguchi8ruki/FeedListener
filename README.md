@@ -1,7 +1,9 @@
 <img style="width:300px;" src="https://user-images.githubusercontent.com/77283970/231783718-2fdef319-79be-4b7f-8f0b-16b7af5e1fa3.png">
 
 <h3>DEMO</h3>
-<video src="https://user-images.githubusercontent.com/77283970/233033335-b0288d06-b84e-447d-84aa-4801c6943893.mp4"></video>
+
+https://user-images.githubusercontent.com/77283970/233316139-4039b946-8eb8-4ff1-af12-dd14b0211d2a.mp4
+
 
 
 <p>
@@ -23,7 +25,11 @@ Web記事の読み上げに特化した音声読み上げアプリケーショ�
 
 
 <h4>Googleアシスタントの音声読み上げは意外とポンコツ</h4>
-<video src="https://user-images.githubusercontent.com/77283970/231780953-1064b3a8-1f58-4474-96c3-b06916ef3507.mp4"></video>
+
+
+https://user-images.githubusercontent.com/77283970/233316468-8edec598-2bcc-44fb-abb8-02ad116bf7ad.mp4
+
+
 
 <br>
 
