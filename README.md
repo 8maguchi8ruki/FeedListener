@@ -93,7 +93,7 @@ HTML,CSS,JavaScript(JQuery,Vue)
 <h4>バックエンド</h4>
 Python(Flask),SQlite3,Heroku
 <h4>その他（ツール,API,ライブラリなど）</h4>
-Git,VScode,Google OAuth,gtts,BeutifulSoup　
+Git,VScode,Google OAuth,gTTS,BeutifulSoup　
 
 <hr>
 
