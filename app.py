@@ -75,7 +75,7 @@ def google_auth():
     user_name = user_info.name
     print(user_photo)
     print(user_id)
-    user_id = int(user_id) / 200000
+    user_id = user_id[-4:]
     database.update_user(str(user_id) , user_name , user_photo)
     return redirect(url_for("home", current_user = user_id))
 

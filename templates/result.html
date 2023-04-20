@@ -38,6 +38,10 @@
     <script>
         var title = document.querySelector("#title").textContent;
         var url = document.querySelector("#url").textContent;
+
+        let archive_keep = {
+            value: null
+        }
         // コンポーネントのスクリプト
         Vue.component('mycomp',{
             template:'#mycomp-template',    
@@ -55,8 +59,8 @@
                     $.get("/ajax/" + this.id + "/" + current_user, function(data){
                         $("#archive-button").addClass("active");
                         $("#archive-button").text("アーカイブしました");
-                        $("#archive-button").attr("disabled","true");
-                        sessionStorage.setItem("saved",true);
+                        // $("#archive-button").attr("disabled","true");
+                        archive_keep.value = "true";
                         console.log(data);
                     });
                 }
@@ -72,8 +76,8 @@
             audioElement.playbackRate = 1.5;
         });
 
-        
 
+        $("#archive-button").attr("disabled", archive_keep.value);
     </script>
 
 {% endblock %}
