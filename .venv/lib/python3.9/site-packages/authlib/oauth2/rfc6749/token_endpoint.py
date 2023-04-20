@@ -21,13 +21,11 @@ class TokenEndpoint(object):
         """Authentication client for endpoint with ``CLIENT_AUTH_METHODS``.
         """
         client = self.server.authenticate_client(
-            request=request,
-            methods=self.CLIENT_AUTH_METHODS,
-        )
+            request, self.CLIENT_AUTH_METHODS, self.ENDPOINT_NAME)
         request.client = client
         return client
 
-    def authenticate_endpoint_credential(self, request, client):
+    def authenticate_token(self, request, client):
         raise NotImplementedError()
 
     def create_endpoint_response(self, request):

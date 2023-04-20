@@ -1,7 +1,9 @@
 import time
+import base64
+import hashlib
 from authlib.common.security import generate_token
 from authlib.common.urls import extract_params
-from authlib.common.encoding import to_native
+from authlib.common.encoding import to_native, to_bytes, to_unicode
 from .wrapper import OAuth1Request
 from .signature import (
     SIGNATURE_HMAC_SHA1,
@@ -116,25 +118,19 @@ class ClientAuth(object):
             raise ValueError('Unknown signature type specified.')
         return uri, headers, body
 
-    def sign(self, method, uri, headers, body, nonce=None, timestamp=None):
+    def sign(self, method, uri, headers, body):
         """Sign the HTTP request, add OAuth parameters and signature.
 
         :param method: HTTP method of the request.
         :param uri:  URI of the HTTP request.
         :param body: Body payload of the HTTP request.
         :param headers: Headers of the HTTP request.
-        :param nonce: A string to represent nonce value. If not configured,
-                      this method will generate one for you.
-        :param timestamp: Current timestamp. If not configured, this method
-                          will generate one for you.
         :return: uri, headers, body
         """
-        if nonce is None:
-            nonce = generate_nonce()
-        if timestamp is None:
-            timestamp = generate_timestamp()
+        nonce = generate_nonce()
+        timestamp = generate_timestamp()
         if body is None:
-            body = ''
+            body = b''
 
         # transform int to str
         timestamp = str(timestamp)
@@ -143,6 +139,13 @@ class ClientAuth(object):
             headers = {}
 
         oauth_params = self.get_oauth_params(nonce, timestamp)
+
+        # https://datatracker.ietf.org/doc/html/draft-eaton-oauth-bodyhash-00.html
+        # include oauth_body_hash
+        if body and headers.get('Content-Type') != CONTENT_TYPE_FORM_URLENCODED:
+            oauth_body_hash = base64.b64encode(hashlib.sha1(body).digest())
+            oauth_params.append(('oauth_body_hash', oauth_body_hash.decode('utf-8')))
+
         uri, headers, body = self._render(uri, headers, body, oauth_params)
 
         sig = self.get_oauth_signature(method, uri, headers, body)
@@ -171,8 +174,8 @@ class ClientAuth(object):
             uri, headers, body = self.sign(method, uri, headers, body)
         else:
             # Omit body data in the signing of non form-encoded requests
-            uri, headers, _ = self.sign(method, uri, headers, '')
-            body = ''
+            uri, headers, _ = self.sign(method, uri, headers, b'')
+            body = b''
         return uri, headers, body
 
 

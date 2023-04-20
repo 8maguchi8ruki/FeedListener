@@ -1,11 +1,11 @@
 import logging
-from authlib.jose import jwt
-from authlib.jose.errors import JoseError
+from authlib.jose import jwt, JoseError
 from ..rfc6749 import BaseGrant, TokenEndpointMixin
 from ..rfc6749 import (
     UnauthorizedClientError,
     InvalidRequestError,
-    InvalidGrantError
+    InvalidGrantError,
+    InvalidClientError,
 )
 from .assertion import sign_jwt_bearer_assertion
 
@@ -16,24 +16,20 @@ JWT_BEARER_GRANT_TYPE = 'urn:ietf:params:oauth:grant-type:jwt-bearer'
 class JWTBearerGrant(BaseGrant, TokenEndpointMixin):
     GRANT_TYPE = JWT_BEARER_GRANT_TYPE
 
+    #: Options for verifying JWT payload claims. Developers MAY
+    #: overwrite this constant to create a more strict options.
+    CLAIMS_OPTIONS = {
+        'iss': {'essential': True},
+        'aud': {'essential': True},
+        'exp': {'essential': True},
+    }
+
     @staticmethod
     def sign(key, issuer, audience, subject=None,
              issued_at=None, expires_at=None, claims=None, **kwargs):
         return sign_jwt_bearer_assertion(
             key, issuer, audience, subject, issued_at,
             expires_at, claims, **kwargs)
-
-    def create_claims_options(self):
-        """Create a claims_options for verify JWT payload claims. Developers
-        MAY overwrite this method to create a more strict options.
-        """
-        # https://tools.ietf.org/html/rfc7523#section-3
-        return {
-            'iss': {'essential': True},
-            'sub': {'essential': True},
-            'aud': {'essential': True},
-            'exp': {'essential': True},
-        }
 
     def process_assertion_claims(self, assertion):
         """Extract JWT payload claims from request "assertion", per
@@ -45,15 +41,19 @@ class JWTBearerGrant(BaseGrant, TokenEndpointMixin):
 
         .. _`Section 3.1`: https://tools.ietf.org/html/rfc7523#section-3.1
         """
-        claims = jwt.decode(
-            assertion, self.resolve_public_key,
-            claims_options=self.create_claims_options())
         try:
+            claims = jwt.decode(
+                assertion, self.resolve_public_key,
+                claims_options=self.CLAIMS_OPTIONS)
             claims.validate()
         except JoseError as e:
             log.debug('Assertion Error: %r', e)
             raise InvalidGrantError(description=e.description)
         return claims
+
+    def resolve_public_key(self, headers, payload):
+        client = self.resolve_issuer_client(payload['iss'])
+        return self.resolve_client_key(client, headers, payload)
 
     def validate_token_request(self):
         """The client makes a request to the token endpoint by sending the
@@ -91,7 +91,7 @@ class JWTBearerGrant(BaseGrant, TokenEndpointMixin):
             raise InvalidRequestError('Missing "assertion" in request')
 
         claims = self.process_assertion_claims(assertion)
-        client = self.authenticate_client(claims)
+        client = self.resolve_issuer_client(claims['iss'])
         log.debug('Validate token request of %s', client)
 
         if not client.check_grant_type(self.GRANT_TYPE):
@@ -99,7 +99,18 @@ class JWTBearerGrant(BaseGrant, TokenEndpointMixin):
 
         self.request.client = client
         self.validate_requested_scope()
-        self.request.user = self.authenticate_user(client, claims)
+
+        subject = claims.get('sub')
+        if subject:
+            user = self.authenticate_user(subject)
+            if not user:
+                raise InvalidGrantError(description='Invalid "sub" value in assertion')
+
+            log.debug('Check client(%s) permission to User(%s)', client, user)
+            if not self.has_granted_permission(client, user):
+                raise InvalidClientError(
+                    description='Client has no permission to access user data')
+            self.request.user = user
 
     def create_token_response(self):
         """If valid and authorized, the authorization server issues an access
@@ -107,49 +118,65 @@ class JWTBearerGrant(BaseGrant, TokenEndpointMixin):
         """
         token = self.generate_token(
             scope=self.request.scope,
+            user=self.request.user,
             include_refresh_token=False,
         )
         log.debug('Issue token %r to %r', token, self.request.client)
         self.save_token(token)
         return 200, token, self.TOKEN_RESPONSE_HEADER
 
-    def authenticate_user(self, client, claims):
-        """Authenticate user with the given assertion claims. Developers MUST
-        implement it in subclass, e.g.::
+    def resolve_issuer_client(self, issuer):
+        """Fetch client via "iss" in assertion claims. Developers MUST
+        implement this method in subclass, e.g.::
 
-            def authenticate_user(self, client, claims):
-                user = User.get_by_sub(claims['sub'])
-                if is_authorized_to_client(user, client):
-                    return user
+            def resolve_issuer_client(self, issuer):
+                return Client.query_by_iss(issuer)
 
-        :param client: OAuth Client instance
-        :param claims: assertion payload claims
-        :return: User instance
-        """
-        raise NotImplementedError()
-
-    def authenticate_client(self, claims):
-        """Authenticate client with the given assertion claims. Developers MUST
-        implement it in subclass, e.g.::
-
-            def authenticate_client(self, claims):
-                return Client.get_by_iss(claims['iss'])
-
-        :param claims: assertion payload claims
+        :param issuer: "iss" value in assertion
         :return: Client instance
         """
         raise NotImplementedError()
 
-    def resolve_public_key(self, headers, payload):
-        """Find public key to verify assertion signature. Developers MUST
+    def resolve_client_key(self, client, headers, payload):
+        """Resolve client key to decode assertion data. Developers MUST
+        implement this method in subclass. For instance, there is a
+        "jwks" column on client table, e.g.::
+
+            def resolve_client_key(self, client, headers, payload):
+                # from authlib.jose import JsonWebKey
+
+                key_set = JsonWebKey.import_key_set(client.jwks)
+                return key_set.find_by_kid(headers['kid'])
+
+        :param client: instance of OAuth client model
+        :param headers: headers part of the JWT
+        :param payload: payload part of the JWT
+        :return: ``authlib.jose.Key`` instance
+        """
+        raise NotImplementedError()
+
+    def authenticate_user(self, subject):
+        """Authenticate user with the given assertion claims. Developers MUST
         implement it in subclass, e.g.::
 
-            def resolve_public_key(self, headers, payload):
-                jwk_set = get_jwk_set_by_iss(payload['iss'])
-                return filter_jwk_set(jwk_set, headers['kid'])
+            def authenticate_user(self, subject):
+                return User.get_by_sub(subject)
 
-        :param headers: JWT headers dict
-        :param payload: JWT payload dict
-        :return: A public key
+        :param subject: "sub" value in claims
+        :return: User instance
+        """
+        raise NotImplementedError()
+
+    def has_granted_permission(self, client, user):
+        """Check if the client has permission to access the given user's resource.
+        Developers MUST implement it in subclass, e.g.::
+
+            def has_granted_permission(self, client, user):
+                permission = ClientUserGrant.query(client=client, user=user)
+                return permission.granted
+
+        :param client: instance of OAuth client model
+        :param user: instance of User model
+        :return: bool
         """
         raise NotImplementedError()

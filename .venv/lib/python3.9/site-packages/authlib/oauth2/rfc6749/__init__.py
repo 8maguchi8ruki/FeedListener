@@ -20,6 +20,7 @@ from .errors import (
     InvalidScopeError,
     InsecureTransportError,
     UnauthorizedClientError,
+    UnsupportedResponseTypeError,
     UnsupportedGrantTypeError,
     UnsupportedTokenTypeError,
     # exceptions for clients
@@ -31,7 +32,7 @@ from .errors import (
 from .models import ClientMixin, AuthorizationCodeMixin, TokenMixin
 from .authenticate_client import ClientAuthentication
 from .authorization_server import AuthorizationServer
-from .resource_protector import ResourceProtector
+from .resource_protector import ResourceProtector, TokenValidator
 from .token_endpoint import TokenEndpoint
 from .grants import (
     BaseGrant,
@@ -43,6 +44,7 @@ from .grants import (
     ClientCredentialsGrant,
     RefreshTokenGrant,
 )
+from .util import scope_to_list, list_to_scope
 
 __all__ = [
     'OAuth2Request', 'OAuth2Token', 'HttpRequest',
@@ -55,6 +57,7 @@ __all__ = [
     'InvalidScopeError',
     'InsecureTransportError',
     'UnauthorizedClientError',
+    'UnsupportedResponseTypeError',
     'UnsupportedGrantTypeError',
     'UnsupportedTokenTypeError',
     'MissingCodeException',
@@ -65,6 +68,7 @@ __all__ = [
     'ClientAuthentication',
     'AuthorizationServer',
     'ResourceProtector',
+    'TokenValidator',
     'TokenEndpoint',
     'BaseGrant',
     'AuthorizationEndpointMixin',
@@ -74,4 +78,5 @@ __all__ = [
     'ResourceOwnerPasswordCredentialsGrant',
     'ClientCredentialsGrant',
     'RefreshTokenGrant',
+    'scope_to_list', 'list_to_scope',
 ]

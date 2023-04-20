@@ -79,6 +79,14 @@
     </div>
 
     <script>
+        
+        history.pushState(null, null, null);
+        $(window).on("popstate", function (event) {
+            console.log("クリックサレマシタ")
+            history.pushState(null, null, null);
+            alert("ログアウトボタンからログイン画面へ戻ってください。");
+         });
+
             let secret = document.getElementById("secret");
             console.log(secret)
             let user_id = secret.querySelector(".user_id");
@@ -95,5 +103,7 @@
             user_photo = sessionStorage.getItem("user_photo");
             user_id = sessionStorage.getItem("user_id");
             $("#user_photo").attr("src" , user_photo);
+
+
     </script>
 {% endblock %}

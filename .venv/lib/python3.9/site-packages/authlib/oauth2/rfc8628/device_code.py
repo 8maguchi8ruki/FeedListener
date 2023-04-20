@@ -1,8 +1,6 @@
-import time
 import logging
 from ..rfc6749.errors import (
     InvalidRequestError,
-    InvalidClientError,
     UnauthorizedClientError,
     AccessDeniedError,
 )
@@ -62,6 +60,7 @@ class DeviceCodeGrant(BaseGrant, TokenEndpointMixin):
         indication that the client should continue to poll.
     """
     GRANT_TYPE = DEVICE_CODE_GRANT_TYPE
+    TOKEN_ENDPOINT_AUTH_METHODS = ['client_secret_basic', 'client_secret_post', 'none']
 
     def validate_token_request(self):
         """After displaying instructions to the user, the client creates an
@@ -95,18 +94,15 @@ class DeviceCodeGrant(BaseGrant, TokenEndpointMixin):
         if not device_code:
             raise InvalidRequestError('Missing "device_code" in payload')
 
-        if not self.request.client_id:
-            raise InvalidRequestError('Missing "client_id" in payload')
+        client = self.authenticate_token_endpoint_client()
+        if not client.check_grant_type(self.GRANT_TYPE):
+            raise UnauthorizedClientError()
 
         credential = self.query_device_credential(device_code)
         if not credential:
             raise InvalidRequestError('Invalid "device_code" in payload')
 
-        if credential.get_client_id() != self.request.client_id:
-            raise UnauthorizedClientError()
-
-        client = self.authenticate_token_endpoint_client()
-        if not client.check_grant_type(self.GRANT_TYPE):
+        if credential.get_client_id() != client.get_client_id():
             raise UnauthorizedClientError()
 
         user = self.validate_device_credential(credential)
@@ -132,6 +128,9 @@ class DeviceCodeGrant(BaseGrant, TokenEndpointMixin):
         return 200, token, self.TOKEN_RESPONSE_HEADER
 
     def validate_device_credential(self, credential):
+        if credential.is_expired():
+            raise ExpiredTokenError()
+
         user_code = credential.get_user_code()
         user_grant = self.query_user_grant(user_code)
 
@@ -141,24 +140,10 @@ class DeviceCodeGrant(BaseGrant, TokenEndpointMixin):
                 raise AccessDeniedError()
             return user
 
-        exp = credential.get_expires_at()
-        now = time.time()
-        if exp < now:
-            raise ExpiredTokenError()
-
-        if self.should_slow_down(credential, now):
+        if self.should_slow_down(credential):
             raise SlowDownError()
 
         raise AuthorizationPendingError()
-
-    def authenticate_token_endpoint_client(self):
-        client = self.server.query_client(self.request.client_id)
-        if not client:
-            raise InvalidClientError()
-        self.server.send_signal(
-            'after_authenticate_client',
-            client=client, grant=self)
-        return client
 
     def query_device_credential(self, device_code):
         """Get device credential from previously savings via ``DeviceAuthorizationEndpoint``.
@@ -190,7 +175,7 @@ class DeviceCodeGrant(BaseGrant, TokenEndpointMixin):
         """
         raise NotImplementedError()
 
-    def should_slow_down(self, credential, now):
+    def should_slow_down(self, credential):
         """The authorization request is still pending and polling should
         continue, but the interval MUST be increased by 5 seconds for this
         and all subsequent requests.
