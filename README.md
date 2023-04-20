@@ -11,7 +11,7 @@ Web記事の読み上げに特化した音声読み上げアプリケーショ�
 
 
 
- <a href="https://www.feed-listener.com/home/504619528784697.7">アプリはこちらから</a>（テストアカウントでログイン済みです）
+ <a target="_blank" rel="noopener noreferrer" href="https://www.feed-listener.com/home/504619528784697.7">アプリはこちらから</a>（テストアカウントでログイン済みです）
 
  <p style="color:red;"> 
 📱スマートフォンでの利用を推奨しています。
