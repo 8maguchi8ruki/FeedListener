@@ -45,6 +45,7 @@ def logout():
 # googleログイン処理
 @app.route('/google/')
 def google():
+    session.pop('user',None)
     GOOGLE_CLIENT_ID = '581315401881-2jeheeiinnvg7cjji7trcq5il09jnr6i.apps.googleusercontent.com'
     GOOGLE_CLIENT_SECRET = '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'
     CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
