@@ -172,7 +172,6 @@ def delete_this(articleID):
 
 
 
-
 ##### マイリスト登録 #####
 def update_site(current_user , name):
     datas = []
