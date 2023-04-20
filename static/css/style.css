@@ -281,8 +281,8 @@ header div{
 }
 
 .recent,.select-site{
+    width: 100%;
     margin-top: 10px;
-    background: linear-gradient(90deg, #54af69 ,#54aca9);
 }
 .recent .target-site , .select-site .target-site{
     width: 100%;
@@ -514,55 +514,56 @@ form.site input{
     margin: 10px 0;
 }
 
-.wrap-seach{
+.wrap-search{
     width: 100%;
-    margin: 0 auto;
+    box-sizing: border-box;
 }
-.wrap-seach img{
+.wrap-search img{
     width: 80%;
     display: block;
     margin: 0 auto;
     margin-top: 50px;
 }
-.wrap-seach h2{
+.wrap-search h2{
     font-size: 1em;
     margin-bottom: 0;
 }
-.wrap-seach p{
+.wrap-search p{
     display: block;
     font-size: 1em;
 }
-.wrap-seach input{
+.wrap-search input{
     width: 80%;
-    line-height: 50px;
+    line-height: 70px;
     padding-left: 10px;
     font-size: 1em;
-    border: 1px solid #aaa;
+    border: 1px solid #252525;
     box-sizing: border-box;
     outline: none;
     color: #252525;
     font-weight: bold;
-    background: linear-gradient(90deg, #54af69 ,#54aca9);
+    background: #ccc;
 }
-.wrap-seach input:hover{
+.wrap-search input:hover{
     cursor: pointer
 }
-.wrap-seach button{
+.wrap-search button{
     height: 50px;
     width: 50px;
-    margin-left: 10px;
     background-color: #E7E9EB;
     color: #252525;
     border: 1px solid #aaa;
     background: linear-gradient(90deg, #54af69 ,#54aca9);
 }
-.wrap-seach button:hover{
+.wrap-search button:hover{
     background-color: #ddd;
     cursor: pointer;
 }
-.wrap-seach div{
+.wrap-search div{
     display: flex;
-
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
 }
 
 
@@ -683,7 +684,6 @@ form.site input{
 
 #archives button{
     text-align: center;
-    width: 80px;
 }
 #archive-button.active{
     color: #f9f9f9;
@@ -714,9 +714,9 @@ form.site input{
     height: 30px;
     border: none;
     color: #252525;
-}   
+}
 #delete-this{
-    width: 80px;
+    width: 60px;
     height: 30px;
     border: none;
     color: #ccc;
@@ -730,6 +730,21 @@ form.site input{
 #delete-archives:hover ,.delete-trigger:hover ,#delete-this:hover {
     color: red;
     cursor: pointer;
+}
+
+#again-form{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#again-button{
+    width: 120px;
+    height: 30px;
+    border: none;
+    font-weight: bold;
+    background-color: #9f56ff;
+    text-align: center;
+    color: #ccc;
 }
 
 

@@ -96,7 +96,18 @@
 
                     </nav>
                 </div>
+
+                <!-- ローディングアニメーション -->
+                <div id="loader-bg">
+                    <div id="loader">
+                        <img src="../static/img/Search.png" width="100" height="100" alt="Loading..." />
+                        <p>Loading...</p>
+                        <p class="comment comment1">記事内容を取得中</p>
+                        <p class="comment comment2">音声ファイルを作成しています</p>
+                    </div>
+                </div>
     </div>
+
    
     <script>
         // ユーザーごとにセッション管理
@@ -133,6 +144,20 @@
             }
             console.log(site_value);
         }
+
+        // ローディングアニメーション制御
+        function loading(){
+            $('#loader-bg ,#loader').css('display', 'block');
+            $(".comment1").addClass("active");
+            setTimeout(() => {
+                $(".comment1,.comment2").toggleClass("active");
+            }, 2000);
+        }
+        function loadFinished(){
+            let loader = document.getElementById("loader-bg");
+            loader.classList.add("fadeout");
+        }
+        window.addEventListener('load', loadFinished);
     </script>
 </body>
 </html>

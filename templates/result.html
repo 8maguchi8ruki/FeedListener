@@ -56,6 +56,7 @@
                         $("#archive-button").addClass("active");
                         $("#archive-button").text("アーカイブしました");
                         $("#archive-button").attr("disabled","true");
+                        sessionStorage.setItem("saved",true);
                         console.log(data);
                     });
                 }
@@ -70,6 +71,9 @@
             const audioElement = document.querySelector("audio");
             audioElement.playbackRate = 1.5;
         });
+
+        
+
     </script>
 
 {% endblock %}

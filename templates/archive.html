@@ -57,11 +57,7 @@
     new Vue({
         el:'#vue-container',
     });
-</script>
 
-
-
-<script>
     var cnt = 0;
     var archives = {{archives|tojson}};
     for(let i=0;i<archives.length;i++){
@@ -79,6 +75,7 @@
         cnt = 0;
     };
     console.log(archives);
+
     var ul = document.querySelector("#archives");
     for(let i=0;i<archives.length;i++){
         if(archives[i] != ""){
@@ -91,15 +88,30 @@
             a.innerHTML = archives[i][2];
             a.href = archives[i][3];
             button.value = archives[i][0];
+
+
+            let again_form = document.createElement("form");
+            let again_button = document.createElement("button");
+            again_button.id = "again-button";
+            again_button.textContent = "もう一度";
+            again_button.value = archives[i][3];
+            again_button.name = "url";
+            again_button.setAttribute("onclick", "loading()");
+            again_form.action = "/result/" + current_user;
+            again_form.method = "POST";
+            again_form.id = "again-form";
+            again_form.appendChild(again_button);
+
             li.appendChild(a);
             div.appendChild(li);
             div.appendChild(button);
+            div.appendChild(again_form);
             ul.prepend(div);
         }
     }
 </script>
 <script>
-    $("#archives div button").on('click',function(){
+    $("#archives div #delete-this").on('click',function(){
         $.ajax('/ajax/delete/' + this.value,
         {
             type: 'get',

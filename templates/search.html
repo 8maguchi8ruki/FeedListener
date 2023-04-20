@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}  
 
-<div class="wrap-seach">
+<div class="wrap-search">
     <form class="search to-result" method="POST" action="/result">
         <h3 style="font-weight:bold;" >URLで調べる</h3>
         <p>記事URLを入力してください</p>
@@ -28,19 +28,5 @@
         </div>
     </div>
 
-    <script>
-        function loading(){
-            $('#loader-bg ,#loader').css('display', 'block');
-            $(".comment1").addClass("active");
-            setTimeout(() => {
-                $(".comment1,.comment2").toggleClass("active");
-            }, 2000);
-        }
-
-        function loadFinished(){
-            let loader = document.getElementById("loader-bg");
-            loader.classList.add("fadeout");
-        }
-        window.addEventListener('load', loadFinished);
     </script>
 {% endblock %}
