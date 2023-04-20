@@ -23,6 +23,7 @@ app = Flask(__name__)
 app.secret_key = os.urandom(12)
 print(app.secret_key)
 oauth = OAuth(app)
+
 user_info = ""
 user_photo = ""
 
@@ -30,13 +31,14 @@ user_photo = ""
 user_photo = ""
 @app.route('/')
 def index():
-    return render_template('index.html')
+    user = session.get('user')
+    return render_template('index.html', user=user)
 
 
 
 @app.route("/logout")
 def logout():
-    session.clear()
+    session.pop('user',None)
     return redirect(url_for("index"))
 
 
@@ -62,7 +64,8 @@ def google():
 @app.route('/google/auth/')
 def google_auth():
     token = oauth.google.authorize_access_token()
-    user_info = token['userinfo']
+    session['user'] = token['userinfo']
+    user_info = session['user']
     print("ユーザーデータ:")
     print(user_info)
     user_id = user_info.sub
