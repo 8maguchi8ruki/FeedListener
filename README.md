@@ -58,30 +58,29 @@ BeautifulSoupが返すデータには改行文字列(\n)も含むため、改行
 
 <hr>
 
-<h3>使い方</h3>
+<h3>基本操作</h3>
 
 <p>
-使い方は至ってシンプルです。
-まず、ホーム画面のマイリストを選択します。
-その後、マイリストページの【+】ボタンからお気に入りのサイトを追加します。
-追加が完了したらホーム画面の『最新記事』、『URLで検索』を選択することで対象の記事の音声ファイルが出力されます。
-（『URLで検索』の場合は対象のURLを入力する必要があります。）
+基本操作は以下の3ステップ。
+
+<h4>Step1</h4>
+まずお使いのGoogleアカウントでログインします。
+<h4>Step2</h4>
+ホーム画面のマイリストからマイリストページへ移動します。マイリストページの右上のプラスボタンを押し、追加したいサイトを選択してマイリストを作成します。
+<h4>Step3</h4>
+マイリストの登録が完了したらホーム画面に戻り、【最新記事】および【URLで調べる】が利用可能になります。
+（【最新記事】は選択されたサイトの最新記事の音声ファイルを出力します。【URLで検索】の場合は読み上げ対象の記事URLを検索フォームに入力する必要があります。）
 </p>
 
-<h3>HOW TO USE</h3>
+<h3>アーカイブ機能について</h3>
 
-<p>
-This is simple. 
-First of all, select mylist from the menu.
-and then You just have to add your favorite site from plus button.
-after this, You can select recent post and url search button.
-that's it !!
-You can easily to listen Web article whenever you want.
-When you don't need your favorite site and you want to delete it, of couse it can be deleted. 
-please push the delete button on the right.👍
-</p>
+お気に入りの記事、再度聴きたい記事を保存しておくことができます。
 
+【もう一度】ボタンを押すと、対象の記事の音声ファイルを再度作成します。
 
+アーカイブに保存しておけば、再度聴きたいときに、対象の記事URLを探す手間がなくなるのでとても便利です。ぜひご活用ください。
+
+なお、必要がなくなった時は右端の削除ボタンから削除することができます。
 <br>
 
 
