@@ -9,13 +9,12 @@ https://user-images.githubusercontent.com/77283970/233369520-50a32a23-4253-4d53-
 Web記事の読み上げに特化した音声読み上げアプリケーションです。
 </p>
 
-
-
- <a target="_blank" rel="noopener noreferrer" href="https://www.feed-listener.com/home/504619528784697.7">アプリはこちらから</a>（テストアカウントでログイン済みです）
-
  <p> 
 📱スマートフォンでの利用を推奨しています。
 </p>
+
+ <a href="https://www.feed-listener.com/home/504619528784697.7">アプリはこちらから</a>（テストアカウントでログイン済みです）
+
 
 <hr>
 
