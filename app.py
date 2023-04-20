@@ -31,8 +31,9 @@ user_photo = ""
 user_photo = ""
 @app.route('/')
 def index():
-    user = session.get('user')
-    return render_template('index.html', user=user)
+    # user = session.get('user')
+    session.pop('user',None)
+    return render_template('index.html')
 
 
 
@@ -45,7 +46,6 @@ def logout():
 # googleログイン処理
 @app.route('/google/')
 def google():
-    session.pop('user',None)
     GOOGLE_CLIENT_ID = '581315401881-2jeheeiinnvg7cjji7trcq5il09jnr6i.apps.googleusercontent.com'
     GOOGLE_CLIENT_SECRET = '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'
     CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
@@ -64,6 +64,7 @@ def google():
 
 @app.route('/google/auth/')
 def google_auth():
+    print(request.args.get('state'), session.get('_google_authlib_state_'))
     token = oauth.google.authorize_access_token()
     session['user'] = token['userinfo']
     user_info = session['user']
