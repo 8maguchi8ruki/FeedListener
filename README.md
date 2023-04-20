@@ -13,7 +13,7 @@ Web記事の読み上げに特化した音声読み上げアプリケーショ�
 
  <a target="_blank" rel="noopener noreferrer" href="https://www.feed-listener.com/home/504619528784697.7">アプリはこちらから</a>（テストアカウントでログイン済みです）
 
- <p style="color:red;"> 
+ <p> 
 📱スマートフォンでの利用を推奨しています。
 </p>
 
