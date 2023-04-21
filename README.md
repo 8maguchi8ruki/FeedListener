@@ -91,7 +91,7 @@ BeautifulSoupが返すデータには改行文字列(\n)も含むため、改行
 <hr>
 <h3>使用した技術</h3>
 <h4>フロントエンド</h4>
-HTML,CSS,JavaScript(JQuery,Vue)
+HTML,CSS(Sass),JavaScript(JQuery,Vue)
 <h4>バックエンド</h4>
 Python(Flask),SQlite3,Heroku
 <h4>その他（ツール,API,ライブラリなど）</h4>
