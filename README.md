@@ -13,7 +13,9 @@ Web記事の読み上げに特化した音声読み上げアプリケーショ�
 📱スマートフォンでの利用を推奨しています。
 </p>
 
- <a href="https://www.feed-listener.com/home/1762">https://www.feed-listener.com/home/1762</a>（テストアカウントでログイン済みです）
+ <a href="https://www.feed-listener.com/home/1762">https://www.feed-listener.com/home/1762</a>
+
+（テストアカウントでログイン済みです）
 
 
 <hr>
@@ -59,7 +61,7 @@ BeautifulSoupが返すデータには改行文字列(\n)も含むため、改行
 <h3>基本操作</h3>
 
 <p>
-基本操作は以下の3ステップ。
+基本操作は以下の3ステップ。(冒頭のDEMO動画を見ていただくのがわかりやすいかと思います。)
 
 <h4>Step1</h4>
 まずお使いのGoogleアカウントでログインします。
@@ -86,3 +88,13 @@ BeautifulSoupが返すデータには改行文字列(\n)も含むため、改行
 <br>
 
 
+<hr>
+<h3>使用した技術</h3>
+<h4>フロントエンド</h4>
+HTML,CSS(Sass),JavaScript(Vue.js)
+<h4>バックエンド</h4>
+Python(Flask),SQlite3,Heroku
+<h4>その他（ツール,API,ライブラリなど）</h4>
+Git,VScode,Google OAuth,gTTS,BeutifulSoup　
+
+<hr>
