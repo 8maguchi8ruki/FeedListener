@@ -466,7 +466,7 @@ def result():
     else:
         hoge = gTTS(data,lang="ja")
     rannum = random.uniform(0,10000)    
-    hoge.save(f"static/files/audio/article{rannum}.mp3")
+    hoge.save(f"static/files/audio/article.mp3")
     f.close()
 
     def get_title(t):
