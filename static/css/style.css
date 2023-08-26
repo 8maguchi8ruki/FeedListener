@@ -66,14 +66,14 @@ header{
     width: 100%;
     padding: 20px 0;
     box-sizing: border-box;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #252525;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 101;
-    background-color: #f9f9f9;
     display: flex;
     justify-content: center;
+    background-color: #f9f9f9;
 }
 h1{
     margin: 10px 0;
@@ -126,7 +126,7 @@ form.site input{
 }
 
 .wrap-search{
-    width: 800px;
+    width: 500px;
     margin: 0 auto;
 }
 .wrap-search.nomal{
@@ -183,6 +183,7 @@ form.site input{
     background-color: #ddd;
     cursor: pointer;
 }
+
 .wrap-search.nomal input , .wrap-search.nomal button{
     background: #ddd;
 }
@@ -331,11 +332,12 @@ form.site input{
 }
 .sitename{
    line-height: 50px;
-   width: 200px;
+   width: 198px;
    border: none;
-   border: 1px solid #ddd;
+   color: #252525;
    background: linear-gradient(90deg, #54af69 ,#54aca9);
    font-size: 1rem;
+   margin: 1px;
 }
 .sitename:hover{
     opacity: 0.5;
@@ -365,3 +367,25 @@ form.site input{
 .cnet::first-letter{
     color: #ad781c;
 }
+
+
+
+/* サブメニュー */
+#sub-menu{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: #f9f9f9;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid #ddd;
+}
+#sub-menu-pc{
+    display: none;
+}
+
+
+

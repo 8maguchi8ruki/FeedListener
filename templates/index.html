@@ -3,7 +3,6 @@
 
 <div class="wrap-home">
     <h3>高性能読み上げ対応サイト</h3>
-    <h4>日本語サイト</h4>
     <form class="adapted-site" action="/search" method="POST">
         <button type="submit" name="sitename" class="sitename cnn" value="CNN" onclick="toSearch()">CNN</button>
         <button type="submit" name="sitename" class="sitename gigazine" value="Gigazine" onclick="toSearch()">Gigazine</button>
@@ -13,10 +12,8 @@
         <button type="submit" name="sitename" class="sitename cnet" value="cnet" onclick="toSearch()">Cnet</button>
         <button type="submit" name="sitename" class="sitename premierleague" value="プレミアリーグ公式" onclick="toSearch()">プレミアリーグ公式</button>
         <button type="submit" name="sitename" class="sitename yahoo" value="ヤフー" onclick="toSearch()">ヤフー</button>
-    </form>
 
-    <h4>英語サイト</h4>
-    <form class="adapted-site" action="/search" method="POST">
+
         <button type="submit" name="sitename" class="sitename cnn" value="CNN" onclick="toSearch()">CNN</button>
         <button type="submit" name="sitename" class="sitename gigazine" value="Gigazine" onclick="toSearch()">Gigazine</button>
         <button type="submit" name="sitename" class="sitename gizmodo" value="GIZMODO" onclick="toSearch()">GIZMODO</button>
@@ -28,8 +25,9 @@
     </form>
 
     <div class="wrap-search nomal">
+        <h3>通常読み上げ</h3>
         <form class="search to-result" method="POST" action="/result">
-            <h3>通常読み上げ</h3>
+            <p>読み上げ対象の記事URLを入力してください。</p>
             <div>
                 <input type="text" id="url" class="url" name="url" placeholder="https://example.com">
                 <button type="submit" onclick="loading()"><i class="fas fa-search fa-2x" style="color: #252525;"></i></button>
