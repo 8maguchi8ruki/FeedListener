@@ -1,40 +1,32 @@
 {% extends "base.html" %}
 {% block content %}  
 
-<div class="wrap-home">
-    <h3>高性能読み上げ対応サイト</h3>
-    <form class="adapted-site" action="/search" method="POST">
-        <button type="submit" name="sitename" class="sitename cnn" value="CNN" onclick="toSearch()">CNN</button>
-        <button type="submit" name="sitename" class="sitename gigazine" value="Gigazine" onclick="toSearch()">Gigazine</button>
-        <button type="submit" name="sitename" class="sitename gizmodo" value="ギズモード・ジャパン" onclick="toSearch()">ギズモード・ジャパン</button>
-        <button type="submit" name="sitename" class="sitename techcrunch" value="TechCrunch" onclick="toSearch()">Techcrunch</button>
-        <button type="submit" name="sitename" class="sitename sankei" value="産経新聞" onclick="toSearch()">産経新聞</button>
-        <button type="submit" name="sitename" class="sitename cnet" value="cnet" onclick="toSearch()">Cnet</button>
-        <button type="submit" name="sitename" class="sitename premierleague" value="プレミアリーグ公式" onclick="toSearch()">プレミアリーグ公式</button>
-        <button type="submit" name="sitename" class="sitename yahoo" value="ヤフー" onclick="toSearch()">ヤフー</button>
-
-
-        <button type="submit" name="sitename" class="sitename cnn" value="CNN" onclick="toSearch()">CNN</button>
-        <button type="submit" name="sitename" class="sitename gigazine" value="Gigazine" onclick="toSearch()">Gigazine</button>
-        <button type="submit" name="sitename" class="sitename gizmodo" value="GIZMODO" onclick="toSearch()">GIZMODO</button>
-        <button type="submit" name="sitename" class="sitename techcrunch" value="TechCrunch" onclick="toSearch()">Techcrunch</button>
-        <button type="submit" name="sitename" class="sitename sankei" value="産経新聞" onclick="toSearch()">産経新聞</button>
-        <button type="submit" name="sitename" class="sitename cnet" value="cnet" onclick="toSearch()">Cnet</button>
-        <button type="submit" name="sitename" class="sitename premierleague" value="premierleague" onclick="toSearch()">Premierleague</button>
-        <button type="submit" name="sitename" class="sitename yahoo" value="Yahoo!" onclick="toSearch()">Yahoo!</button>
+<div class="wrap-search">
+    <form class="search to-result" method="POST" action="/result">
+        <h3>読み上げ対象の記事URLを入力して下さい</h3>
+        <small style="margin-bottom: 10px; display: inline-block;"><a href="/help">高性能読み上げ対応サイト一覧>></a></small>
+        <div>
+            <input type="text" id="url" class="url" name="url" placeholder="https://example.com">
+            <button type="submit" onclick="loading()"><i class="fas fa-search fa-2x" style="color: #252525;"></i></button>
+        </div>
     </form>
 
-    <div class="wrap-search nomal">
-        <h3>通常読み上げ</h3>
-        <form class="search to-result" method="POST" action="/result">
-            <p>読み上げ対象の記事URLを入力してください。</p>
-            <div>
-                <input type="text" id="url" class="url" name="url" placeholder="https://example.com">
-                <button type="submit" onclick="loading()"><i class="fas fa-search fa-2x" style="color: #252525;"></i></button>
-            </div>
-        </form>
-    </div>
-    
+    <img src="../static/img/search.svg" alt="">
+
 </div>
 
+<div class="wrap-content">
+
+</div>
+
+    <div id="loader-bg">
+        <div id="loader">
+            <img src="../static/img/Search.png" width="100" height="100" alt="Loading..." />
+            <p>Loading...</p>
+            <p class="comment comment1">記事内容を取得中</p>
+            <p class="comment comment2">音声ファイルを作成しています</p>
+        </div>
+    </div>
+
+    </script>
 {% endblock %}

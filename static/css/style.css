@@ -26,6 +26,7 @@
 
 /***** 共通 *****/
 html{
+    width: 100%;
     margin: 0;
 }
 body{
@@ -126,7 +127,7 @@ form.site input{
 }
 
 .wrap-search{
-    width: 500px;
+    width: 800px;
     margin: 0 auto;
 }
 .wrap-search.nomal{
@@ -307,17 +308,46 @@ form.site input{
 
 
 /***** ヘルプページ *****/
+.help{
+    width: 800px;
+    margin: 0 auto;
+}
 .help h4{
     border-left: 2px solid #ddd;
     padding-left: 10px;
 }
+.help ul{
+    padding-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.help li{
+    width: 33%;
+    line-height: 30px;
+    margin: 1px;
+}
 
 @media screen and (max-width: 1024px){
     .wrap-search , .wrap-result , .wrap-home{
-        width: 90%;
+        width: 98% !important;
+    }
+    .sitename{
+        width: 100% !important;
+        line-height: 30px;
+        text-align: start;
     }
     .wrap-search img{
         width: 80%;
+    }
+    .wrap{
+        padding-top: 120px;
+    }
+    header{
+        justify-content: start;
+        padding: 10px;
+    }
+    h1,h2{
+        font-size: 16px;
     }
 }
 

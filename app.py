@@ -51,13 +51,6 @@ def contact_success():
     return render_template("contact-success.html")
 
 
-##### 検索ページ #####
-@app.route('/search', methods=['GET','POST'])
-def search():
-    sitename = request.form.get('sitename')
-    print(sitename)
-    return render_template("search.html",sitename = sitename)
-
 
 
 ##### 検索結果ページ #####
