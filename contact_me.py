@@ -1,7 +1,6 @@
 import smtplib
 from email.mime.text import MIMEText
 from email.utils import formatdate
-import database
 
 def send(name,email,text):
     smtpobj = smtplib.SMTP('smtp.gmail.com', 587)

@@ -7,7 +7,6 @@ import time
 from flask import request
 from flask import render_template,jsonify
 from flask import Flask , session
-import database
 import contact_me
 import re
 import random
@@ -24,128 +23,10 @@ app.secret_key = os.urandom(12)
 print(app.secret_key)
 oauth = OAuth(app)
 
-user_info = ""
-user_photo = ""
-
-##### ログインページ #####
-user_photo = ""
-@app.route('/')
+##### ホーム #####
+@app.route('/', methods=['GET','POST'])
 def index():
-    # user = session.get('user')
-    session.pop('user',None)
-    return render_template('index.html')
-
-
-
-@app.route("/logout")
-def logout():
-    session.pop('user',None)
-    return redirect(url_for("index"))
-
-
-# googleログイン処理
-@app.route('/google/')
-def google():
-    GOOGLE_CLIENT_ID = '581315401881-2jeheeiinnvg7cjji7trcq5il09jnr6i.apps.googleusercontent.com'
-    GOOGLE_CLIENT_SECRET = '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'
-    CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
-    oauth.register(
-        name='google',
-        client_id=GOOGLE_CLIENT_ID,
-        client_secret=GOOGLE_CLIENT_SECRET,
-        server_metadata_url=CONF_URL,
-        client_kwargs={
-            'scope': 'openid email profile'
-        }
-    )
-    # リダイレクト
-    redirect_uri = url_for('google_auth', _external=True)
-    return oauth.google.authorize_redirect(redirect_uri)
-
-@app.route('/google/auth/')
-def google_auth():
-    print(request.args.get('state'), session.get('_google_authlib_state_'))
-    token = oauth.google.authorize_access_token()
-    session['user'] = token['userinfo']
-    user_info = session['user']
-    print("ユーザーデータ:")
-    print(user_info)
-    user_id = user_info.sub
-    user_photo = user_info.picture
-    user_name = user_info.name
-    print(user_photo)
-    print(user_id)
-    user_id = user_id[-4:]
-    database.update_user(str(user_id) , user_name , user_photo)
-    return redirect(url_for("home", current_user = user_id))
-
-
-
-##### ホームページ #####
-@app.route('/home/<current_user>' , methods=["GET"])
-def home(current_user):
-    if os.path.exists("static/files/audio"):
-        print("audioフォルダを削除しました")
-        shutil.rmtree("static/files/audio")
-    data = database.select_user()
-    user_name = ""
-    user_photo = ""
-    for d in data:
-        # print(d[0], current_user)
-        if str(d[0]) == current_user:
-            user_name = d[1]
-            user_photo = d[2]
-            print(user_name , user_photo)
-    return render_template('home.html', current_user = current_user , user_photo = user_photo , user_name = user_name)
-
-
- 
-##### ホームページ全サイト取得ajax #####
-@app.route('/ajax/all-site/<current_user>')
-def all_site(current_user):
-    return jsonify(database.select_all_site(current_user))
-##### ホームページサイト追加ajax #####
-@app.route('/ajax/add-site/<current_user>/<sitename>')
-def add_site(current_user , sitename):
-    database.update_site(current_user , sitename)
-    return jsonify(database.select_site(current_user))
-##### ホームページサイト削除ajax #####
-@app.route('/ajax/delete-site/<current_user>/<sitename>')
-def delete_site(current_user , sitename):
-    database.delete_site(current_user , sitename)
-    return jsonify(database.select_site(current_user))
-
-
-
-##### マイリストページ #####
-@app.route('/mylist/<current_user>', methods=['GET','POST'])
-def mylist(current_user):
-    database.create_all_site()
-    return render_template("mylist.html", my_sites = database.select_site(current_user))
-
-
-
-##### 検索ページ #####
-@app.route('/search/<current_user>', methods=['GET','POST'])
-def search(current_user):
-    sitename = request.form.get('sitename')
-    return render_template("search.html",sitename = sitename)
-
-
-
-##### 最新記事ページ #####
-@app.route('/recent/<current_user>', methods=['GET','POST'])
-def recent(current_user):
-    database.create_all_site()
-    return render_template("recent.html", my_sites = database.select_site(current_user))
-
-##### セレクトページ #####
-@app.route('/select/<current_user>', methods=['GET','POST'])
-def select(current_user):
-    database.create_all_site() 
-    return render_template("select.html", my_sites = database.select_site(current_user))
-
-
+    return render_template("index.html")
 
 ##### ヘルプページ #####
 @app.route('/help/', methods=['GET','POST'])
@@ -170,53 +51,20 @@ def contact_success():
     return render_template("contact-success.html")
 
 
-
-
-
-##### 履歴ページ #####
-@app.route('/history/<current_user>')
-def history(current_user):
-    database.history_create()
-    datas = database.history_select(current_user)
-    return render_template('history.html',datas = datas)
-
-##### 履歴全削除ajax #####
-@app.route('/ajax/delete-historys/<current_user>', methods=['GET'])
-def ajax_delete_historys(current_user):
-    return jsonify(database.delete_history(current_user))
-
-
-
-##### アーカイブページ #####
-@app.route('/archive/<current_user>',methods=['GET'])
-def archive(current_user):
-    database.archive_create()
-    archives = database.archive_sl(current_user)
-    return render_template('archive.html',archives = archives)
-
-##### アーカイブ登録ajax #####
-@app.route('/ajax/<articleID>/<current_user>', methods=['GET'])
-def ajax(articleID,current_user):
-    print(articleID)
-    return jsonify(database.archive_up(articleID,current_user))
-
-##### アーカイブ全削除ajax #####
-@app.route('/ajax/delete-archives/<current_user>', methods=['GET'])
-def ajax_delete_archives(current_user):
-    return jsonify(database.delete_archives(current_user))
-
-##### アーカイブ個別削除ajax #####
-@app.route('/ajax/delete/<articleID>', methods=['GET'])
-def ajax_delete(articleID):
-    return jsonify(database.delete_this(articleID))
+##### 検索ページ #####
+@app.route('/search', methods=['GET','POST'])
+def search():
+    sitename = request.form.get('sitename')
+    print(sitename)
+    return render_template("search.html",sitename = sitename)
 
 
 
 ##### 検索結果ページ #####
 class TITLE:
     title = ""
-@app.route('/result/<current_user>', methods=['GET','POST'])
-def result(current_user):
+@app.route('/result', methods=['GET','POST'])
+def result():
     if not os.path.exists("static/files/audio"):
         print("audioフォルダを作成しました")
         os.mkdir("static/files/audio")
@@ -230,8 +78,6 @@ def result(current_user):
         res = requests.get(url)
         soup = bs4(res.content, "lxml")
         title = soup.find("title").text
-        # 新しい履歴を反映
-        database.history_update(current_user,title,url)
         i = 0
         print(class_name)
             
@@ -632,8 +478,7 @@ def result(current_user):
     get_title(t)
 
     # 最新の履歴データのIDを取得
-    articleID = database.count()
-    return render_template('result.html', result=data, url = url , title = t.title , articleID=articleID[0] , rannum = rannum)
+    return render_template('result.html', result=data, url = url , title = t.title , rannum = rannum)
 
 
 

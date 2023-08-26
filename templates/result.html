@@ -5,16 +5,10 @@
         <!-- <a href="../static/files/audio/article{{ rannum }}.mp3" download="article{{ rannum }}.mp3" class="download">音声ファイルをダウンロード</a> -->
 
         <div class="article">
-            <div id="articleID" style="display: none;">{{ articleID[0] }}</div>
 
             <h3 id="title">{{ title }}</h3>
             <audio controls id="audio" src="../static/files/audio/article{{ rannum }}.mp3"></audio>
 
-            <!-- Vueコンテナ -->
-            <div id="vue-container">
-                <!-- コンポーネント -->
-                <mycomp />
-            </div>
             <p class="reference"><a href="{{ url }}" id="url">{{ url }}</a></p>
 
 
@@ -34,50 +28,4 @@
 
 
     </div>
-
-    <script>
-        var title = document.querySelector("#title").textContent;
-        var url = document.querySelector("#url").textContent;
-
-        let archive_keep = {
-            value: null
-        }
-        // コンポーネントのスクリプト
-        Vue.component('mycomp',{
-            template:'#mycomp-template',    
-            data: function(){
-                return{
-                    id : document.querySelector('#articleID').textContent,
-                    title : document.querySelector("#title").textContent,
-                    url : document.querySelector("#url").textContent,
-                };
-            },
-            methods:{
-                action:function(){
-                    console.log("clicked!!!");
-                    current_user = sessionStorage.getItem("user_id");
-                    $.get("/ajax/" + this.id + "/" + current_user, function(data){
-                        $("#archive-button").addClass("active");
-                        $("#archive-button").text("アーカイブしました");
-                        // $("#archive-button").attr("disabled","true");
-                        archive_keep.value = "true";
-                        console.log(data);
-                    });
-                }
-            }
-        });
-        // Vueオブジェクト作成
-        new Vue({
-            el:'#vue-container',
-        });
-        
-        window.addEventListener('DOMContentLoaded', function () {
-            const audioElement = document.querySelector("audio");
-            audioElement.playbackRate = 1.5;
-        });
-
-
-        $("#archive-button").attr("disabled", archive_keep.value);
-    </script>
-
 {% endblock %}

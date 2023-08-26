@@ -3,8 +3,7 @@
 
 <div class="wrap-search">
     <form class="search to-result" method="POST" action="/result">
-        <h3 style="font-weight:bold;" >URLで調べる</h3>
-        <p>記事URLを入力してください</p>
+        <h3 class="{{ sitename }}">{{ sitename }}の記事URLを入力して下さい</h3>
         <div>
             <input type="text" id="url" class="url" name="url" placeholder="https://example.com">
             <button type="submit" onclick="loading()"><i class="fas fa-search fa-2x" style="color: #252525;"></i></button>

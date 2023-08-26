@@ -23,63 +23,6 @@
 }
 
 
-/* ログイン */
-.login-wrap{
-    width: 100%;
-    height: calc(100% + 50px);
-    position: fixed;
-    top: -50px;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 102;
-    background: linear-gradient(90deg,  #54aca9 , #54af69);
-}
-.login-wrap .login-box{
-    width: 80%;
-    margin: 0 auto;
-}
-.login-box h2{
-    border-bottom: 1px solid #ddd;
-}
-.login-box p{
-    width: 100%;
-    margin: 0 auto;
-}
-.login-box .login-btn{
-    justify-content: center;
-    flex-direction: row;
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100px;
-    margin: 0 auto;
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 15px;
-    box-sizing: border-box;
-}
-.login-box .btn-text{
-    justify-content: center;
-    padding: 10px;
-    font-family: 'Poppins', sans-serif;
-    color: rgb(85, 85, 85);
-    font-weight: bold;
-}
-.logout-mobile{
-    width: 120px;
-    height: 30px;
-    font-size: 0.8rem;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-.logout-pc{
-    display: none;
-}
 
 /***** 共通 *****/
 html{
@@ -98,11 +41,12 @@ body{
     min-height: 100vh;
     padding: 10px;
     padding-left: 5px;
-    padding-top: 90px;
+    padding-top: 200px;
     padding-bottom: 80px;
-    box-sizing: border-box;
+   box-sizing: border-box;
     margin: 0 auto;
-
+    display: flex;
+    flex-direction: column;
 }
 .wrap-content{
     width: 100%;
@@ -120,7 +64,7 @@ h3{
 /***** ヘッダー *****/
 header{
     width: 100%;
-    padding: 10px;
+    padding: 20px 0;
     box-sizing: border-box;
     border-bottom: 1px solid #ddd;
     position: fixed;
@@ -129,22 +73,24 @@ header{
     z-index: 101;
     background-color: #f9f9f9;
     display: flex;
+    justify-content: center;
 }
 h1{
+    margin: 10px 0;
+}
+h2{
     width: 100%;
-    margin: 0 auto;
     position: relative;
-    padding-left: 0;
+    padding-left: 50px;
     font-size: 1em;
-    margin-left: 45px;
     margin-top: 5px;
 }
-h1 a{
+header a{
     color: #252525;
     text-decoration: none;
 
 }
-h1 i{
+h2 i{
     margin-right: 10px;
 }
 header p{
@@ -157,7 +103,7 @@ header p{
 header img{
     position: absolute;
     left: 0;
-    top: -5px;
+    top: -10px;
     width: 40px;
     height: 40px;
 }
@@ -166,294 +112,6 @@ header div{
 }
 
 
-/***** メインメニュー *****/
-.wrap-content .mylist{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-.mylist div{
-    width: 100%;
-    margin: 5px 0px;
-    border: none;
-    color: #252525;
-    box-sizing: border-box;
-    position: relative;
-}
-.sitename{
-    width: 100%;
-    line-height: 50px;
-    color: #252525;
-    font-size: 1.2em;
-    text-align: start;
-    background: linear-gradient(90deg, #54af69 ,#54aca9);
-
-    animation: 0.5s ease-in-out fadein;
-    font-weight: bold;
-    border: 2px solid #252525;
-}
-.mylist .sitename{
-    line-height: 70px;
-}
-.yahoo::first-letter{
-    color: #fd3a3a;
-    font-size: 1.5em;
-}
-.sankei::first-letter{
-    color: #4548ff;
-    font-size: 1.5em;
-}
-.gizmodo::first-letter{
-    color: #9f56ff;
-    font-size: 1.5em;
-}
-.cnn::first-letter{
-    color: #ff6223;
-    font-size: 1.5em;
-}
-.techcrunch::first-letter{
-    color:#2ff85e;
-    font-size: 1.5em;
-}
-.gigazine::first-letter{
-    color:#e5ff3a;
-    font-size: 1.5em;
-}
-.sitename.change-backgroud{
-    opacity: 0.2;
-}
-.menu{
-    position: relative;
-    width: 100%;
-}
-.menu button{
-    width: 100%;
-    display: flex;
-}
-.menu button .menu-left{
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-}
-.menu .menu-right{
-    width: 30%;
-    display: flex;
-    align-self: center;
-}
-.menu-right img{
-    width: 100%;
-    max-height: 130px;
-}
-.menu .menu-content{
-    margin: 10px 0;
-    border: 2px solid #252525;
-    animation: 0.5s ease-in-out fadein;
-}
-.menu .menu-content:hover{
-    cursor: pointer;
-}
-.menu h2{
-    font-size: 1.5rem;
-    margin: 0;
-    color: #252525;
-}
-.menu p{
-    font-size: 1rem;
-    font-weight: bold;
-    color: #252525;
-    margin-bottom: 0;
-    display: inline-block;
-    border-bottom: 1px solid #252525;
-    margin-right: 10px;
-}
-.menu button{
-    width: 100%;
-    height: 150px;
-    border: none;
-    background: linear-gradient(90deg, #54af69 ,#54aca9);
-    color: #252525;
-    font-weight: bold;
-    font-size: 1.5em;
-    text-align: start;
-    text-decoration: none;
-}
-
-.recent,.select-site{
-    width: 100%;
-    margin-top: 10px;
-}
-.recent .target-site , .select-site .target-site{
-    width: 100%;
-    color: #252525;
-    font-size: 1.2em;
-    text-align: start;
-    position: relative;
-    z-index: 10;
-    border: 2px solid #252525;
-    overflow-x: scroll;
-    line-height: 75px;
-    height: 100%;
-}
-.to-mylist h3,.to-mylist p{
-    color: #252525;
-}
-.downloads button{
-    background-color: #829084;
-}
-.to-archives .arc{
-    background-color: #538e7a;
-}
-.mylist .delete-site{
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 80px;    
-    line-height: 75px;
-    background-color: rgba(0, 0, 0, 0);
-    color: #252525;
-    border: none;
-    z-index: 97;
-}
-.mylist button:hover{
-    cursor: pointer;
-    color: red;
-}
-.wrap-add-site{
-    position: relative;
-    width: 100%;
-}
-.add-site , .close-site{
-    position: absolute;
-    top: 5px;
-    right: 0;
-    color: #252525;
-    z-index: 99;
-    transform: translateY(-17px);
-    padding: 10px 10px 10px 50px;
-}
-.close-site{
-    color: #ccc;
-}
-
-.add-site.active{
-    display: none;
-}
-
-.wrap-delete-archives h3,.wrap-delete-historys h3{
-    margin-bottom: 5px;
-    margin-top: 10px;
-    width: 100%;
-}
-
-
-.all-sites ul li{
-    margin: 20px 0;
-}
-.all-sites ul li:hover{
-    cursor: pointer;
-    opacity: 0.5;
-}
-.all-sites ul li.active{
-    display: none;
-}
-#all-site{
-    overflow: auto;
-}
-#all-site > div{
-    position: absolute;
-    overflow-y: scroll;
-    width: 100%;
-    min-height: 100vh;
-    top: 0;
-    left: 0;
-    z-index: 98;
-    padding: 10px;
-    padding-top: 90px;
-    padding-bottom: 72px;
-    padding-left: 5px;
-    box-sizing: border-box;
-    background-color: #3c3c3c;
-}
-
-#all-site .scroll-content{
-    width: 100%;
-    margin: 0 auto;
-}
-
-.scroll-content h3{
-    color: #ccc;
-}
-.site-button{
-    width: 100%;
-    line-height: 50px;
-    color: #252525;
-    border: 1px solid #252525;
-    font-size: 1.2em;
-    text-align: start;
-    margin-bottom: 10px;
-    background: linear-gradient(90deg, #54af69 ,#54aca9);
-
-}
-.site-button:hover,.mylist .sitename:hover{
-    cursor: pointer;
-}
-.site-button.disabled{
-    opacity: 0.2;
-}
-.site-button.disabled:hover{
-    color: #252525;
-}
-
-.others{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    border-top: 1px solid #aaa;
-    padding-top: 10px;
-
-}
-.others div{
-    width:100%;
-}
-.others-menu{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding-left: 10px;
-    box-sizing: border-box;
-    animation: 0.5s ease-in-out fadein;
-}
-.others-menu a{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    margin: 5px 0;
-    background: none;
-    font-weight: bold;
-    box-sizing: border-box;
-    border: 2px solid #252525;
-    text-decoration: none;
-    background: linear-gradient(90deg, #54af69 ,#54aca9);
-
-}
-.others img{
-    width: 100%;
-    height: 100%;
-    /* border-bottom: 2px solid #252525; */
-}
-.others-menu li{
-    width: 100%;
-    margin: 0;
-    text-decoration: none;
-    color: #252525;
-    padding-left: 10px;
-    box-sizing: border-box;
-    list-style: none;   
-}
 
 #secret{
     display: none;
@@ -461,65 +119,22 @@ header div{
 
 
 
-/***** アーカイブ、履歴 *****/
-.wrap-content .sub-menu{
-    margin-top: 40px;
-    padding-left: 0;
-}
-.sub-menu img{
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 5px;
-    width: 40px;
-}
-.acount img{
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-}
-
-.sub-menu a{
-    width: 100%;
-    height: 100%;
-    align-self: flex-end;
-    text-decoration: none;
-    color: #252525;
-    background-color: #f9f9f9;
-    box-sizing: border-box;
-    font-size: 0.7rem;
-    display: block;
-    padding: 5px 0;
-}
-.sub-menu p{
-    text-align: center;
-    margin: 0;
-}
-.sub-menu div{
-    width: 100%;
-}
-.sub-menu .arc{ 
-    margin-right: 10px;
-}
-
-#mobile-only{
-    display: flex;
-}
-
-
 
 /***** 検索フォーム *****/
 form.site input{
     width: 100%;
-    margin: 10px 0;
 }
 
 .wrap-search{
-    width: 100%;
-    box-sizing: border-box;
+    width: 800px;
+    margin: 0 auto;
+}
+.wrap-search.nomal{
+    width: 500px;
+    margin: 50px 0;
 }
 .wrap-search img{
-    width: 80%;
+    width: 50%;
     display: block;
     margin: 0 auto;
     margin-top: 50px;
@@ -532,8 +147,13 @@ form.site input{
     display: block;
     font-size: 1em;
 }
+.wrap-search div{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
 .wrap-search input{
-    width: 80%;
+    width: 100%;
     line-height: 50px;
     padding-left: 10px;
     font-size: 1em;
@@ -545,6 +165,7 @@ form.site input{
     background: linear-gradient(90deg, #54af69 ,#54aca9);
     display: block;
 }
+
 .wrap-search input:hover{
     cursor: pointer
 }
@@ -555,18 +176,15 @@ form.site input{
     color: #252525;
     border: none;
     background: linear-gradient(90deg, #54af69 ,#54aca9);
+    position: absolute;
+    right: 0;
 }
 .wrap-search button:hover{
     background-color: #ddd;
     cursor: pointer;
 }
-.wrap-search .url{
-    margin-right: 10px;
-    margin-top: -1px;
-}
-.wrap-search div{
-    display: flex;
-    flex-wrap: wrap;
+.wrap-search.nomal input , .wrap-search.nomal button{
+    background: #ddd;
 }
 
 /***** ローディング *****/
@@ -586,11 +204,9 @@ form.site input{
 #loader{
     position: absolute;
     width: 100%;
-    top: 30%;
     text-align: center;
     font-size: 1em;
 }
-
 #loader img{
     transform: rotateZ(-45deg);
     animation: 3s ease-in-out search infinite;
@@ -609,28 +225,10 @@ form.site input{
 }
 
 
-/* サブメニュー */
-#sub-menu{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    background-color: #f9f9f9;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    box-sizing: border-box;
-    border-top: 1px solid #ddd;
-}
-#sub-menu-pc{
-    display: none;
-}
-
-
 
 /* リザルトページ */
 .wrap-result{
-    width: 100%;
+    width: 800px;
     margin: 0 auto;
     padding: 0 0 20px 0;
 }
@@ -663,177 +261,6 @@ form.site input{
 
 
 
-/***** アーカイブページ *****/
-#archive-button{
-    width: 180px;
-    height: 30px;
-    border: 1px solid #ccc;
-    font-weight: bold;
-    margin-top: 15px;
-}
-#archives{
-    list-style-type: none;
-}
-#archives li{
-    width: 100%;
-    margin: 30px 0 25px 0;
-    font-weight: bold;
-}
-#archives li a{
-    color: #252525;
-}
-
-#archives button{
-    text-align: center;
-}
-#archive-button.active{
-    color: #f9f9f9;
-    background: linear-gradient(90deg, #54af69 ,#54aca9);
-}
-.wrap-delete-archives , #archives div{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-}
-#archives div{
-    width: 100%;
-    background-color: #E7E9EB;
-    background: linear-gradient(90deg, #54af69 ,#54aca9);
-    border: 2px solid #252525;
-    margin: 10px 0;
-    padding: 10px;
-    box-sizing: border-box;
-    position: relative;
-    animation: 0.5s ease-in-out fadein;
-}
-#archives div:hover{
-    cursor:pointer;
-}
-#delete-archives{
-    width: 175px;
-    height: 30px;
-    border: none;
-    color: #252525;
-}
-#delete-this{
-    width: 60px;
-    height: 30px;
-    border: none;
-    color: #ccc;
-    font-weight: bold;
-    background-color: #3c3c3c;
-    text-align: center;
-    position: absolute;
-    top: 0;
-    right: 0;
-}   
-#delete-archives:hover ,.delete-trigger:hover ,#delete-this:hover {
-    color: red;
-    cursor: pointer;
-}
-
-#again-form{
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-#again-button{
-    width: 120px;
-    height: 30px;
-    border: none;
-    font-weight: bold;
-    background-color: #9f56ff;
-    text-align: center;
-    color: #ccc;
-}
-
-
-
-/***** 履歴ページ *****/
-.historys{
-    width: 100%;
-    box-sizing: border-box;
-}
-.historys ul , .archives ul{
-    margin: 0;
-}
-.historys ul li{
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    border-bottom: 1px dashed #252525;
-    font-weight: bold;
-}
-.historys ul li a{
-    color: #252525;
-}
-.wrap-delete-historys{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-}
-
-
-
-/***** 削除ダイアログ *****/
-.delete-trigger{
-    width: 100px;
-    height: 30px;
-    border: none;
-    background: none;
-    color: #252525;
-    text-align: end;
-    position: absolute;
-    right: 0;
-    bottom: 7px;
-}
-.delete-trigger:hover{
-    cursor: pointer;
-    color: red;
-}
-.dialog{
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding-top: 20px;
-    z-index: 1000;
-    display: none;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, #54af69 ,#54aca9);
-    box-sizing: border-box;
-
-}
-.dialog.active{
-    display: flex;
-    align-items: center;
-}
-.dialog-content{
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    flex-wrap: wrap;
-}
-.dialog-content div{
-    width: 100%;
-    text-align: center;
-}
-.dialog-content p{
-    color: #252525;
-    font-weight: bold;
-}
-.delete-ok , .delete-cancel{
-    border: none;
-    background-color: transparent;
-    color: #252525;
-    padding: 20px;
-    font-weight: bold;
-}
-.delete-ok:hover .delete-cancel:hover{
-    cursor: pointer;
-}
 
 
 /***** お問い合わせページ *****/
@@ -882,4 +309,59 @@ form.site input{
 .help h4{
     border-left: 2px solid #ddd;
     padding-left: 10px;
+}
+
+@media screen and (max-width: 1024px){
+    .wrap-search , .wrap-result , .wrap-home{
+        width: 90%;
+    }
+    .wrap-search img{
+        width: 80%;
+    }
+}
+
+.wrap-home{
+    width: 800px;
+    margin: 0 auto;
+}
+.adapted-site{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.sitename{
+   line-height: 50px;
+   width: 200px;
+   border: none;
+   border: 1px solid #ddd;
+   background: linear-gradient(90deg, #54af69 ,#54aca9);
+   font-size: 1rem;
+}
+.sitename:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+.yahoo::first-letter{
+    color: #fd3a3a;
+}
+.sankei::first-letter{
+    color: #4548ff;
+}
+.gizmodo::first-letter{
+    color: #515151;
+}
+.cnn::first-letter{
+    color: #ff6223;
+}
+.techcrunch::first-letter{
+    color:#2ff85e;
+}
+.gigazine::first-letter{
+    color:#d1d636;
+}
+.premierleague::first-letter{
+    color: #813ddb;
+}
+.cnet::first-letter{
+    color: #ad781c;
 }

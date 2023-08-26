@@ -25,78 +25,16 @@
 <body>
     <header>
         <div>
-            <!-- <i class="fas fa-rss fa-2x" style="color: #2bc44c;"></i> -->
-            <img src="../static/img/sound-wave.png" alt="">
-            <h1>Feed Listener</h1>
-            <p>web記事を音声で。移動中も効率的なインプットを。</p>
+            <a href="/">
+                <h2><img src="../static/img/sound-wave.png" alt="">FeedListener</h2>
+                <h1>高性能音声読み上げサイト</h1>
+            </a>
         </div>
-        <a href="/logout">
-            <button class="logout logout-mobile">ログアウト</button>
-        </a>
     </header>   
 
     <div class="wrap">
         {% block content %}
         {% endblock %}
-                <!-- サブメニュー -->
-                <div class="sub-menu" id="sub-menu">
-                    <a href="/home" class="to-home">
-                        <div>
-                            <img src="../static/img/menu11.svg" alt="">
-                            <p>ホーム</p>
-                        </div>
-                    </a>
-
-                    <a href="/archive" class="to-archive">
-                        <div>
-                            <img src="../static/img/menu6.svg" alt="">
-                            <p>アーカイブ</p>
-                        </div>                        
-                    </a>
-
-                    <a href="/history" class="to-history">
-                        <div>
-                            <img src="../static/img/menu9.svg" alt="">
-                            <p>履歴</p>
-                        </div>
-                    </a>
-
-                    <a href="https://myaccount.google.com/" class="to-acount">
-                        <div class="acount">
-                            <img src="{{ user_photo }}" alt="" id="user_photo">
-                            <p>アカウント</p>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- pcメニュー -->
-                <div id="sub-menu-pc">
-                    <a href="/">
-                        <button class="logout logout-pc">ログアウト</button>
-                    </a>
-                    <nav>
-                        <a href="/home" class="to-home">
-                           <li>ホーム</li>
-                        </a>
-                        <a href="/archive" class="to-archive">
-                            <li>アーカイブ</li>
-                        </a>
-                        <a href="/history" class="to-history">
-                            <li>履歴</li>
-                        </a>
-                        <a href="/help" class="to-help">
-                            <li>ヘルプ</li>
-                        </a>
-                        <a href="/contact" class="to-contact">
-                            <li>コンタクト</li>
-                        </a>
-                        <a href="/policy" class="to-policy">
-                            <li>ポリシー</li>
-                        </a>
-
-                    </nav>
-                </div>
-
                 <!-- ローディングアニメーション -->
                 <div id="loader-bg">
                     <div id="loader">
@@ -110,44 +48,12 @@
 
    
     <script>
-        // ユーザーごとにセッション管理
-        user_photo = sessionStorage.getItem("user_photo");
-        user_id = sessionStorage.getItem("user_id");
-        $("#user_photo").attr("src" , user_photo);
-        $("#sub-menu .to-home, #sub-menu-pc .to-home").attr("href" , "/home/" + user_id);
-        $("#sub-menu .to-archive, #sub-menu-pc .to-archive").attr("href" , "/archive/" + user_id);
-        $("#sub-menu .to-history, #sub-menu-pc .to-history").attr("href" , "/history/" + user_id);
-        $(".to-recent").attr("action" , "/recent/" + user_id);
-        $(".to-select").attr("action" , "/select/" + user_id);
-        $(".to-mylist").attr("action" , "/mylist/" + user_id);        
-        $(".select-site").attr("action" , "/search/" + user_id); 
-        $(".to-result").attr("action" , "/result/" + user_id);
-
-
-
-        // サイト別に背景色を設定する
-        let site = document.querySelectorAll(".sitename");
-        console.log(site);
-        let pattern = /-EN/;
-        for(let i=0;i<site.length;i++){
-            let site_value = site[i].getAttribute("value");
-            if(site_value.match(/産経新聞/)){
-                site[i].classList.add("sankei");
-            }else if(site_value.match(/GIZMODO/)){
-                site[i].classList.add("gizmodo");
-            }else if(site_value.match(/CNN/)){
-                site[i].classList.add("cnn");
-            }else if(site_value.match(/TechCrunch/) && site_value.match(pattern)){
-                site[i].classList.add("techcrunch");
-            }else if(site_value.match(/GIGAZINE/)){
-                site[i].classList.add("gigazine");
-            }
-            console.log(site_value);
-        }
-
         // ローディングアニメーション制御
         function loading(){
-            $('#loader-bg ,#loader').css('display', 'block');
+            $('#loader-bg').css('display', 'flex');
+            $('#loader-bg').css('flex-direction', 'column');
+            $('#loader-bg').css('justify-content', 'center');
+            $('#loader').css('display', 'block');
             $(".comment1").addClass("active");
             setTimeout(() => {
                 $(".comment1,.comment2").toggleClass("active");
